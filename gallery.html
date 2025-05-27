@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - Sticky Monster Lab Fan Page</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background: #0a0a0a;
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: #000;
+            padding: 20px 0;
+            border-bottom: 2px solid #333;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: #fff;
+        }
+
+        .lang-toggle {
+            background: #333;
+            border: none;
+            color: #fff;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .lang-toggle:hover {
+            background: #555;
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 80px;
+            padding: 40px 0;
+        }
+
+        /* Gallery Header */
+        .gallery-header {
+            text-align: center;
+            padding: 60px 0;
+            background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+        }
+
+        .gallery-header h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .gallery-header p {
+            font-size: 18px;
+            color: #ccc;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Filter Tabs */
+        .filter-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+
+        .filter-tab {
+            background: transparent;
+            border: 2px solid #333;
+            color: #ccc;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+        }
+
+        .filter-tab:hover, .filter-tab.active {
+            background: #333;
+            color: #fff;
+            border-color: #555;
+        }
+
+        /* Gallery Grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .gallery-item {
+            background: #1a1a1a;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            aspect-ratio: 1;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(255, 255, 255, 0.1);
+        }
+
+        .gallery-image {
+            width: 100%;
+            height: 100%;
+            background: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 50%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 20px;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #fff;
+        }
+
+        .gallery-description {
+            font-size: 12px;
+            color: #ccc;
+            line-height: 1.4;
+        }
+
+        .gallery-category {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(0,0,0,0.7);
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 12px;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Lightbox Modal */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+            text-align: center;
+        }
+
+        .lightbox-image {
+            font-size: 200px;
+            margin-bottom: 20px;
+            filter: grayscale(100%);
+            transition: filter 0.3s ease;
+        }
+
+        .lightbox.active .lightbox-image {
+            filter: grayscale(0%);
+        }
+
+        .lightbox-info {
+            background: #1a1a1a;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .lightbox-info h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .lightbox-info p {
+            color: #ccc;
+            margin-bottom: 15px;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 30px;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(0,0,0,0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox-close:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        /* Special Gallery Items */
+        .gallery-item.featured {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+
+        .gallery-item.featured .gallery-image {
+            font-size: 120px;
+        }
+
+        /* Floating Animation */
+        .floating-char {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
+        }
+
+        /* Filter Animation */
+        .gallery-item {
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .gallery-item.hidden {
+            display: none;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 20px;
+            }
+
+            .gallery-item.featured {
+                grid-column: span 1;
+                grid-row: span 1;
+            }
+
+            .gallery-item.featured .gallery-image {
+                font-size: 80px;
+            }
+
+            .filter-tabs {
+                gap: 10px;
+            }
+
+            .filter-tab {
+                padding: 8px 16px;
+                font-size: 12px;
+            }
+
+            .lightbox-image {
+                font-size: 150px;
+            }
+        }
+
+        /* Back Button */
+        .back-button {
+            display: inline-block;
+            margin: 20px 0;
+            padding: 12px 24px;
+            background: transparent;
+            border: 2px solid #333;
+            color: #ccc;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-family: 'Courier New', monospace;
+        }
+
+        .back-button:hover {
+            background: #333;
+            color: #fff;
+            border-color: #555;
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 200px;
+            font-size: 18px;
+            color: #666;
+        }
+
+        .loading::after {
+            content: '...';
+            animation: dots 2s infinite;
+        }
+
+        @keyframes dots {
+            0%, 20% { content: '.'; }
+            40% { content: '..'; }
+            60%, 100% { content: '...'; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="index.html" class="logo">스티키 몬스터 랩</a>
+            <ul class="nav-links">
+                <li><a href="index.html#about" class="nav-en" style="display: none;">About</a><a href="index.html#about" class="nav-kr">소개</a></li>
+                <li><a href="index.html#characters" class="nav-en" style="display: none;">Characters</a><a href="index.html#characters" class="nav-kr">캐릭터</a></li>
+                <li><a href="index.html#memes" class="nav-en" style="display: none;">Memes</a><a href="index.html#memes" class="nav-kr">밈</a></li>
+                <li><a href="gallery.html" class="nav-en active" style="display: none;">Gallery</a><a href="gallery.html" class="nav-kr active">갤러리</a></li>
+                <li><button class="lang-toggle" onclick="toggleLanguage()">🇰🇷 / 🇺🇸</button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <a href="index.html" class="back-button">
+                <span class="back-kr">← 홈으로 돌아가기</span>
+                <span class="back-en" style="display: none;">← Back to Home</span>
+            </a>
+        </div>
+
+        <!-- Gallery Header -->
+        <section class="gallery-header">
+            <div class="container">
+                <h1 class="gallery-title-kr">작품 갤러리</h1>
+                <h1 class="gallery-title-en" style="display: none;">Gallery</h1>
+                <p class="gallery-desc-kr">조용한 혼돈 속에서 피어나는 미니멀한 아트와 일상의 순간들</p>
+                <p class="gallery-desc-en" style="display: none;">Minimalist art and everyday moments blooming from quiet chaos</p>
+            </div>
+        </section>
+
+        <!-- Filter Tabs -->
+        <section class="container">
+            <div class="filter-tabs">
+                <button class="filter-tab active" data-filter="all">
+                    <span class="filter-kr">전체</span>
+                    <span class="filter-en" style="display: none;">All</span>
+                </button>
+                <button class="filter-tab" data-filter="characters">
+                    <span class="filter-kr">캐릭터</span>
+                    <span class="filter-en" style="display: none;">Characters</span>
+                </button>
+                <button class="filter-tab" data-filter="scenes">
+                    <span class="filter-kr">일상</span>
+                    <span class="filter-en" style="display: none;">Daily Life</span>
+                </button>
+                <button class="filter-tab" data-filter="work">
+                    <span class="filter-kr">업무</span>
+                    <span class="filter-en" style="display: none;">Work</span>
+                </button>
+                <button class="filter-tab" data-filter="emotions">
+                    <span class="filter-kr">감정</span>
+                    <span class="filter-en" style="display: none;">Emotions</span>
+                </button>
+            </div>
+
+            <!-- Gallery Grid -->
+            <div class="gallery-grid">
+                <!-- Featured Item -->
+                <div class="gallery-item featured" data-category="characters" onclick="openLightbox(this)">
+                    <div class="gallery-image">
+                        <div class="floating-char">😐</div>
+                    </div>
+                    <div class="gallery-category">
+                        <span class="cat-kr">캐릭터</span>
+                        <span class="cat-en" style="display: none;">Character</span>
+                    </div>
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title">
+                            <span class="title-kr">무표정한 존재</span>
+                            <span class="title-en" style="display: none;">The Expressionless One</span>
+                        </h3>
+                        <p class="gallery-description">
+                            <span class="desc-kr">모든 것을 다 본 듯한 눈빛으로 세상을 바라보는 존재</span>
+                            <span class="desc-en" style="display: none;">A being that observes the world with eyes that have seen everything</span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Work Category -->
+                <div class="gallery-item" data-category="work" onclick="openLightbox(this)">
+                    <div class="gallery-image">
+                        <div class="floating-char">💻</div>
+                    </div>
+                    <div class="gallery-category">
+                        <span class="cat-kr">업무</span>
+                        <span class="cat-en" style="display: none;">Work</span>
+                    </div>
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title">
+                            <span class="title-kr">디지털 노예</span>
+                            <span class="title-en" style="display: none;">Digital Slave</span>
+                        </h3>
+                        <p class="gallery-description">
+                            <span class="desc-kr">화면과 하나가 된 현대인의 모습</span>
+                            <span class="desc-en" style="display: none;">Modern human becoming one with the screen</span>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="work" onclick="openLightbox(this)">
+                    <div class="gallery-image">
+                        <div class="floating-char">📊</div>
+                    </div>
+                    <div class="gallery-category">
+                        <span class="cat-kr">업무</span>
+                        <span class="cat-en" style="display: none;">Work</span>
+                    </div>
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title">
+                            <span class="title-kr">무의미한 차트</span>
+                            <span class="title-en" style="display: none;">Meaningless Charts</span>
+                        </h3>
+                        <p class="gallery-description">
+                            <span class="desc-kr">숫자로 가득한 하루의 증명</span>
+                            <span class="desc-en" style="display: none;">Proof of a day filled with numbers</span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Daily Life Category -->
+                <div class="gallery-item" data-category="scenes" onclick="openLightbox(this)">
+                    <div class="gallery-image">
+                        <div class="floating-char">☕</div>
+                    </div>
+                    <div class="gallery-category">
+                        <span class="cat-kr">일상</span>
+                        <span class="cat-en" style="display: none;">Daily</span>
+                    </div>
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title">
+                            <span class="title-kr">커피 의식</span>
+                            <span class="title-en" style="display: none;">Coffee Ritual</span>
+                        </h3>
+                        <p class="gallery-description">
+                            <span class="desc-kr">하루를 시작하는 유일한 희망</span>
+                            <span class="desc-en" style="display: none;">The only hope to start the day</span>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="scenes" onclick="openLightbox(this)">
+                    <div class="gallery-image">
+                        <div class="floating-char">🌙</div>
+                    </div>
+                    <div class="gallery-category">
+                        <span class="cat-kr">일상</span>
+                        <span class="cat-en" style="display: none;">Daily</span>
+                    </div>
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title">
+                            <span class="title-kr">밤의 사색</span>
+                            <span class="title-en" style="display: none;">Night Contemplation</span>
+                        </h3>
+                        <p class="gallery-description">
+                            <span class="desc-kr">어둠 속에서 찾는 작은 평화</span>
+                            <span class="desc-en" style="display: none;">Finding small peace in the darkness</span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Characters Category -->
+                <div class="gallery-item" data-category="characters" onclick="openLightbox(this)">
+                    <div class="gallery-image">
+                        <div class="floating-char">🤖</div>
+                    </div>
+                    <div class="gallery-category">
+                        <span class="cat-kr">캐릭터</span>
+                        <span class="cat-en" style="display: none;">Character</span>
+                    </div>
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title">
+                            <span class="title-kr">자동화된 영혼</span>
+                            <span class="title-en" style="display: none;">Automated Soul</span>
+                        </h3>
+                        <p class="gallery-description">
+                            <span class="desc-kr">인간과 기계의 경계에서</span>
+                            <span class="desc-en" style="display: none;">At the boundary between human and machine</span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Emotions Category -->
+                <div class="gallery-item" data-category="emotions" onclick="openLightbox(this)">
+                    <div class="gallery-image">
+                        <div class="floating-char">💭</div>
+                    </div>
+                    <div class="gallery-category">
+                        <span class="cat-kr">감정</span>
+                        <span class="cat-en" style="display: none;">Emotion</span>
+                    </div>
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title">
+                            <span class="title-kr">빈 생각</span>
+                            <span class="title-en" style="display: none;">Empty Thoughts</span>
+                        </h3>
+                        <p class="gallery-description">
+                            <span class="desc-kr">머릿속을 떠다니는 무의미한 생각들</span>
+                            <span class="desc-en" style="display: none;">Meaningless thoughts floating in the mind</span>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="emotions" onclick="openLightbox(this)">
+                    <div class="gallery-image">
+                        <div class="floating-char">😴</div>
+                    </div>
+                    <div class="gallery-category">
+                        <span class="cat-kr">감정</span>
+                        <span class="cat-en" style="display: none;">Emotion</span>
+                    </div>
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title">
+                            <span class="title-kr">만성 피로</span>
+                            <span class="title-en" style="display: none;">Chronic Fatigue</span>
+                        </h3>
+                        <p class="gallery-description">
+                            <span class="desc-kr">영원히 피곤한 현대인의 일상</span>
+                            <span class="desc-en" style="display: none;">The eternally tired modern life</span>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="scenes" onclick="openLightbox(this)">
+                    <div class="gallery-image">
+                        <div class="floating-char">📱</div>
+                    </div>
+                    <div class="gallery-category">
+                        <span class="cat-kr">일상</span>
+                        <span class="cat-en" style="display: none;">Daily</span>
+                    </div>
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title">
+                            <span class="title-kr">무한 스크롤</span>
+                            <span class="title-en" style="display: none;">Infinite Scroll</span>
+                        </h3>
+                        <p class="gallery-description">
+                            <span class="desc-kr">끝없는 스크롤 속에서 사라지는 시간</span>
+                            <span class="desc-en" style="display: none;">Time disappearing in endless scrolling</span>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="work" onclick="openLightbox(this)">
+                    <div class="gallery-image">
+                        <div class="floating-char">📧</div>
+                    </div>
+                    <div class="gallery-category">
+                        <span class="cat-kr">업무</span>
+                        <span class="cat-en" style="display: none;">Work</span>
+                    </div>
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title">
+                            <span class="title-kr">이메일 지옥</span>
+                            <span class="title-en" style="display: none;">Email Hell</span>
+                        </h3>
+                        <p class="gallery-description">
+                            <span class="desc-kr">받은 편지함의 끝없는 숫자들</span>
+                            <span class="desc-en" style="display: none;">Endless numbers in the inbox</span>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="characters" onclick="openLightbox(this)">
+                    <div class="gallery-image">
+                        <div class="floating-char">👥</div>
+                    </div>
+                    <div class="gallery-category">
+                        <span class="cat-kr">캐릭터</span>
+                        <span class="cat-en" style="display: none;">Character</span>
+                    </div>
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title">
+                            <span class="title-kr">군중 속의 고독</span>
+                            <span class="title-en" style="display: none;">Loneliness in Crowds</span>
+                        </h3>
+                        <p class="gallery-description">
+                            <span class="desc-kr">연결되어 있지만 단절된 존재들</span>
+                            <span class="desc-en" style="display: none;">Connected yet disconnected beings</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Lightbox Modal -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+        <div class="lightbox-content" onclick="event.stopPropagation()">
+            <div class="lightbox-image" id="lightbox-image"></div>
+            <div class="lightbox-info">
+                <h3 id="lightbox-title"></h3>
+                <p id="lightbox-description"></p>
+                <p id="lightbox-category"></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentLang = 'kr';
+
+        function toggleLanguage() {
+            const elements = {
+                // Navigation
+                navKr: document.querySelectorAll('.nav-kr'),
+                navEn: document.querySelectorAll('.nav-en'),
+                
+                // Logo
+                logo: document.querySelector('.logo'),
+                
+                // Back button
+                backKr: document.querySelectorAll('.back-kr'),
+                backEn: document.querySelectorAll('.back-en'),
+                
+                // Gallery header
+                galleryTitleKr: document.querySelectorAll('.gallery-title-kr'),
+                galleryTitleEn: document.querySelectorAll('.gallery-title-en'),
+                galleryDescKr: document.querySelectorAll('.gallery-desc-kr'),
+                galleryDescEn: document.querySelectorAll('.gallery-desc-en'),
+                
+                // Filter tabs
+                filterKr: document.querySelectorAll('.filter-kr'),
+                filterEn: document.querySelectorAll('.filter-en'),
+                
+                // Gallery items
+                titleKr: document.querySelectorAll('.title-kr'),
+                titleEn: document.querySelectorAll('.title-en'),
+                descKr: document.querySelectorAll('.desc-kr'),
+                descEn: document.querySelectorAll('.desc-en'),
+                catKr: document.querySelectorAll('.cat-kr'),
+                catEn: document.querySelectorAll('.cat-en')
+            };
+            
+            if (currentLang === 'kr') {
+                // Switch to English
+                elements.logo.textContent = 'Sticky Monster Lab';
+                
+                // Hide Korean, show English
+                [...elements.navKr, ...elements.backKr, ...elements.galleryTitleKr, 
+                 ...elements.galleryDescKr, ...elements.filterKr, ...elements.titleKr,
+                 ...elements.descKr, ...elements.catKr].forEach(el => {
+                    el.style.display = 'none';
+                });
+                
+                [...elements.navEn, ...elements.backEn, ...elements.galleryTitleEn,
+                 ...elements.galleryDescEn, ...elements.filterEn, ...elements.titleEn,
+                 ...elements.descEn, ...elements.catEn].forEach(el => {
+                    el.style.display = 'block';
+                });
+                
+                currentLang = 'en';
+            } else {
+                // Switch to Korean
+                elements.logo.textContent = '스티키 몬스터 랩';
+                
+                // Hide English, show Korean
+                [...elements.navEn, ...elements.backEn, ...elements.galleryTitleEn,
+                 ...elements.galleryDescEn, ...elements.filterEn, ...elements.titleEn,
+                 ...elements.descEn, ...elements.catEn].forEach(el => {
+                    el.style.display = 'none';
+                });
+                
+                [...elements.navKr, ...elements.backKr, ...elements.galleryTitleKr,
+                 ...elements.galleryDescKr, ...elements.filterKr, ...elements.titleKr,
+                 ...elements.descKr, ...elements.catKr].forEach(el => {
+                    el.style.display = 'block';
+                });
+                
+                currentLang = 'kr';
+            }
+        }
+
+        // Filter functionality
+        const filterTabs = document.querySelectorAll('.filter-tab');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+
+        filterTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs
+                filterTabs.forEach(t => t.classList.remove('active'));
+                // Add active class to clicked tab
+                tab.classList.add('active');
+                
+                const filter = tab.getAttribute('data-filter');
+                
+                galleryItems.forEach(item => {
+                    if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                        item.classList.remove('hidden');
+                        item.style.animation = 'fadeIn 0.5s ease-out';
+                    } else {
+                        item.classList.add('hidden');
+                    }
+                });
+            });
+        });
+
+        // Lightbox functionality
+        function openLightbox(item) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImage = document.getElementById('lightbox-image');
+            const lightboxTitle = document.getElementById('lightbox-title');
+            const lightboxDescription = document.getElementById('lightbox-description');
+            const lightboxCategory = document.getElementById('lightbox-category');
+            
+            // Get content from clicked item
+            const image = item.querySelector('.floating-char').textContent;
+            const titleKr = item.querySelector('.title-kr').textContent;
+            const titleEn = item.querySelector('.title-en').textContent;
+            const descKr = item.querySelector('.desc-kr').textContent;
+            const descEn = item.querySelector('.desc-en').textContent;
+            const catKr = item.querySelector('.cat-kr').textContent;
+            const catEn = item.querySelector('.cat-en').textContent;
+            
+            // Set lightbox content
+            lightboxImage.textContent = image;
+            lightboxTitle.textContent = currentLang === 'kr' ? titleKr : titleEn;
+            lightboxDescription.textContent = currentLang === 'kr' ? descKr : descEn;
+            lightboxCategory.textContent = `${currentLang === 'kr' ? '카테고리' : 'Category'}: ${currentLang === 'kr' ? catKr : catEn}`;
+            
+            // Show lightbox
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close lightbox with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            }
+        });
+
+        // Random floating animation delays
+        document.querySelectorAll('.floating-char').forEach((char, index) => {
+            char.style.animationDelay = `${Math.random() * 2}s`;
+        });
+
+        // Lazy loading simulation
+        window.addEventListener('load', () => {
+            const loading = document.querySelector('.loading');
+            if (loading) {
+                loading.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
