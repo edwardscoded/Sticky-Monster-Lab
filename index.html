@@ -247,9 +247,9 @@
             display: grid;
             grid-template-columns: repeat(6, 1fr);
             grid-auto-rows: minmax(200px, auto);
-            gap: 20px;
+            gap: 10px;
             margin: 0 auto;
-            max-width: 1200px;
+            max-width: 1000px;
             padding: 20px;
         }
 
@@ -272,35 +272,35 @@
             display: block;
         }
 
-        /* Scattered positioning */
+        /* Scattered positioning - closer together */
         .meme-item:nth-child(1) {
             grid-column: 1 / 3;
             transform: rotate(-3deg);
-            margin-top: 20px;
+            margin-top: 10px;
         }
 
         .meme-item:nth-child(2) {
-            grid-column: 4 / 6;
+            grid-column: 3 / 5;
             transform: rotate(5deg);
-            margin-top: -10px;
+            margin-top: -5px;
         }
 
         .meme-item:nth-child(3) {
-            grid-column: 5 / 7;
+            grid-column: 4 / 6;
             transform: rotate(-2deg);
-            margin-top: 30px;
+            margin-top: 15px;
         }
 
         .meme-item:nth-child(4) {
             grid-column: 2 / 4;
             transform: rotate(4deg);
-            margin-top: 15px;
+            margin-top: 8px;
         }
 
         .meme-item:nth-child(5) {
-            grid-column: 1 / 2;
+            grid-column: 5 / 6;
             transform: rotate(-6deg);
-            margin-top: -20px;
+            margin-top: -10px;
         }
 
         /* Characters Section */
@@ -366,6 +366,9 @@
             height: auto;
             opacity: 0.7;
             transition: opacity 0.3s ease;
+            background: #000;
+            padding: 10px;
+            border-radius: 8px;
         }
 
         .footer-logo img:hover {
@@ -506,15 +509,23 @@
                         <h2 class="about-title-en" style="display: none;">What is Murun and Soso?</h2>
                         
                         <div class="lang-content active" id="about-kr">
-                            <p><strong>무런 앤 소소(Murun and Soso)</strong>는 대한민국에서 탄생한 다분야 창작 스튜디오입니다. 대표적인 캐릭터들은 무표정하고 조용하지만 혼란스러운 삶을 살아가는 존재들로, 현대인의 고독과 업무, 부조리를 유머로 풀어냅니다.</p>
+                            <p>**무룬**과 **소소** — 번아웃의 비공식 성자들. 무룬은 멍하니 보고, 소소는 조용히 한숨 쉽니다. 아무것도 하지 않는 게 이들의 핵심입니다.</p>
                             <br>
-                            <p>서울에서 시작된 무런 앤 소소는 <strong>예술, 디자인, 스토리텔링</strong>을 결합해 전 세계의 디지털 피로에 시달리는 이들에게 공감을 주는 애니메이션, 장난감, 밈을 만들어냅니다.</p>
+                            <p>그들은 열정도, 동기부여도 없습니다. 그저 존재합니다 — 끝없는 스크롤, 생존을 위한 커피, 말 없는 하루.</p>
+                            <br>
+                            <p>이 프로젝트는 그들을 위한 헌정입니다. 감정은 탈주했지만 출근은 하는 이들을 위해. 피곤한데 이유조차 모르는 당신을 위해. 밈에서 위로를 찾고, 무표정 속 평화를 느끼는 모두를 위해.</p>
+                            <br>
+                            <p>이건 성공이 아니라, 조용한 공감입니다. 우리 모두의 몬스터와 함께, 말 없이 공존하는 것.</p>
                         </div>
 
                         <div class="lang-content" id="about-en">
-                            <p><strong>Murun and Soso</strong> is a multidisciplinary creative studio born in South Korea. Its signature characters are quirky, expressionless beings who live quiet, chaotic lives—navigating work, loneliness, and modern absurdity. Their stories are a mirror of our own in a stylized, comically grim world.</p>
+                            <p>Meet <strong>Murun</strong> and <strong>Soso</strong> — the unofficial saints of burnout. Murun stares. Soso sighs. Together, they do absolutely nothing — and that's exactly the point.</p>
                             <br>
-                            <p>Founded in Seoul, Murun and Soso bridges <strong>art, design, and storytelling</strong>, creating animations, toys, and memes that speak to a global, digitally exhausted audience.</p>
+                            <p>They don't hustle. They don't inspire. They just exist — scrolling endlessly, drinking coffee like it's a coping mechanism, and surviving in silence.</p>
+                            <br>
+                            <p>This project is a tribute to them. To everyone who's emotionally offline but still shows up. To those who are tired for no reason. To those who find peace in memes and meaning in stillness.</p>
+                            <br>
+                            <p>We're not here to win. We're here to vibe quietly with our monsters.</p>
                         </div>
                     </div>
                     
