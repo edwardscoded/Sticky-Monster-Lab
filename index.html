@@ -106,6 +106,113 @@
             margin: 0 auto;
         }
 
+        /* CA Coming Soon Bar */
+        .ca-bar {
+            background: #1a1a1a;
+            border: 2px solid #333;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 40px auto;
+            max-width: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        .ca-text {
+            font-size: 18px;
+            font-weight: bold;
+            color: #fff;
+            font-family: 'Courier New', monospace;
+        }
+
+        .copy-btn {
+            background: #333;
+            border: none;
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+        }
+
+        .copy-btn:hover {
+            background: #555;
+        }
+
+        .copy-btn:active {
+            background: #777;
+        }
+
+        /* Social/Trading Buttons */
+        .social-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 30px auto;
+            max-width: 600px;
+        }
+
+        .social-btn {
+            background: transparent;
+            border: 2px solid #333;
+            color: #ccc;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            display: inline-block;
+        }
+
+        .social-btn:hover {
+            background: #333;
+            color: #fff;
+            border-color: #555;
+            transform: translateY(-2px);
+        }
+
+        .social-btn.twitter {
+            border-color: #1DA1F2;
+        }
+
+        .social-btn.twitter:hover {
+            background: #1DA1F2;
+            border-color: #1DA1F2;
+        }
+
+        .social-btn.dexscreener {
+            border-color: #00D4AA;
+        }
+
+        .social-btn.dexscreener:hover {
+            background: #00D4AA;
+            border-color: #00D4AA;
+        }
+
+        .social-btn.dextools {
+            border-color: #05A3C4;
+        }
+
+        .social-btn.dextools:hover {
+            background: #05A3C4;
+            border-color: #05A3C4;
+        }
+
+        .social-btn.pump {
+            border-color: #FF6B35;
+        }
+
+        .social-btn.pump:hover {
+            background: #FF6B35;
+            border-color: #FF6B35;
+        }
+
         /* About Section */
         .about {
             padding: 80px 0;
@@ -113,9 +220,25 @@
         }
 
         .about-content {
-            max-width: 800px;
+            max-width: 1200px;
             margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-text {
+            text-align: left;
+        }
+
+        .about-image {
             text-align: center;
+        }
+
+        .about-image img {
+            max-width: 100%;
+            height: auto;
         }
 
         .about h2 {
@@ -301,6 +424,30 @@
             .lang-content {
                 padding: 20px;
             }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .about-text {
+                text-align: center;
+            }
+
+            .ca-bar {
+                flex-direction: column;
+                gap: 10px;
+                padding: 15px;
+            }
+
+            .social-buttons {
+                gap: 10px;
+            }
+
+            .social-btn {
+                padding: 10px 16px;
+                font-size: 12px;
+            }
         }
 
         /* Language Toggle Animation */
@@ -367,6 +514,20 @@
                          alt="52Works Sticky Monster Lab Animation" 
                          style="max-width: 100%; height: auto;">
                 </div>
+                
+                <!-- CA Coming Soon Bar -->
+                <div class="ca-bar">
+                    <span class="ca-text">CA: COMING SOON</span>
+                    <button class="copy-btn" onclick="copyCA()">COPY</button>
+                </div>
+                
+                <!-- Social/Trading Buttons -->
+                <div class="social-buttons">
+                    <a href="#" class="social-btn twitter">X (Twitter)</a>
+                    <a href="#" class="social-btn dexscreener">DexScreener</a>
+                    <a href="#" class="social-btn dextools">DexTools</a>
+                    <a href="#" class="social-btn pump">Pump.Fun</a>
+                </div>
             </div>
         </section>
 
@@ -374,19 +535,26 @@
         <section id="about" class="about">
             <div class="container">
                 <div class="about-content">
-                    <h2 class="about-title-kr">스티키 몬스터 랩이란?</h2>
-                    <h2 class="about-title-en" style="display: none;">What is Sticky Monster Lab?</h2>
-                    
-                    <div class="lang-content active" id="about-kr">
-                        <p><strong>스티키 몬스터 랩(SML)</strong>은 대한민국에서 탄생한 다분야 창작 스튜디오입니다. 대표적인 캐릭터들은 무표정하고 조용하지만 혼란스러운 삶을 살아가는 존재들로, 현대인의 고독과 업무, 부조리를 유머로 풀어냅니다.</p>
-                        <br>
-                        <p>서울에서 시작된 SML은 <strong>예술, 디자인, 스토리텔링</strong>을 결합해 전 세계의 디지털 피로에 시달리는 이들에게 공감을 주는 애니메이션, 장난감, 밈을 만들어냅니다.</p>
-                    </div>
+                    <div class="about-text">
+                        <h2 class="about-title-kr">스티키 몬스터 랩이란?</h2>
+                        <h2 class="about-title-en" style="display: none;">What is Sticky Monster Lab?</h2>
+                        
+                        <div class="lang-content active" id="about-kr">
+                            <p><strong>스티키 몬스터 랩(SML)</strong>은 대한민국에서 탄생한 다분야 창작 스튜디오입니다. 대표적인 캐릭터들은 무표정하고 조용하지만 혼란스러운 삶을 살아가는 존재들로, 현대인의 고독과 업무, 부조리를 유머로 풀어냅니다.</p>
+                            <br>
+                            <p>서울에서 시작된 SML은 <strong>예술, 디자인, 스토리텔링</strong>을 결합해 전 세계의 디지털 피로에 시달리는 이들에게 공감을 주는 애니메이션, 장난감, 밈을 만들어냅니다.</p>
+                        </div>
 
-                    <div class="lang-content" id="about-en">
-                        <p><strong>Sticky Monster Lab (SML)</strong> is a multidisciplinary creative studio born in South Korea. Its signature characters are quirky, expressionless beings who live quiet, chaotic lives—navigating work, loneliness, and modern absurdity. Their stories are a mirror of our own in a stylized, comically grim world.</p>
-                        <br>
-                        <p>Founded in Seoul, SML bridges <strong>art, design, and storytelling</strong>, creating animations, toys, and memes that speak to a global, digitally exhausted audience.</p>
+                        <div class="lang-content" id="about-en">
+                            <p><strong>Sticky Monster Lab (SML)</strong> is a multidisciplinary creative studio born in South Korea. Its signature characters are quirky, expressionless beings who live quiet, chaotic lives—navigating work, loneliness, and modern absurdity. Their stories are a mirror of our own in a stylized, comically grim world.</p>
+                            <br>
+                            <p>Founded in Seoul, SML bridges <strong>art, design, and storytelling</strong>, creating animations, toys, and memes that speak to a global, digitally exhausted audience.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="about-image">
+                        <img src="images/Genius Working Sticker by 52works(오이웍스).gif" 
+                             alt="Genius Working - 52works Sticky Monster Lab Animation">
                     </div>
                 </div>
             </div>
@@ -690,6 +858,38 @@
         document.querySelectorAll('.floating-character').forEach((char, index) => {
             char.style.animationDelay = `${index * 2}s`;
         });
+
+        // Copy CA functionality
+        function copyCA() {
+            const caText = "COMING SOON";
+            navigator.clipboard.writeText(caText).then(() => {
+                const btn = document.querySelector('.copy-btn');
+                const originalText = btn.textContent;
+                btn.textContent = 'COPIED!';
+                btn.style.background = '#4CAF50';
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                    btn.style.background = '#333';
+                }, 2000);
+            }).catch(() => {
+                // Fallback for older browsers
+                const textArea = document.createElement('textarea');
+                textArea.value = caText;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                
+                const btn = document.querySelector('.copy-btn');
+                const originalText = btn.textContent;
+                btn.textContent = 'COPIED!';
+                btn.style.background = '#4CAF50';
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                    btn.style.background = '#333';
+                }, 2000);
+            });
+        }
     </script>
 </body>
 </html>
