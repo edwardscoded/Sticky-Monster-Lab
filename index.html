@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sticky Monster Lab - Fan Page</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background: #0a0a0a;
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: #000;
+            padding: 20px 0;
+            border-bottom: 2px solid #333;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+        }
+
+        .lang-toggle {
+            background: #333;
+            border: none;
+            color: #fff;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .lang-toggle:hover {
+            background: #555;
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 80px;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 80px 0;
+            background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #ccc;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* About Section */
+        .about {
+            padding: 80px 0;
+            background: #111;
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about h2 {
+            font-size: 36px;
+            margin-bottom: 30px;
+            color: #fff;
+        }
+
+        .lang-content {
+            background: #1a1a1a;
+            padding: 40px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #333;
+        }
+
+        .lang-content.active {
+            border-left-color: #fff;
+        }
+
+        /* Meme Grid */
+        .memes {
+            padding: 80px 0;
+            background: #0a0a0a;
+        }
+
+        .memes h2 {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 50px;
+            color: #fff;
+        }
+
+        .meme-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .meme-card {
+            background: #1a1a1a;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .meme-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+        }
+
+        .meme-image {
+            width: 100%;
+            height: 200px;
+            background: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            color: #666;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .meme-character {
+            font-size: 64px;
+            filter: grayscale(100%);
+            transition: filter 0.3s ease;
+        }
+
+        .meme-card:hover .meme-character {
+            filter: grayscale(0%);
+        }
+
+        .meme-caption {
+            padding: 20px;
+        }
+
+        .meme-caption h3 {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .meme-caption p {
+            font-size: 14px;
+            color: #ccc;
+            font-style: italic;
+        }
+
+        .meme-actions {
+            padding: 0 20px 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            background: transparent;
+            border: 1px solid #333;
+            color: #ccc;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 12px;
+        }
+
+        .btn:hover {
+            background: #333;
+            color: #fff;
+            border-color: #555;
+        }
+
+        /* Characters Section */
+        .characters {
+            padding: 80px 0;
+            background: #111;
+        }
+
+        .characters h2 {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 50px;
+            color: #fff;
+        }
+
+        .character-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .character-card {
+            background: #1a1a1a;
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .character-card:hover {
+            transform: scale(1.05);
+        }
+
+        .character-avatar {
+            font-size: 80px;
+            margin-bottom: 20px;
+            filter: grayscale(100%);
+        }
+
+        .character-card:hover .character-avatar {
+            filter: grayscale(0%);
+        }
+
+        /* Footer */
+        footer {
+            background: #000;
+            padding: 40px 0;
+            text-align: center;
+            border-top: 2px solid #333;
+        }
+
+        footer p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 15px;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .meme-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .lang-content {
+                padding: 20px;
+            }
+        }
+
+        /* Language Toggle Animation */
+        .lang-content {
+            display: none;
+        }
+
+        .lang-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Floating Elements */
+        .floating-character {
+            position: fixed;
+            font-size: 24px;
+            opacity: 0.3;
+            pointer-events: none;
+            z-index: -1;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Background Characters -->
+    <div class="floating-character" style="top: 10%; left: 5%;">🐾</div>
+    <div class="floating-character" style="top: 70%; right: 10%;">👤</div>
+    <div class="floating-character" style="top: 30%; left: 85%;">💻</div>
+
+    <header>
+        <nav class="container">
+            <a href="#" class="logo">스티키 몬스터 랩</a>
+            <ul class="nav-links">
+                <li><a href="#about" class="nav-en" style="display: none;">About</a><a href="#about" class="nav-kr">소개</a></li>
+                <li><a href="#characters" class="nav-en" style="display: none;">Characters</a><a href="#characters" class="nav-kr">캐릭터</a></li>
+                <li><a href="#memes" class="nav-en" style="display: none;">Memes</a><a href="#memes" class="nav-kr">밈</a></li>
+                <li><a href="#gallery" class="nav-en" style="display: none;">Gallery</a><a href="#gallery" class="nav-kr">갤러리</a></li>
+                <li><button class="lang-toggle" onclick="toggleLanguage()">🇰🇷 / 🇺🇸</button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <h1 class="hero-kr">조용한 혼돈의 세계에 오신 것을 환영합니다</h1>
+                <h1 class="hero-en" style="display: none;">Welcome to the Quiet Chaos</h1>
+                <p class="hero-kr">현대적 부조리를 헤쳐나가는 무표정한 존재들의 미니멀한 세계 탐험</p>
+                <p class="hero-en" style="display: none;">Exploring the minimalist world of expressionless beings navigating modern absurdity</p>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about">
+            <div class="container">
+                <div class="about-content">
+                    <h2 class="about-title-kr">스티키 몬스터 랩이란?</h2>
+                    <h2 class="about-title-en" style="display: none;">What is Sticky Monster Lab?</h2>
+                    
+                    <div class="lang-content active" id="about-kr">
+                        <p><strong>스티키 몬스터 랩(SML)</strong>은 대한민국에서 탄생한 다분야 창작 스튜디오입니다. 대표적인 캐릭터들은 무표정하고 조용하지만 혼란스러운 삶을 살아가는 존재들로, 현대인의 고독과 업무, 부조리를 유머로 풀어냅니다.</p>
+                        <br>
+                        <p>서울에서 시작된 SML은 <strong>예술, 디자인, 스토리텔링</strong>을 결합해 전 세계의 디지털 피로에 시달리는 이들에게 공감을 주는 애니메이션, 장난감, 밈을 만들어냅니다.</p>
+                    </div>
+
+                    <div class="lang-content" id="about-en">
+                        <p><strong>Sticky Monster Lab (SML)</strong> is a multidisciplinary creative studio born in South Korea. Its signature characters are quirky, expressionless beings who live quiet, chaotic lives—navigating work, loneliness, and modern absurdity. Their stories are a mirror of our own in a stylized, comically grim world.</p>
+                        <br>
+                        <p>Founded in Seoul, SML bridges <strong>art, design, and storytelling</strong>, creating animations, toys, and memes that speak to a global, digitally exhausted audience.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Memes Section -->
+        <section id="memes" class="memes">
+            <div class="container">
+                <h2 class="memes-title-kr">공감되는 순간들</h2>
+                <h2 class="memes-title-en" style="display: none;">Relatable Moments</h2>
+                <div class="meme-grid">
+                    <div class="meme-card" onclick="toggleMemeLanguage(this)">
+                        <div class="meme-image">
+                            <div class="meme-character">💻</div>
+                        </div>
+                        <div class="meme-caption">
+                            <h3 class="caption-kr">그냥 앉아 있는 것도 업무다</h3>
+                            <h3 class="caption-en" style="display: none;">When you log in just to stare at your screen</h3>
+                            <p class="subcaption-kr">"생산성은 과대평가됨"</p>
+                            <p class="subcaption-en" style="display: none;">"Productivity is overrated"</p>
+                        </div>
+                        <div class="meme-actions">
+                            <button class="btn action-kr">🔁 공유</button>
+                            <button class="btn action-kr">💾 저장</button>
+                            <button class="btn action-en" style="display: none;">🔁 Share</button>
+                            <button class="btn action-en" style="display: none;">💾 Save</button>
+                        </div>
+                    </div>
+
+                    <div class="meme-card" onclick="toggleMemeLanguage(this)">
+                        <div class="meme-image">
+                            <div class="meme-character">😐</div>
+                        </div>
+                        <div class="meme-caption">
+                            <h3 class="caption-kr">월요일 아침의 에너지</h3>
+                            <h3 class="caption-en" style="display: none;">Monday morning energy</h3>
+                            <p class="subcaption-kr">"존재하는 것만으로도 피곤해"</p>
+                            <p class="subcaption-en" style="display: none;">"Existing is exhausting"</p>
+                        </div>
+                        <div class="meme-actions">
+                            <button class="btn action-kr">🔁 공유</button>
+                            <button class="btn action-kr">💾 저장</button>
+                            <button class="btn action-en" style="display: none;">🔁 Share</button>
+                            <button class="btn action-en" style="display: none;">💾 Save</button>
+                        </div>
+                    </div>
+
+                    <div class="meme-card" onclick="toggleMemeLanguage(this)">
+                        <div class="meme-image">
+                            <div class="meme-character">📱</div>
+                        </div>
+                        <div class="meme-caption">
+                            <h3 class="caption-kr">인생을 스크롤하는 중</h3>
+                            <h3 class="caption-en" style="display: none;">Scrolling through life</h3>
+                            <p class="subcaption-kr">"하루가 어디로 갔지?"</p>
+                            <p class="subcaption-en" style="display: none;">"Where did the day go?"</p>
+                        </div>
+                        <div class="meme-actions">
+                            <button class="btn action-kr">🔁 공유</button>
+                            <button class="btn action-kr">💾 저장</button>
+                            <button class="btn action-en" style="display: none;">🔁 Share</button>
+                            <button class="btn action-en" style="display: none;">💾 Save</button>
+                        </div>
+                    </div>
+
+                    <div class="meme-card" onclick="toggleMemeLanguage(this)">
+                        <div class="meme-image">
+                            <div class="meme-character">☕</div>
+                        </div>
+                        <div class="meme-caption">
+                            <h3 class="caption-kr">커피: 내가 참석하는 유일한 미팅</h3>
+                            <h3 class="caption-en" style="display: none;">Coffee: The only meeting I attend</h3>
+                            <p class="subcaption-kr">"적어도 믿을 수 있어"</p>
+                            <p class="subcaption-en" style="display: none;">"At least it's reliable"</p>
+                        </div>
+                        <div class="meme-actions">
+                            <button class="btn action-kr">🔁 공유</button>
+                            <button class="btn action-kr">💾 저장</button>
+                            <button class="btn action-en" style="display: none;">🔁 Share</button>
+                            <button class="btn action-en" style="display: none;">💾 Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Characters Section -->
+        <section id="characters" class="characters">
+            <div class="container">
+                <h2 class="characters-title-kr">몬스터들을 만나보세요</h2>
+                <h2 class="characters-title-en" style="display: none;">Meet the Monsters</h2>
+                <div class="character-grid">
+                    <div class="character-card">
+                        <div class="character-avatar">😐</div>
+                        <h3 class="char-name-kr">무표정한 존재</h3>
+                        <h3 class="char-name-en" style="display: none;">The Expressionless One</h3>
+                        <p class="char-desc-kr">기분: 영원히 중립적<br>
+                        좋아하는 활동: 존재하기<br>
+                        명언: "..."</p>
+                        <p class="char-desc-en" style="display: none;">Mood: Perpetually neutral<br>
+                        Favorite activity: Existing<br>
+                        Quote: "..."</p>
+                    </div>
+                    
+                    <div class="character-card">
+                        <div class="character-avatar">💻</div>
+                        <h3 class="char-name-kr">화면 응시자</h3>
+                        <h3 class="char-name-en" style="display: none;">The Screen Starer</h3>
+                        <p class="char-desc-kr">기분: 디지털 피로<br>
+                        좋아하는 활동: 일하는 척하기<br>
+                        명언: "로딩 중..."</p>
+                        <p class="char-desc-en" style="display: none;">Mood: Digitally exhausted<br>
+                        Favorite activity: Pretending to work<br>
+                        Quote: "Loading..."</p>
+                    </div>
+                    
+                    <div class="character-card">
+                        <div class="character-avatar">☕</div>
+                        <h3 class="char-name-kr">커피 의존자</h3>
+                        <h3 class="char-name-en" style="display: none;">The Coffee Dependent</h3>
+                        <p class="char-desc-kr">기분: 카페인 동력<br>
+                        좋아하는 활동: 회의 피하기<br>
+                        명언: "커피가 더 필요해"</p>
+                        <p class="char-desc-en" style="display: none;">Mood: Caffeine-powered<br>
+                        Favorite activity: Avoiding meetings<br>
+                        Quote: "Need more coffee"</p>
+                    </div>
+                    
+                    <div class="character-card">
+                        <div class="character-avatar">🌙</div>
+                        <h3 class="char-name-kr">야행성 인간</h3>
+                        <h3 class="char-name-en" style="display: none;">The Night Owl</h3>
+                        <p class="char-desc-kr">기분: 만성 피로<br>
+                        좋아하는 활동: 책상에서 잠자기<br>
+                        명언: "5분만 더..."</p>
+                        <p class="char-desc-en" style="display: none;">Mood: Chronically tired<br>
+                        Favorite activity: Sleeping at desk<br>
+                        Quote: "5 more minutes..."</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p class="footer-kr">© 2025 스티키 몬스터 랩 팬 페이지 | 현대 생활의 조용한 혼돈에서 영감을 받음</p>
+            <p class="footer-kr">SML의 독특한 미학에 대한 사랑으로 만든 비공식 팬 페이지입니다</p>
+            <p class="footer-en" style="display: none;">© 2025 Sticky Monster Lab Fan Page | Inspired by the quiet chaos of modern life</p>
+            <p class="footer-en" style="display: none;">This is an unofficial fan page created with love for SML's unique aesthetic</p>
+        </div>
+    </footer>
+
+    <script>
+        let currentLang = 'kr';
+
+        function toggleLanguage() {
+            console.log('Toggle language called, current:', currentLang);
+            
+            const elements = {
+                // Navigation
+                navKr: document.querySelectorAll('.nav-kr'),
+                navEn: document.querySelectorAll('.nav-en'),
+                
+                // Logo
+                logo: document.querySelector('.logo'),
+                
+                // Hero section
+                heroKr: document.querySelectorAll('.hero-kr'),
+                heroEn: document.querySelectorAll('.hero-en'),
+                
+                // About section
+                aboutTitleKr: document.querySelectorAll('.about-title-kr'),
+                aboutTitleEn: document.querySelectorAll('.about-title-en'),
+                aboutKr: document.getElementById('about-kr'),
+                aboutEn: document.getElementById('about-en'),
+                
+                // Memes section
+                memesTitleKr: document.querySelectorAll('.memes-title-kr'),
+                memesTitleEn: document.querySelectorAll('.memes-title-en'),
+                actionKr: document.querySelectorAll('.action-kr'),
+                actionEn: document.querySelectorAll('.action-en'),
+                
+                // Characters section
+                charTitleKr: document.querySelectorAll('.characters-title-kr'),
+                charTitleEn: document.querySelectorAll('.characters-title-en'),
+                charNameKr: document.querySelectorAll('.char-name-kr'),
+                charNameEn: document.querySelectorAll('.char-name-en'),
+                charDescKr: document.querySelectorAll('.char-desc-kr'),
+                charDescEn: document.querySelectorAll('.char-desc-en'),
+                
+                // Footer
+                footerKr: document.querySelectorAll('.footer-kr'),
+                footerEn: document.querySelectorAll('.footer-en')
+            };
+            
+            console.log('Memes title KR found:', elements.memesTitleKr.length);
+            console.log('Memes title EN found:', elements.memesTitleEn.length);
+            
+            if (currentLang === 'kr') {
+                // Switch to English
+                elements.logo.textContent = 'Sticky Monster Lab';
+                
+                // Hide Korean, show English
+                elements.navKr.forEach(el => el.style.display = 'none');
+                elements.heroKr.forEach(el => el.style.display = 'none');
+                elements.aboutTitleKr.forEach(el => el.style.display = 'none');
+                elements.memesTitleKr.forEach(el => {
+                    console.log('Hiding KR memes title:', el.textContent);
+                    el.style.display = 'none';
+                });
+                elements.actionKr.forEach(el => el.style.display = 'none');
+                elements.charTitleKr.forEach(el => el.style.display = 'none');
+                elements.charNameKr.forEach(el => el.style.display = 'none');
+                elements.charDescKr.forEach(el => el.style.display = 'none');
+                elements.footerKr.forEach(el => el.style.display = 'none');
+                
+                elements.navEn.forEach(el => el.style.display = 'block');
+                elements.heroEn.forEach(el => el.style.display = 'block');
+                elements.aboutTitleEn.forEach(el => el.style.display = 'block');
+                elements.memesTitleEn.forEach(el => {
+                    console.log('Showing EN memes title:', el.textContent);
+                    el.style.display = 'block';
+                });
+                elements.actionEn.forEach(el => el.style.display = 'inline-block');
+                elements.charTitleEn.forEach(el => el.style.display = 'block');
+                elements.charNameEn.forEach(el => el.style.display = 'block');
+                elements.charDescEn.forEach(el => el.style.display = 'block');
+                elements.footerEn.forEach(el => el.style.display = 'block');
+                
+                elements.aboutKr.classList.remove('active');
+                elements.aboutEn.classList.add('active');
+                
+                currentLang = 'en';
+            } else {
+                // Switch to Korean
+                elements.logo.textContent = '스티키 몬스터 랩';
+                
+                // Hide English, show Korean
+                elements.navEn.forEach(el => el.style.display = 'none');
+                elements.heroEn.forEach(el => el.style.display = 'none');
+                elements.aboutTitleEn.forEach(el => el.style.display = 'none');
+                elements.memesTitleEn.forEach(el => el.style.display = 'none');
+                elements.actionEn.forEach(el => el.style.display = 'none');
+                elements.charTitleEn.forEach(el => el.style.display = 'none');
+                elements.charNameEn.forEach(el => el.style.display = 'none');
+                elements.charDescEn.forEach(el => el.style.display = 'none');
+                elements.footerEn.forEach(el => el.style.display = 'none');
+                
+                elements.navKr.forEach(el => el.style.display = 'block');
+                elements.heroKr.forEach(el => el.style.display = 'block');
+                elements.aboutTitleKr.forEach(el => el.style.display = 'block');
+                elements.memesTitleKr.forEach(el => el.style.display = 'block');
+                elements.actionKr.forEach(el => el.style.display = 'inline-block');
+                elements.charTitleKr.forEach(el => el.style.display = 'block');
+                elements.charNameKr.forEach(el => el.style.display = 'block');
+                elements.charDescKr.forEach(el => el.style.display = 'block');
+                elements.footerKr.forEach(el => el.style.display = 'block');
+                
+                elements.aboutEn.classList.remove('active');
+                elements.aboutKr.classList.add('active');
+                
+                currentLang = 'kr';
+            }
+        }
+
+        function toggleMemeLanguage(card) {
+            const captionEn = card.querySelector('.caption-en');
+            const captionKr = card.querySelector('.caption-kr');
+            const subcaptionEn = card.querySelector('.subcaption-en');
+            const subcaptionKr = card.querySelector('.subcaption-kr');
+            
+            if (captionKr.style.display !== 'none') {
+                captionKr.style.display = 'none';
+                captionEn.style.display = 'block';
+                subcaptionKr.style.display = 'none';
+                subcaptionEn.style.display = 'block';
+            } else {
+                captionKr.style.display = 'block';
+                captionEn.style.display = 'none';
+                subcaptionKr.style.display = 'block';
+                subcaptionEn.style.display = 'none';
+            }
+        }
+
+        // Add smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add floating animation delays
+        document.querySelectorAll('.floating-character').forEach((char, index) => {
+            char.style.animationDelay = `${index * 2}s`;
+        });
+    </script>
+</body>
+</html>
