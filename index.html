@@ -287,12 +287,29 @@
             width: 100%;
             height: auto;
             display: block;
-            transition: transform 0.3s ease;
+            transition: all 0.3s ease;
         }
 
-        /* Enhanced hover effect for cat images */
+        /* Enhanced hover effect for cat images - full screen overlay */
+        .meme-item:hover {
+            transform: scale(1.05) rotate(2deg);
+            z-index: 1000;
+        }
+
         .meme-item:hover img {
-            transform: scale(1.3);
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90vw;
+            height: 90vh;
+            max-width: 90vw;
+            max-height: 90vh;
+            object-fit: contain;
+            z-index: 1001;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
         }
 
         /* Scattered positioning - much closer and overlapping */
@@ -513,7 +530,7 @@
         .footer-skull {
             position: absolute;
             bottom: 10px;
-            left: 20px;
+            left: 150px;
             opacity: 0.6;
             transition: opacity 0.3s ease;
         }
@@ -814,15 +831,15 @@
                         <img src="images/cat5.png" alt="Cat meme 5">
                     </div>
                 </div>
-                
-                <!-- Happy Dance Sticker positioned down and to the left -->
-                <div style="text-align: left; margin-top: 50px; margin-left: 80px;">
-                    <img src="images/Happy Dance Sticker by 52works(오이웍스).gif" 
-                         alt="Happy Dance - 52works Sticky Monster Lab Animation" 
-                         style="max-width: 300px; height: auto;">
-                </div>
             </div>
         </section>
+
+        <!-- Happy Dance Sticker positioned between sections -->
+        <div style="text-align: left; margin: 40px 0; margin-left: 80px; position: relative; z-index: 10;">
+            <img src="images/Happy Dance Sticker by 52works(오이웍스).gif" 
+                 alt="Happy Dance - 52works Sticky Monster Lab Animation" 
+                 style="max-width: 300px; height: auto;">
+        </div>
 
         <!-- Characters Section -->
         <section id="characters" class="characters">
