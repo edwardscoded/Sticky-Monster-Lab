@@ -137,81 +137,165 @@
         /* Gallery Grid */
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(8, 1fr);
+            grid-auto-rows: minmax(150px, auto);
+            gap: 15px;
             margin: 40px 0;
-        }
-
-        .gallery-item {
-            background: #e5e5e5;
-            border-radius: 12px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            position: relative;
-            aspect-ratio: 1;
-        }
-
-        .gallery-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        }
-
-        .gallery-image {
-            width: 100%;
-            height: 100%;
-            background: #ccc;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 80px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .gallery-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(to top, rgba(255,255,255,0.9) 0%, transparent 50%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
             padding: 20px;
         }
 
-        .gallery-item:hover .gallery-overlay {
-            opacity: 1;
+        .gallery-item {
+            background: #fff;
+            border-radius: 8px;
+            overflow: visible;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 10px;
+            transform-origin: center;
         }
 
-        .gallery-title {
-            font-size: 16px;
-            font-weight: bold;
-            margin-bottom: 5px;
-            color: #000;
+        .gallery-item:hover {
+            transform: scale(1.05) rotate(0deg) !important;
+            z-index: 100;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
         }
 
-        .gallery-description {
-            font-size: 12px;
-            color: #333;
-            line-height: 1.4;
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 4px;
+        }
+
+        /* Scrapbook scattered positioning */
+        .gallery-item:nth-child(1) { 
+            grid-column: 1 / 3; 
+            transform: rotate(-5deg); 
+            margin-top: 20px; 
+        }
+        
+        .gallery-item:nth-child(2) { 
+            grid-column: 3 / 4; 
+            transform: rotate(8deg); 
+            margin-top: -10px; 
+        }
+        
+        .gallery-item:nth-child(3) { 
+            grid-column: 5 / 7; 
+            transform: rotate(-3deg); 
+            margin-top: 15px; 
+        }
+        
+        .gallery-item:nth-child(4) { 
+            grid-column: 7 / 9; 
+            transform: rotate(6deg); 
+            margin-top: -5px; 
+        }
+        
+        .gallery-item:nth-child(5) { 
+            grid-column: 1 / 2; 
+            transform: rotate(4deg); 
+            margin-top: 25px; 
+        }
+        
+        .gallery-item:nth-child(6) { 
+            grid-column: 2 / 4; 
+            transform: rotate(-7deg); 
+            margin-top: 10px; 
+        }
+        
+        .gallery-item:nth-child(7) { 
+            grid-column: 4 / 5; 
+            transform: rotate(3deg); 
+            margin-top: -15px; 
+        }
+        
+        .gallery-item:nth-child(8) { 
+            grid-column: 6 / 8; 
+            transform: rotate(-4deg); 
+            margin-top: 20px; 
+        }
+        
+        .gallery-item:nth-child(9) { 
+            grid-column: 8 / 9; 
+            transform: rotate(7deg); 
+            margin-top: -8px; 
+        }
+        
+        .gallery-item:nth-child(10) { 
+            grid-column: 1 / 3; 
+            transform: rotate(-2deg); 
+            margin-top: 30px; 
+        }
+        
+        .gallery-item:nth-child(11) { 
+            grid-column: 3 / 5; 
+            transform: rotate(5deg); 
+            margin-top: 12px; 
+        }
+        
+        .gallery-item:nth-child(12) { 
+            grid-column: 5 / 6; 
+            transform: rotate(-6deg); 
+            margin-top: -12px; 
+        }
+        
+        .gallery-item:nth-child(13) { 
+            grid-column: 7 / 9; 
+            transform: rotate(2deg); 
+            margin-top: 18px; 
+        }
+        
+        .gallery-item:nth-child(14) { 
+            grid-column: 1 / 2; 
+            transform: rotate(-8deg); 
+            margin-top: 35px; 
+        }
+        
+        .gallery-item:nth-child(15) { 
+            grid-column: 2 / 4; 
+            transform: rotate(4deg); 
+            margin-top: 8px; 
+        }
+        
+        .gallery-item:nth-child(16) { 
+            grid-column: 4 / 6; 
+            transform: rotate(-3deg); 
+            margin-top: 22px; 
+        }
+        
+        .gallery-item:nth-child(17) { 
+            grid-column: 6 / 7; 
+            transform: rotate(6deg); 
+            margin-top: -18px; 
+        }
+        
+        .gallery-item:nth-child(18) { 
+            grid-column: 7 / 9; 
+            transform: rotate(-5deg); 
+            margin-top: 14px; 
+        }
+        
+        .gallery-item:nth-child(19) { 
+            grid-column: 1 / 3; 
+            transform: rotate(3deg); 
+            margin-top: 28px; 
+        }
+        
+        .gallery-item:nth-child(20) { 
+            grid-column: 3 / 4; 
+            transform: rotate(-4deg); 
+            margin-top: 16px; 
+        }
+
+        .gallery-overlay {
+            display: none;
         }
 
         .gallery-category {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: rgba(255,255,255,0.8);
-            color: #000;
-            padding: 5px 10px;
-            border-radius: 12px;
-            font-size: 10px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            display: none;
         }
 
         /* Lightbox Modal */
@@ -455,229 +539,81 @@
 
             <!-- Gallery Grid -->
             <div class="gallery-grid">
-                <!-- Featured Item -->
-                <div class="gallery-item featured" data-category="characters" onclick="openLightbox(this)">
-                    <div class="gallery-image">
-                        <div class="floating-char">😐</div>
-                    </div>
-                    <div class="gallery-category">
-                        <span class="cat-kr">캐릭터</span>
-                        <span class="cat-en" style="display: none;">Character</span>
-                    </div>
-                    <div class="gallery-overlay">
-                        <h3 class="gallery-title">
-                            <span class="title-kr">무표정한 존재</span>
-                            <span class="title-en" style="display: none;">The Expressionless One</span>
-                        </h3>
-                        <p class="gallery-description">
-                            <span class="desc-kr">모든 것을 다 본 듯한 눈빛으로 세상을 바라보는 존재</span>
-                            <span class="desc-en" style="display: none;">A being that observes the world with eyes that have seen everything</span>
-                        </p>
-                    </div>
+                <!-- All galleria images scattered like a scrapbook -->
+                <div class="gallery-item">
+                    <img src="galleria/bag.png" alt="Bag">
                 </div>
 
-                <!-- Work Category -->
-                <div class="gallery-item" data-category="work" onclick="openLightbox(this)">
-                    <div class="gallery-image">
-                        <div class="floating-char">💻</div>
-                    </div>
-                    <div class="gallery-category">
-                        <span class="cat-kr">업무</span>
-                        <span class="cat-en" style="display: none;">Work</span>
-                    </div>
-                    <div class="gallery-overlay">
-                        <h3 class="gallery-title">
-                            <span class="title-kr">디지털 노예</span>
-                            <span class="title-en" style="display: none;">Digital Slave</span>
-                        </h3>
-                        <p class="gallery-description">
-                            <span class="desc-kr">화면과 하나가 된 현대인의 모습</span>
-                            <span class="desc-en" style="display: none;">Modern human becoming one with the screen</span>
-                        </p>
-                    </div>
+                <div class="gallery-item">
+                    <img src="galleria/beer.png" alt="Beer">
                 </div>
 
-                <div class="gallery-item" data-category="work" onclick="openLightbox(this)">
-                    <div class="gallery-image">
-                        <div class="floating-char">📊</div>
-                    </div>
-                    <div class="gallery-category">
-                        <span class="cat-kr">업무</span>
-                        <span class="cat-en" style="display: none;">Work</span>
-                    </div>
-                    <div class="gallery-overlay">
-                        <h3 class="gallery-title">
-                            <span class="title-kr">무의미한 차트</span>
-                            <span class="title-en" style="display: none;">Meaningless Charts</span>
-                        </h3>
-                        <p class="gallery-description">
-                            <span class="desc-kr">숫자로 가득한 하루의 증명</span>
-                            <span class="desc-en" style="display: none;">Proof of a day filled with numbers</span>
-                        </p>
-                    </div>
+                <div class="gallery-item">
+                    <img src="galleria/bus.png" alt="Bus">
                 </div>
 
-                <!-- Daily Life Category -->
-                <div class="gallery-item" data-category="scenes" onclick="openLightbox(this)">
-                    <div class="gallery-image">
-                        <div class="floating-char">☕</div>
-                    </div>
-                    <div class="gallery-category">
-                        <span class="cat-kr">일상</span>
-                        <span class="cat-en" style="display: none;">Daily</span>
-                    </div>
-                    <div class="gallery-overlay">
-                        <h3 class="gallery-title">
-                            <span class="title-kr">커피 의식</span>
-                            <span class="title-en" style="display: none;">Coffee Ritual</span>
-                        </h3>
-                        <p class="gallery-description">
-                            <span class="desc-kr">하루를 시작하는 유일한 희망</span>
-                            <span class="desc-en" style="display: none;">The only hope to start the day</span>
-                        </p>
-                    </div>
+                <div class="gallery-item">
+                    <img src="galleria/fire.png" alt="Fire">
                 </div>
 
-                <div class="gallery-item" data-category="scenes" onclick="openLightbox(this)">
-                    <div class="gallery-image">
-                        <div class="floating-char">🌙</div>
-                    </div>
-                    <div class="gallery-category">
-                        <span class="cat-kr">일상</span>
-                        <span class="cat-en" style="display: none;">Daily</span>
-                    </div>
-                    <div class="gallery-overlay">
-                        <h3 class="gallery-title">
-                            <span class="title-kr">밤의 사색</span>
-                            <span class="title-en" style="display: none;">Night Contemplation</span>
-                        </h3>
-                        <p class="gallery-description">
-                            <span class="desc-kr">어둠 속에서 찾는 작은 평화</span>
-                            <span class="desc-en" style="display: none;">Finding small peace in the darkness</span>
-                        </p>
-                    </div>
+                <div class="gallery-item">
+                    <img src="galleria/galleria.png" alt="Galleria">
                 </div>
 
-                <!-- Characters Category -->
-                <div class="gallery-item" data-category="characters" onclick="openLightbox(this)">
-                    <div class="gallery-image">
-                        <div class="floating-char">🤖</div>
-                    </div>
-                    <div class="gallery-category">
-                        <span class="cat-kr">캐릭터</span>
-                        <span class="cat-en" style="display: none;">Character</span>
-                    </div>
-                    <div class="gallery-overlay">
-                        <h3 class="gallery-title">
-                            <span class="title-kr">자동화된 영혼</span>
-                            <span class="title-en" style="display: none;">Automated Soul</span>
-                        </h3>
-                        <p class="gallery-description">
-                            <span class="desc-kr">인간과 기계의 경계에서</span>
-                            <span class="desc-en" style="display: none;">At the boundary between human and machine</span>
-                        </p>
-                    </div>
+                <div class="gallery-item">
+                    <img src="galleria/huh.png" alt="Huh">
                 </div>
 
-                <!-- Emotions Category -->
-                <div class="gallery-item" data-category="emotions" onclick="openLightbox(this)">
-                    <div class="gallery-image">
-                        <div class="floating-char">💭</div>
-                    </div>
-                    <div class="gallery-category">
-                        <span class="cat-kr">감정</span>
-                        <span class="cat-en" style="display: none;">Emotion</span>
-                    </div>
-                    <div class="gallery-overlay">
-                        <h3 class="gallery-title">
-                            <span class="title-kr">빈 생각</span>
-                            <span class="title-en" style="display: none;">Empty Thoughts</span>
-                        </h3>
-                        <p class="gallery-description">
-                            <span class="desc-kr">머릿속을 떠다니는 무의미한 생각들</span>
-                            <span class="desc-en" style="display: none;">Meaningless thoughts floating in the mind</span>
-                        </p>
-                    </div>
+                <div class="gallery-item">
+                    <img src="galleria/job.png" alt="Job">
                 </div>
 
-                <div class="gallery-item" data-category="emotions" onclick="openLightbox(this)">
-                    <div class="gallery-image">
-                        <div class="floating-char">😴</div>
-                    </div>
-                    <div class="gallery-category">
-                        <span class="cat-kr">감정</span>
-                        <span class="cat-en" style="display: none;">Emotion</span>
-                    </div>
-                    <div class="gallery-overlay">
-                        <h3 class="gallery-title">
-                            <span class="title-kr">만성 피로</span>
-                            <span class="title-en" style="display: none;">Chronic Fatigue</span>
-                        </h3>
-                        <p class="gallery-description">
-                            <span class="desc-kr">영원히 피곤한 현대인의 일상</span>
-                            <span class="desc-en" style="display: none;">The eternally tired modern life</span>
-                        </p>
-                    </div>
+                <div class="gallery-item">
+                    <img src="galleria/mind1.png" alt="Mind 1">
                 </div>
 
-                <div class="gallery-item" data-category="scenes" onclick="openLightbox(this)">
-                    <div class="gallery-image">
-                        <div class="floating-char">📱</div>
-                    </div>
-                    <div class="gallery-category">
-                        <span class="cat-kr">일상</span>
-                        <span class="cat-en" style="display: none;">Daily</span>
-                    </div>
-                    <div class="gallery-overlay">
-                        <h3 class="gallery-title">
-                            <span class="title-kr">무한 스크롤</span>
-                            <span class="title-en" style="display: none;">Infinite Scroll</span>
-                        </h3>
-                        <p class="gallery-description">
-                            <span class="desc-kr">끝없는 스크롤 속에서 사라지는 시간</span>
-                            <span class="desc-en" style="display: none;">Time disappearing in endless scrolling</span>
-                        </p>
-                    </div>
+                <div class="gallery-item">
+                    <img src="galleria/mind12.png" alt="Mind 12">
                 </div>
 
-                <div class="gallery-item" data-category="work" onclick="openLightbox(this)">
-                    <div class="gallery-image">
-                        <div class="floating-char">📧</div>
-                    </div>
-                    <div class="gallery-category">
-                        <span class="cat-kr">업무</span>
-                        <span class="cat-en" style="display: none;">Work</span>
-                    </div>
-                    <div class="gallery-overlay">
-                        <h3 class="gallery-title">
-                            <span class="title-kr">이메일 지옥</span>
-                            <span class="title-en" style="display: none;">Email Hell</span>
-                        </h3>
-                        <p class="gallery-description">
-                            <span class="desc-kr">받은 편지함의 끝없는 숫자들</span>
-                            <span class="desc-en" style="display: none;">Endless numbers in the inbox</span>
-                        </p>
-                    </div>
+                <div class="gallery-item">
+                    <img src="galleria/mind123.png" alt="Mind 123">
                 </div>
 
-                <div class="gallery-item" data-category="characters" onclick="openLightbox(this)">
-                    <div class="gallery-image">
-                        <div class="floating-char">👥</div>
-                    </div>
-                    <div class="gallery-category">
-                        <span class="cat-kr">캐릭터</span>
-                        <span class="cat-en" style="display: none;">Character</span>
-                    </div>
-                    <div class="gallery-overlay">
-                        <h3 class="gallery-title">
-                            <span class="title-kr">군중 속의 고독</span>
-                            <span class="title-en" style="display: none;">Loneliness in Crowds</span>
-                        </h3>
-                        <p class="gallery-description">
-                            <span class="desc-kr">연결되어 있지만 단절된 존재들</span>
-                            <span class="desc-en" style="display: none;">Connected yet disconnected beings</span>
-                        </p>
-                    </div>
+                <div class="gallery-item">
+                    <img src="galleria/murun.png" alt="Murun">
+                </div>
+
+                <div class="gallery-item">
+                    <img src="galleria/omelet.png" alt="Omelet">
+                </div>
+
+                <div class="gallery-item">
+                    <img src="galleria/piano.png" alt="Piano">
+                </div>
+
+                <div class="gallery-item">
+                    <img src="galleria/rain.png" alt="Rain">
+                </div>
+
+                <div class="gallery-item">
+                    <img src="galleria/snack.png" alt="Snack">
+                </div>
+
+                <div class="gallery-item">
+                    <img src="galleria/snow.png" alt="Snow">
+                </div>
+
+                <div class="gallery-item">
+                    <img src="galleria/speech.png" alt="Speech">
+                </div>
+
+                <div class="gallery-item">
+                    <img src="galleria/time.png" alt="Time">
+                </div>
+
+                <div class="gallery-item">
+                    <img src="galleria/work2.png" alt="Work 2">
                 </div>
             </div>
         </div>
