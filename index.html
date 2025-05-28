@@ -103,7 +103,28 @@
 
 .hero h1,
 .hero p,
-.hero-image,
+    .hero-image {
+        position: relative;
+    }
+
+    .speech-bubble {
+        position: absolute; /* Position aolutelbys relatiev to the .hero-image parent */
+        top: -15px;        /* Adjust this value:
+                              Negative values move it *above* the top edge of the character image.
+                              Positive values move it downwards from the top edge.
+                              e.g., 0 would align its top with the character image's top. */
+        left: 55%;         /* Adjust this value:
+                              Positions the left edge of the speech bubble.
+                              50% would be the center-line of the character image.
+                              >50% moves it to the right of the center. */
+        z-index: 10;       /* Ensures the speech bubble is on top of the character image */
+    }
+
+    .speech-bubble img {
+        width: 180px;      /* Adjust this value to control the size of the speech bubble.
+                              This makes it 180 pixels wide. */
+        height: auto;      /* Maintains the aspect ratio of the image */
+    }
 .ca-bar,
 .social-buttons {
     margin: 15px auto !important;
