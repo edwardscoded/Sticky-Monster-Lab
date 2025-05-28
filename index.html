@@ -307,6 +307,8 @@
         .characters {
             padding: 80px 0;
             background: #eee;
+            position: relative;
+            overflow: hidden;
         }
 
         .characters h2 {
@@ -316,32 +318,118 @@
             color: #000;
         }
 
-        .character-grid {
+        /* Character Cards */
+        .character-cards {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
 
-        .character-card {
-            background: #e5e5e5;
-            padding: 30px;
-            border-radius: 8px;
+        .character-profile {
+            background: #f5f5f5;
+            padding: 40px;
+            border-radius: 12px;
             text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             transition: transform 0.3s ease;
         }
 
-        .character-card:hover {
-            transform: scale(1.05);
+        .character-profile:hover {
+            transform: translateY(-5px);
         }
 
-        .character-avatar {
-            font-size: 80px;
+        .character-name {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #000;
+        }
+
+        .character-title {
+            font-size: 16px;
+            color: #666;
             margin-bottom: 20px;
-            filter: grayscale(100%);
+            font-style: italic;
         }
 
-        .character-card:hover .character-avatar {
-            filter: grayscale(0%);
+        .character-stats {
+            text-align: left;
+            margin: 20px 0;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .character-stats strong {
+            color: #000;
+        }
+
+        .character-quote {
+            font-style: italic;
+            color: #333;
+            margin: 20px 0;
+            padding: 15px;
+            background: #e5e5e5;
+            border-left: 4px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .character-bio {
+            font-size: 14px;
+            color: #333;
+            line-height: 1.6;
+            text-align: left;
+            margin-top: 20px;
+        }
+
+        /* Image Scroll Gallery */
+        .image-scroll {
+            margin: 40px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            background: #ddd;
+            padding: 20px 0;
+            border-radius: 8px;
+        }
+
+        .scroll-track {
+            display: inline-flex;
+            animation: scroll 20s linear infinite;
+            gap: 20px;
+        }
+
+        .scroll-image {
+            height: 150px;
+            width: auto;
+            border-radius: 8px;
+            flex-shrink: 0;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Walking Murun Animation */
+        .walking-murun {
+            position: absolute;
+            bottom: 20px;
+            height: 80px;
+            animation: walkAcross 15s linear infinite;
+            z-index: 10;
+        }
+
+        .walking-murun img {
+            height: 100%;
+            width: auto;
+            transform: scaleX(-1); /* Flip to walk right to left */
+        }
+
+        @keyframes walkAcross {
+            0% { left: 100%; }
+            100% { left: -200px; }
         }
 
         /* Footer */
@@ -398,8 +486,21 @@
                 gap: 40px;
             }
 
-            .about-text {
-                text-align: center;
+            .character-cards {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .character-profile {
+                padding: 30px;
+            }
+
+            .walking-murun {
+                height: 60px;
+            }
+
+            .scroll-image {
+                height: 120px;
             }
 
             .ca-bar {
@@ -575,56 +676,100 @@
         <!-- Characters Section -->
         <section id="characters" class="characters">
             <div class="container">
-                <h2 class="characters-title-kr">몬스터들을 만나보세요</h2>
-                <h2 class="characters-title-en" style="display: none;">Meet the Monsters</h2>
-                <div class="character-grid">
-                    <div class="character-card">
-                        <div class="character-avatar">😐</div>
-                        <h3 class="char-name-kr">무표정한 존재</h3>
-                        <h3 class="char-name-en" style="display: none;">The Expressionless One</h3>
-                        <p class="char-desc-kr">기분: 영원히 중립적<br>
-                        좋아하는 활동: 존재하기<br>
-                        명언: "..."</p>
-                        <p class="char-desc-en" style="display: none;">Mood: Perpetually neutral<br>
-                        Favorite activity: Existing<br>
-                        Quote: "..."</p>
+                <h2 class="characters-title-kr">무런과 소소를 만나보세요</h2>
+                <h2 class="characters-title-en" style="display: none;">Meet Murun and Soso</h2>
+                
+                <!-- Image Scroll Gallery -->
+                <div class="image-scroll">
+                    <div class="scroll-track">
+                        <img src="images/Go Sticker by 52works(오이웍스).gif" alt="Murun and Soso" class="scroll-image">
+                        <img src="images/IMG_8345.jpeg" alt="Character Art 1" class="scroll-image">
+                        <img src="images/IMG_8346.jpeg" alt="Character Art 2" class="scroll-image">
+                        <img src="images/IMG_8347.jpeg" alt="Character Art 3" class="scroll-image">
+                        <!-- Duplicate for seamless loop -->
+                        <img src="images/Go Sticker by 52works(오이웍스).gif" alt="Murun and Soso" class="scroll-image">
+                        <img src="images/IMG_8345.jpeg" alt="Character Art 1" class="scroll-image">
+                        <img src="images/IMG_8346.jpeg" alt="Character Art 2" class="scroll-image">
+                        <img src="images/IMG_8347.jpeg" alt="Character Art 3" class="scroll-image">
                     </div>
-                    
-                    <div class="character-card">
-                        <div class="character-avatar">💻</div>
-                        <h3 class="char-name-kr">화면 응시자</h3>
-                        <h3 class="char-name-en" style="display: none;">The Screen Starer</h3>
-                        <p class="char-desc-kr">기분: 디지털 피로<br>
-                        좋아하는 활동: 일하는 척하기<br>
-                        명언: "로딩 중..."</p>
-                        <p class="char-desc-en" style="display: none;">Mood: Digitally exhausted<br>
-                        Favorite activity: Pretending to work<br>
-                        Quote: "Loading..."</p>
+                </div>
+
+                <!-- Character Profiles -->
+                <div class="character-cards">
+                    <!-- Murun Profile -->
+                    <div class="character-profile">
+                        <h3 class="character-name">
+                            <span class="name-kr">무런 (Murun)</span>
+                            <span class="name-en" style="display: none;">Murun</span>
+                        </h3>
+                        <p class="character-title">
+                            <span class="title-kr">무표정한 존재</span>
+                            <span class="title-en" style="display: none;">The Expressionless One</span>
+                        </p>
+                        
+                        <div class="character-stats">
+                            <div class="stats-kr">
+                                <strong>기분:</strong> 영원히 중립적<br>
+                                <strong>직업:</strong> 압박 속에서 존재하기<br>
+                                <strong>좋아하는 활동:</strong> 모든 것이 무너지는 동안 아무것도 보지 않기<br>
+                            </div>
+                            <div class="stats-en" style="display: none;">
+                                <strong>Mood:</strong> Neutral. Permanently.<br>
+                                <strong>Occupation:</strong> Existing under pressure<br>
+                                <strong>Favorite Activity:</strong> Staring at nothing while everything collapses<br>
+                            </div>
+                        </div>
+
+                        <div class="character-quote">
+                            <span class="quote-kr">"..."</span>
+                            <span class="quote-en" style="display: none;">"..."</span>
+                        </div>
+
+                        <div class="character-bio">
+                            <p class="bio-kr">무런은 번아웃의 정신적 얼굴입니다. 그는 말하지 않고, 눈을 깜빡이지도 않습니다. 그저 로그인하고, 앉아서, 무의 심연을 바라봅니다. 무런은 게으른 게 아니라 후기 자본주의에 감정적으로 반응하지 않을 뿐입니다. 형광등과 실존적 공포가 있는 곳이면 어디든 그를 찾을 수 있을 것입니다.</p>
+                            <p class="bio-en" style="display: none;">Murun is the spiritual face of burnout. He doesn't speak. He doesn't blink. He simply logs in, sits down, and zones out into the abyss. Murun isn't lazy — he's just emotionally unresponsive to late-stage capitalism. You'll find him wherever there's fluorescent lighting and existential dread.</p>
+                        </div>
                     </div>
-                    
-                    <div class="character-card">
-                        <div class="character-avatar">☕</div>
-                        <h3 class="char-name-kr">커피 의존자</h3>
-                        <h3 class="char-name-en" style="display: none;">The Coffee Dependent</h3>
-                        <p class="char-desc-kr">기분: 카페인 동력<br>
-                        좋아하는 활동: 회의 피하기<br>
-                        명언: "커피가 더 필요해"</p>
-                        <p class="char-desc-en" style="display: none;">Mood: Caffeine-powered<br>
-                        Favorite activity: Avoiding meetings<br>
-                        Quote: "Need more coffee"</p>
+
+                    <!-- Soso Profile -->
+                    <div class="character-profile">
+                        <h3 class="character-name">
+                            <span class="name-kr">소소 (Soso)</span>
+                            <span class="name-en" style="display: none;">Soso</span>
+                        </h3>
+                        <p class="character-title">
+                            <span class="title-kr">조용한 저항자</span>
+                            <span class="title-en" style="display: none;">The Quiet Resistor</span>
+                        </p>
+                        
+                        <div class="character-stats">
+                            <div class="stats-kr">
+                                <strong>기분:</strong> 그냥 그럼<br>
+                                <strong>직업:</strong> 초대 거절하기<br>
+                                <strong>좋아하는 활동:</strong> 화면을 보며 한숨쉬기<br>
+                            </div>
+                            <div class="stats-en" style="display: none;">
+                                <strong>Mood:</strong> Meh<br>
+                                <strong>Occupation:</strong> Declining invites<br>
+                                <strong>Favorite Activity:</strong> Sighing at screens<br>
+                            </div>
+                        </div>
+
+                        <div class="character-quote">
+                            <span class="quote-kr">"그냥 그런 하루였어."</span>
+                            <span class="quote-en" style="display: none;">"It was just… a day."</span>
+                        </div>
+
+                        <div class="character-bio">
+                            <p class="bio-kr">소소는 20% 에너지로 살아갑니다. 그녀는 슬프지 않아요, 그냥 **다 끝난** 상태입니다. 2015년 이후로 표정이 바뀌지 않았고, 유일한 취미는 회의 중에 감정적으로 체크아웃하는 것입니다. 소소는 신경 쓰고 싶어하지만 물리적으로 불가능한 모든 사람을 대표합니다. 그녀는 조용한 사직의 여왕이며, 우아하게 해냅니다.</p>
+                            <p class="bio-en" style="display: none;">Soso lives life at 20%. She isn't sad — she's just **done**. Her facial expression hasn't changed since 2015, and her only hobby is emotionally checking out during meetings. Soso represents everyone who wants to care… but physically can't. She's the queen of quiet quitting — and she does it gracefully.</p>
+                        </div>
                     </div>
-                    
-                    <div class="character-card">
-                        <div class="character-avatar">🌙</div>
-                        <h3 class="char-name-kr">야행성 인간</h3>
-                        <h3 class="char-name-en" style="display: none;">The Night Owl</h3>
-                        <p class="char-desc-kr">기분: 만성 피로<br>
-                        좋아하는 활동: 책상에서 잠자기<br>
-                        명언: "5분만 더..."</p>
-                        <p class="char-desc-en" style="display: none;">Mood: Chronically tired<br>
-                        Favorite activity: Sleeping at desk<br>
-                        Quote: "5 more minutes..."</p>
-                    </div>
+                </div>
+
+                <!-- Walking Murun -->
+                <div class="walking-murun">
+                    <img src="images/Walking Walk Sticker by 52works(오이웍스).gif" alt="Walking Murun">
                 </div>
             </div>
         </section>
@@ -675,10 +820,16 @@
                 // Characters section
                 charTitleKr: document.querySelectorAll('.characters-title-kr'),
                 charTitleEn: document.querySelectorAll('.characters-title-en'),
-                charNameKr: document.querySelectorAll('.char-name-kr'),
-                charNameEn: document.querySelectorAll('.char-name-en'),
-                charDescKr: document.querySelectorAll('.char-desc-kr'),
-                charDescEn: document.querySelectorAll('.char-desc-en'),
+                nameKr: document.querySelectorAll('.name-kr'),
+                nameEn: document.querySelectorAll('.name-en'),
+                titleKr: document.querySelectorAll('.title-kr'),
+                titleEn: document.querySelectorAll('.title-en'),
+                statsKr: document.querySelectorAll('.stats-kr'),
+                statsEn: document.querySelectorAll('.stats-en'),
+                quoteKr: document.querySelectorAll('.quote-kr'),
+                quoteEn: document.querySelectorAll('.quote-en'),
+                bioKr: document.querySelectorAll('.bio-kr'),
+                bioEn: document.querySelectorAll('.bio-en'),
                 
                 // Footer
                 footerKr: document.querySelectorAll('.footer-kr'),
@@ -702,8 +853,11 @@
                 });
                 elements.actionKr.forEach(el => el.style.display = 'none');
                 elements.charTitleKr.forEach(el => el.style.display = 'none');
-                elements.charNameKr.forEach(el => el.style.display = 'none');
-                elements.charDescKr.forEach(el => el.style.display = 'none');
+                elements.nameKr.forEach(el => el.style.display = 'none');
+                elements.titleKr.forEach(el => el.style.display = 'none');
+                elements.statsKr.forEach(el => el.style.display = 'none');
+                elements.quoteKr.forEach(el => el.style.display = 'none');
+                elements.bioKr.forEach(el => el.style.display = 'none');
                 elements.footerKr.forEach(el => el.style.display = 'none');
                 
                 elements.navEn.forEach(el => el.style.display = 'block');
@@ -715,8 +869,11 @@
                 });
                 elements.actionEn.forEach(el => el.style.display = 'inline-block');
                 elements.charTitleEn.forEach(el => el.style.display = 'block');
-                elements.charNameEn.forEach(el => el.style.display = 'block');
-                elements.charDescEn.forEach(el => el.style.display = 'block');
+                elements.nameEn.forEach(el => el.style.display = 'block');
+                elements.titleEn.forEach(el => el.style.display = 'block');
+                elements.statsEn.forEach(el => el.style.display = 'block');
+                elements.quoteEn.forEach(el => el.style.display = 'block');
+                elements.bioEn.forEach(el => el.style.display = 'block');
                 elements.footerEn.forEach(el => el.style.display = 'block');
                 
                 elements.aboutKr.classList.remove('active');
@@ -734,8 +891,11 @@
                 elements.memesTitleEn.forEach(el => el.style.display = 'none');
                 elements.actionEn.forEach(el => el.style.display = 'none');
                 elements.charTitleEn.forEach(el => el.style.display = 'none');
-                elements.charNameEn.forEach(el => el.style.display = 'none');
-                elements.charDescEn.forEach(el => el.style.display = 'none');
+                elements.nameEn.forEach(el => el.style.display = 'none');
+                elements.titleEn.forEach(el => el.style.display = 'none');
+                elements.statsEn.forEach(el => el.style.display = 'none');
+                elements.quoteEn.forEach(el => el.style.display = 'none');
+                elements.bioEn.forEach(el => el.style.display = 'none');
                 elements.footerEn.forEach(el => el.style.display = 'none');
                 
                 elements.navKr.forEach(el => el.style.display = 'block');
@@ -744,8 +904,11 @@
                 elements.memesTitleKr.forEach(el => el.style.display = 'block');
                 elements.actionKr.forEach(el => el.style.display = 'inline-block');
                 elements.charTitleKr.forEach(el => el.style.display = 'block');
-                elements.charNameKr.forEach(el => el.style.display = 'block');
-                elements.charDescKr.forEach(el => el.style.display = 'block');
+                elements.nameKr.forEach(el => el.style.display = 'block');
+                elements.titleKr.forEach(el => el.style.display = 'block');
+                elements.statsKr.forEach(el => el.style.display = 'block');
+                elements.quoteKr.forEach(el => el.style.display = 'block');
+                elements.bioKr.forEach(el => el.style.display = 'block');
                 elements.footerKr.forEach(el => el.style.display = 'block');
                 
                 elements.aboutEn.classList.remove('active');
