@@ -103,7 +103,28 @@
 
 .hero h1,
 .hero p,
-.hero-image,
+    .hero-image {
+        position: relative;
+    }
+
+    .speech-bubble {
+        position: absolute; /* Position aolutelbys relatiev to the .hero-image parent */
+        top: -25px;        /* Adjust this value:
+                              Negative values move it *above* the top edge of the character image.
+                              Positive values move it downwards from the top edge.
+                              e.g., 0 would align its top with the character image's top. */
+        left: 43%;         /* Adjust this value:
+                              Positions the left edge of the speech bubble.
+                              50% would be the center-line of the character image.
+                              >50% moves it to the right of the center. */
+        z-index: 10;       /* Ensures the speech bubble is on top of the character image */
+    }
+
+    .speech-bubble img {
+        width: 440px;      /* Adjust this value to control the size of the speech bubble.
+                              This makes it 180 pixels wide. */
+        height: auto;      /* Maintains the aspect ratio of the image */
+    }
 .ca-bar,
 .social-buttons {
     margin: 15px auto !important;
@@ -116,9 +137,9 @@
 }
 
 .hero p {
-    font-size: 16px;
+    font-size: 18px;
     margin-top: 8px !important;
-    margin-bottom: 15px !important;
+    margin-bottom: 60px !important;
     line-height: 1.4;
 }
 
@@ -737,16 +758,16 @@
                 <p class="hero-kr">현대적 부조리를 헤쳐나가는 무표정한 존재들의 미니멀한 세계 탐험</p>
                 <p class="hero-en" style="display: none;">Exploring the minimalist world of expressionless beings navigating modern absurdity</p>
                 
-                <div class="hero-image" style="margin: 15px auto !important;">
+                <div class="hero-image" style="margin: 15px auto !important; position: relative;">
                     <img src="images/Genius Working Sticker by 52works(오이웍스).gif" 
                          alt="Genius Working - 52works Sticky Monster Lab Animation" 
                          style="max-width: 100%; height: auto;">
-                </div>
-                
-                <!-- Speech bubble above genius working character -->
-                <div class="speech-bubble">
-                    <img src="images/speaah-korean.gif" alt="Speech Bubble Korean" class="speech-kr">
-                    <img src="images/speaah-english.gif" alt="Speech Bubble English" class="speech-en" style="display: none;">
+                    
+                    <!-- Speech bubble above genius working character -->
+                    <div class="speech-bubble">
+                        <img src="images/speaah-korean.gif" alt="Speech Bubble Korean" class="speech-kr">
+                        <img src="images/speaah-english.gif" alt="Speech Bubble English" class="speech-en" style="display: none;">
+                    </div>
                 </div>
                 
                 <!-- CA Coming Soon Bar -->
