@@ -444,6 +444,26 @@
             100% { left: 100%; }
         }
 
+        /* Walking Go Sticker Animation - opposite direction, slower */
+        .walking-go {
+            position: absolute;
+            bottom: 30px;
+            height: 160px;
+            animation: walkAcrossReverse 25s linear infinite;
+            z-index: 10;
+        }
+
+        .walking-go img {
+            height: 100%;
+            width: auto;
+            /* No flip needed - walks naturally right to left */
+        }
+
+        @keyframes walkAcrossReverse {
+            0% { right: -200px; }
+            100% { right: 100%; }
+        }
+
         /* Footer */
         footer {
             background: #fff;
@@ -508,6 +528,10 @@
             }
 
             .walking-murun {
+                height: 120px;
+            }
+
+            .walking-go {
                 height: 120px;
             }
 
@@ -793,6 +817,11 @@
                 <!-- Walking Murun -->
                 <div class="walking-murun">
                     <img src="images/Walking Walk Sticker by 52works(오이웍스).gif" alt="Walking Murun">
+                </div>
+
+                <!-- Walking Go Sticker - opposite direction -->
+                <div class="walking-go">
+                    <img src="images/Go Sticker by 52works(오이웍스).gif" alt="Go Sticker Walking">
                 </div>
             </div>
         </section>
