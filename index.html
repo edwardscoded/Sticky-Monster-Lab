@@ -43,12 +43,11 @@
             align-items: center;
         }
 
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: #000;
-            text-decoration: none;
-        }
+.logo-img {
+    height: 48px; /* Adjust as needed */
+    width: auto;
+    vertical-align: middle;
+}
 
         .nav-links {
             display: flex;
@@ -585,11 +584,14 @@
 
     <header>
         <nav class="container">
-            <a href="#" class="logo">무런 앤 소소</a>
+            <a href="#" class="logo">
+  <img src="images/-Sticker-by-52works-korean.gif" alt="무런 앤 소소" class="logo-img logo-kr">
+  <img src="images/-Sticker-by-52works-english.gif" alt="Murun and Soso" class="logo-img logo-en" style="display: none;">
+</a>
             <ul class="nav-links">
                 <li><a href="#about" class="nav-en" style="display: none;">About</a><a href="#about" class="nav-kr">소개</a></li>
-                <li><a href="#characters" class="nav-en" style="display: none;">Characters</a><a href="#characters" class="nav-kr">캐릭터</a></li>
                 <li><a href="#memes" class="nav-en" style="display: none;">Memes</a><a href="#memes" class="nav-kr">밈</a></li>
+                <li><a href="#characters" class="nav-en" style="display: none;">Characters</a><a href="#characters" class="nav-kr">캐릭터</a></li>
                 <li><a href="gallery.html" class="nav-en" style="display: none;">Gallery</a><a href="gallery.html" class="nav-kr">갤러리</a></li>
                 <li><a href="https://52works.kr/" target="_blank" class="nav-en" style="display: none;">Store</a><a href="https://52works.kr/" target="_blank" class="nav-kr">스토어</a></li>
                 <li><button class="lang-toggle" onclick="toggleLanguage()">🇰🇷 / 🇺🇸</button></li>
@@ -864,7 +866,8 @@
             
             if (currentLang === 'kr') {
                 // Switch to English
-                elements.logo.textContent = 'Murun and Soso';
+                elements.logo.querySelector('.logo-kr').style.display = 'none';
+                elements.logo.querySelector('.logo-en').style.display = 'inline-block';
                 
                 // Hide Korean, show English
                 elements.navKr.forEach(el => el.style.display = 'none');
@@ -905,7 +908,8 @@
                 currentLang = 'en';
             } else {
                 // Switch to Korean
-                elements.logo.textContent = '무런 앤 소소';
+                elements.logo.querySelector('.logo-en').style.display = 'none';
+                elements.logo.querySelector('.logo-kr').style.display = 'inline-block';
                 
                 // Hide English, show Korean
                 elements.navEn.forEach(el => el.style.display = 'none');
