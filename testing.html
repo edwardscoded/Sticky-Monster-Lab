@@ -1320,29 +1320,5 @@
             }
         });
     </script>
-<script>
-    let currentLang = localStorage.getItem('murunLang') || 'kr';
-
-    function setLanguage(lang) {
-      const isKR = lang === 'kr';
-      document.querySelectorAll('.logo-kr').forEach(el => el.style.display = isKR ? 'inline-block' : 'none');
-      document.querySelectorAll('.logo-en').forEach(el => el.style.display = isKR ? 'none' : 'inline-block');
-      document.querySelectorAll('.nav-kr, .hero-kr, .about-title-kr, .memes-title-kr, .charTitleKr, .name-kr, .title-kr, .stats-kr, .quote-kr, .bio-kr, .footer-kr, .speech-kr').forEach(el => el.style.display = isKR ? 'block' : 'none');
-      document.querySelectorAll('.nav-en, .hero-en, .about-title-en, .memes-title-en, .charTitleEn, .name-en, .title-en, .stats-en, .quote-en, .bio-en, .footer-en, .speech-en').forEach(el => el.style.display = isKR ? 'none' : 'block');
-      document.getElementById('about-kr').style.display = isKR ? 'block' : 'none';
-      document.getElementById('about-en').style.display = isKR ? 'none' : 'block';
-      localStorage.setItem('murunLang', lang);
-      currentLang = lang;
-    }
-
-    function toggleLanguage() {
-      setLanguage(currentLang === 'kr' ? 'en' : 'kr');
-    }
-
-    document.addEventListener('DOMContentLoaded', () => setLanguage(currentLang));
-  </script>
-</body>
-</html>
-
 </body>
 </html>
