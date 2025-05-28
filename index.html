@@ -444,31 +444,33 @@
             100% { left: 100%; }
         }
 
-        /* Walking Go Sticker Animation - left to right, slower */
+        /* Walking Go Sticker Animation - right to left, slower */
         .walking-go {
             position: absolute;
             bottom: 0px;
             height: 240px;
             z-index: 10;
-            animation: walkStopGo 12s ease-in-out infinite;
+            animation: walkStopGoAcross 20s ease-in-out infinite;
         }
 
         .walking-go img {
             height: 100%;
             width: auto;
-            /* No transform - keep original orientation */
+            transform: scaleX(-1); /* Flip image horizontally */
         }
 
-        @keyframes walkStopGo {
-            0% { left: 20%; }
-            15% { left: 30%; }      /* Walk */
-            25% { left: 30%; }      /* Stop */
-            40% { left: 40%; }      /* Walk */
-            50% { left: 40%; }      /* Stop */
-            65% { left: 50%; }      /* Walk */
-            75% { left: 50%; }      /* Stop */
-            90% { left: 60%; }      /* Walk */
-            100% { left: 60%; }     /* Stop */
+        @keyframes walkStopGoAcross {
+            0% { right: -250px; }      /* Start off-screen right */
+            10% { right: 80%; }        /* Walk onto screen */
+            20% { right: 80%; }        /* Stop */
+            30% { right: 60%; }        /* Walk */
+            40% { right: 60%; }        /* Stop */
+            50% { right: 40%; }        /* Walk */
+            60% { right: 40%; }        /* Stop */
+            70% { right: 20%; }        /* Walk */
+            80% { right: 20%; }        /* Stop */
+            90% { right: -10%; }       /* Walk */
+            100% { right: -250px; }    /* Walk off-screen left */
         }
 
         /* Footer */
