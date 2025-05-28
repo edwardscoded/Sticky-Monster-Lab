@@ -444,7 +444,7 @@
             100% { left: 100%; }
         }
 
-        /* Walking Go Sticker Animation - opposite direction, slower */
+        /* Walking Go Sticker Animation - left to right, slower */
         .walking-go {
             position: absolute;
             bottom: 0px;
@@ -456,19 +456,19 @@
         .walking-go img {
             height: 100%;
             width: auto;
-            transform: scaleX(-1);
+            /* No transform - keep original orientation */
         }
 
         @keyframes walkStopGo {
-            0% { right: 80%; }
-            15% { right: 70%; }      /* Walk */
-            25% { right: 70%; }      /* Stop */
-            40% { right: 60%; }      /* Walk */
-            50% { right: 60%; }      /* Stop */
-            65% { right: 50%; }      /* Walk */
-            75% { right: 50%; }      /* Stop */
-            90% { right: 40%; }      /* Walk */
-            100% { right: 40%; }     /* Stop */
+            0% { left: 20%; }
+            15% { left: 30%; }      /* Walk */
+            25% { left: 30%; }      /* Stop */
+            40% { left: 40%; }      /* Walk */
+            50% { left: 40%; }      /* Stop */
+            65% { left: 50%; }      /* Walk */
+            75% { left: 50%; }      /* Stop */
+            90% { left: 60%; }      /* Walk */
+            100% { left: 60%; }     /* Stop */
         }
 
         /* Footer */
