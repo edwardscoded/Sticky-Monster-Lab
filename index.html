@@ -1,4 +1,4 @@
-Who is Murun and Soso?<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
@@ -98,7 +98,6 @@ Who is Murun and Soso?<!DOCTYPE html>
             margin-bottom: 0 !important;
             padding-top: 0 !important;
             padding-bottom: 0 !important;
-}
         }
 
 .hero h1,
@@ -284,6 +283,12 @@ Who is Murun and Soso?<!DOCTYPE html>
             width: 100%;
             height: auto;
             display: block;
+            transition: transform 0.3s ease;
+        }
+
+        /* Enhanced hover effect for cat images */
+        .meme-item:hover img {
+            transform: scale(1.3);
         }
 
         /* Scattered positioning - much closer and overlapping */
@@ -330,6 +335,8 @@ Who is Murun and Soso?<!DOCTYPE html>
             font-size: 36px;
             margin-bottom: 50px;
             color: #000;
+            animation: wobbleHeading 4s ease-in-out infinite;
+            transform-origin: center;
         }
 
         /* Character Cards */
@@ -472,6 +479,7 @@ Who is Murun and Soso?<!DOCTYPE html>
             padding: 40px 0;
             text-align: center;
             border-top: 2px solid #ccc;
+            position: relative;
         }
 
         footer p {
@@ -494,6 +502,24 @@ Who is Murun and Soso?<!DOCTYPE html>
         }
 
         .footer-logo img:hover {
+            opacity: 1;
+        }
+
+        /* Skull sticker in footer bottom left */
+        .footer-skull {
+            position: absolute;
+            bottom: 10px;
+            left: 20px;
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
+        }
+
+        .footer-skull img {
+            max-width: 60px;
+            height: auto;
+        }
+
+        .footer-skull:hover {
             opacity: 1;
         }
 
@@ -594,6 +620,21 @@ Who is Murun and Soso?<!DOCTYPE html>
     }
     50% {
         transform: translateY(-8px) scale(1.02);
+    }
+}
+
+@keyframes wobbleHeading {
+    0%, 100% {
+        transform: translateX(0px) rotate(0deg) scale(1);
+    }
+    25% {
+        transform: translateX(-3px) rotate(-1deg) scale(1.01);
+    }
+    50% {
+        transform: translateX(0px) rotate(0deg) scale(1.02);
+    }
+    75% {
+        transform: translateX(3px) rotate(1deg) scale(1.01);
     }
 }
     
@@ -722,6 +763,13 @@ Who is Murun and Soso?<!DOCTYPE html>
                         <img src="images/cat5.png" alt="Cat meme 5">
                     </div>
                 </div>
+                
+                <!-- Happy Dance Sticker centered under cat memes -->
+                <div style="text-align: center; margin-top: 30px;">
+                    <img src="images/Happy Dance Sticker by 52works(오이웍스).gif" 
+                         alt="Happy Dance - 52works Sticky Monster Lab Animation" 
+                         style="max-width: 200px; height: auto;">
+                </div>
             </div>
         </section>
 
@@ -838,6 +886,12 @@ Who is Murun and Soso?<!DOCTYPE html>
             <p class="footer-kr">무런 앤 소소의 독특한 미학에 대한 사랑으로 만든 비공식 팬 페이지입니다</p>
             <p class="footer-en" style="display: none;">© 2025 Murun and Soso | Inspired by the quiet chaos of modern life</p>
             <p class="footer-en" style="display: none;">This is an unofficial fan page created with love for Murun and Soso's unique aesthetic</p>
+        </div>
+        
+        <!-- Skull sticker in bottom left -->
+        <div class="footer-skull">
+            <img src="images/Sticker Skull Sticker by 52works(오이웍스).gif" 
+                 alt="Skull Sticker - 52works Animation">
         </div>
     </footer>
 
