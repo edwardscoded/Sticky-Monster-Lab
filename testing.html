@@ -367,7 +367,7 @@
 
         /* Characters Section */
         .characters {
-            padding: 80px 0 20px;
+            padding: 80px 0 0;
             background: #eee;
             position: relative;
             overflow: hidden;
@@ -477,13 +477,14 @@
         }
 
         /* Walking Murun Animation */
-        .walking-murun {
-            position: absolute;
-            bottom: -20px;
-            height: 160px;
-            animation: walkAcross 15s linear infinite;
-            z-index: 10;
-        }
+.walking-murun {
+    position: absolute;
+    /* bottom: -20px; <- Original */
+    bottom: 5px;    /* <- Changed: Places it 5px from the bottom edge. Adjust as needed. */
+    height: 160px;
+    animation: walkAcross 15s linear infinite;
+    z-index: 10;
+}
 
         .walking-murun img {
             height: 100%;
@@ -497,13 +498,14 @@
         }
 
         /* Walking Go Sticker Animation - right to left, slower */
-        .walking-go {
-            position: absolute;
-            bottom: -30px;
-            height: 240px;
-            z-index: 10;
-            animation: walkStopGoAcross 20s ease-in-out infinite;
-        }
+.walking-go {
+    position: absolute;
+    /* bottom: -30px; <- Original */
+    bottom: 5px;    /* <- Changed: Places it 5px from the bottom edge. Adjust as needed. */
+    height: 240px;
+    z-index: 10;
+    animation: walkStopGoAcross 20s ease-in-out infinite;
+}
 
         .walking-go img {
             height: 100%;
@@ -521,7 +523,8 @@
             background: #fff;
             padding: 40px 0;
             text-align: center;
-           position: relative;
+            border-top: 2px solid #ccc;
+            position: relative;
         }
 
         footer p {
@@ -916,9 +919,9 @@
                 <h2 class="characters-title-kr">소소는 왜 이러는 거야?</h2>
                 <h2 class="characters-title-en" style="display: none;">Whats up with Soso?</h2>
                 
-<!-- Elfsight Instagram Feed | Untitled Instagram Feed -->
+<!-- Elfsight Instagram Feed | Untitled Instagram Feed 2 -->
 <script src="https://static.elfsight.com/platform/platform.js" async></script>
-<div class="elfsight-app-1027be02-3535-4a55-8a9e-53cd4fe74b32" data-elfsight-app-lazy style="margin-bottom: 60px;"></div>
+<div class="elfsight-app-cc75ac9e-8d99-4e8c-a1c7-73f0477ab12e" data-elfsight-app-lazy></div>
 
                 <!-- Character Profiles -->
                 <div class="character-cards">
