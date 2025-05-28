@@ -447,21 +447,31 @@
         /* Walking Go Sticker Animation - opposite direction, slower */
         .walking-go {
             position: absolute;
-            bottom: 30px;
-            height: 200px;
-            animation: walkAcrossReverse 40s linear infinite;
+            bottom: 10px;
+            height: 240px;
+            animation: walkAcrossReverse 50s linear infinite;
             z-index: 10;
         }
 
         .walking-go img {
             height: 100%;
             width: auto;
-            transform: scaleX(-1); /* Flip horizontally */
+            transform: scaleX(-1);
+            animation: walkPause 8s ease-in-out infinite;
         }
 
         @keyframes walkAcrossReverse {
-            0% { right: -200px; }
+            0% { right: -250px; }
             100% { right: 100%; }
+        }
+
+        @keyframes walkPause {
+            0% { transform: scaleX(-1) translateX(0); }
+            20% { transform: scaleX(-1) translateX(-15px); }
+            40% { transform: scaleX(-1) translateX(-15px); }
+            60% { transform: scaleX(-1) translateX(-30px); }
+            80% { transform: scaleX(-1) translateX(-30px); }
+            100% { transform: scaleX(-1) translateX(-45px); }
         }
 
         /* Footer */
@@ -532,7 +542,8 @@
             }
 
             .walking-go {
-                height: 150px;
+                height: 180px;
+                bottom: 5px;
             }
 
             .scroll-image {
