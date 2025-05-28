@@ -246,10 +246,10 @@
         .meme-grid {
             display: grid;
             grid-template-columns: repeat(6, 1fr);
-            grid-auto-rows: minmax(200px, auto);
-            gap: 10px;
+            grid-auto-rows: minmax(150px, auto);
+            gap: 5px;
             margin: 0 auto;
-            max-width: 1000px;
+            max-width: 800px;
             padding: 20px;
         }
 
@@ -272,47 +272,47 @@
             display: block;
         }
 
-        /* Scattered positioning - closer together */
+        /* Scattered positioning - much closer and overlapping */
         .meme-item:nth-child(1) {
             grid-column: 1 / 3;
             transform: rotate(-3deg);
-            margin-top: 10px;
+            margin-top: 5px;
         }
 
         .meme-item:nth-child(2) {
             grid-column: 3 / 5;
             transform: rotate(5deg);
-            margin-top: -5px;
+            margin-top: -15px;
         }
 
         .meme-item:nth-child(3) {
             grid-column: 4 / 6;
             transform: rotate(-2deg);
-            margin-top: 15px;
+            margin-top: 5px;
         }
 
         .meme-item:nth-child(4) {
             grid-column: 2 / 4;
             transform: rotate(4deg);
-            margin-top: 8px;
+            margin-top: -20px;
         }
 
         .meme-item:nth-child(5) {
             grid-column: 5 / 6;
             transform: rotate(-6deg);
-            margin-top: -10px;
+            margin-top: -25px;
         }
 
         .meme-item:nth-child(6) {
             grid-column: 1 / 2;
             transform: rotate(3deg);
-            margin-top: 25px;
+            margin-top: -10px;
         }
 
         .meme-item:nth-child(7) {
             grid-column: 6 / 7;
             transform: rotate(-4deg);
-            margin-top: 20px;
+            margin-top: -30px;
         }
 
         /* Characters Section */
