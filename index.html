@@ -98,6 +98,7 @@
             margin-bottom: 0 !important;
             padding-top: 0 !important;
             padding-bottom: 0 !important;
+            position: relative;
         }
 
 .hero h1,
@@ -345,7 +346,7 @@
 
         /* Characters Section */
         .characters {
-            padding: 80px 0;
+            padding: 80px 0 20px;
             background: #eee;
             position: relative;
             overflow: hidden;
@@ -742,6 +743,12 @@
                          style="max-width: 100%; height: auto;">
                 </div>
                 
+                <!-- Speech bubble above genius working character -->
+                <div class="speech-bubble">
+                    <img src="images/speaah-korean.gif" alt="Speech Bubble Korean" class="speech-kr">
+                    <img src="images/speaah-english.gif" alt="Speech Bubble English" class="speech-en" style="display: none;">
+                </div>
+                
                 <!-- CA Coming Soon Bar -->
                 <div class="ca-bar" style="margin: 20px auto;">
                     <span class="ca-text">CA: COMING SOON</span>
@@ -1049,6 +1056,10 @@
                 bioKr: document.querySelectorAll('.bio-kr'),
                 bioEn: document.querySelectorAll('.bio-en'),
                 
+                // Speech bubbles
+                speechKr: document.querySelectorAll('.speech-kr'),
+                speechEn: document.querySelectorAll('.speech-en'),
+                
                 // Footer
                 footerKr: document.querySelectorAll('.footer-kr'),
                 footerEn: document.querySelectorAll('.footer-en')
@@ -1078,6 +1089,7 @@
                 elements.quoteKr.forEach(el => el.style.display = 'none');
                 elements.bioKr.forEach(el => el.style.display = 'none');
                 elements.footerKr.forEach(el => el.style.display = 'none');
+                elements.speechKr.forEach(el => el.style.display = 'none');
                 
                 elements.navEn.forEach(el => el.style.display = 'block');
                 elements.heroEn.forEach(el => el.style.display = 'block');
@@ -1094,6 +1106,7 @@
                 elements.quoteEn.forEach(el => el.style.display = 'block');
                 elements.bioEn.forEach(el => el.style.display = 'block');
                 elements.footerEn.forEach(el => el.style.display = 'block');
+                elements.speechEn.forEach(el => el.style.display = 'block');
                 
                 elements.aboutKr.classList.remove('active');
                 elements.aboutEn.classList.add('active');
@@ -1117,6 +1130,7 @@
                 elements.quoteEn.forEach(el => el.style.display = 'none');
                 elements.bioEn.forEach(el => el.style.display = 'none');
                 elements.footerEn.forEach(el => el.style.display = 'none');
+                elements.speechEn.forEach(el => el.style.display = 'none');
                 
                 elements.navKr.forEach(el => el.style.display = 'block');
                 elements.heroKr.forEach(el => el.style.display = 'block');
@@ -1130,6 +1144,7 @@
                 elements.quoteKr.forEach(el => el.style.display = 'block');
                 elements.bioKr.forEach(el => el.style.display = 'block');
                 elements.footerKr.forEach(el => el.style.display = 'block');
+                elements.speechKr.forEach(el => el.style.display = 'block');
                 
                 elements.aboutEn.classList.remove('active');
                 elements.aboutKr.classList.add('active');
