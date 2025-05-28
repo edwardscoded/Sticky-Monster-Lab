@@ -805,63 +805,63 @@
                 <h2 class="memes-title-kr">나는 고양이가 없다</h2>
                 <h2 class="memes-title-en" style="display: none;">I Don't Have a Cat</h2>
                 <div class="meme-grid">
-                    <div class="meme-item">
+                    <div class="meme-item" onclick="openLightbox(this)">
                         <img src="gelleria/bag.png" alt="Bag">
                     </div>
 
-                    <div class="meme-item">
+                    <div class="meme-item" onclick="openLightbox(this)">
                         <img src="gelleria/beer.png" alt="Beer">
                     </div>
 
-                    <div class="meme-item">
+                    <div class="meme-item" onclick="openLightbox(this)">
                         <img src="gelleria/bus.png" alt="Bus">
                     </div>
 
-                    <div class="meme-item">
+                    <div class="meme-item" onclick="openLightbox(this)">
                         <img src="gelleria/fire.png" alt="Fire">
                     </div>
 
-                    <div class="meme-item">
+                    <div class="meme-item" onclick="openLightbox(this)">
                         <img src="gelleria/galleria.png" alt="Galleria">
                     </div>
 
-                    <div class="meme-item">
+                    <div class="meme-item" onclick="openLightbox(this)">
                         <img src="gelleria/huh.png" alt="Huh">
                     </div>
 
-                    <div class="meme-item">
+                    <div class="meme-item" onclick="openLightbox(this)">
                         <img src="gelleria/job.png" alt="Job">
                     </div>
 
-                    <div class="meme-item">
+                    <div class="meme-item" onclick="openLightbox(this)">
                         <img src="gelleria/mind1.png" alt="Mind 1">
                     </div>
 
-                    <div class="meme-item">
+                    <div class="meme-item" onclick="openLightbox(this)">
                         <img src="gelleria/mind12.png" alt="Mind 12">
                     </div>
 
-                    <div class="meme-item">
+                    <div class="meme-item" onclick="openLightbox(this)">
                         <img src="gelleria/mind123.png" alt="Mind 123">
                     </div>
 
-                    <div class="meme-item">
+                    <div class="meme-item" onclick="openLightbox(this)">
                         <img src="gelleria/murun.png" alt="Murun">
                     </div>
 
-                    <div class="meme-item">
+                    <div class="meme-item" onclick="openLightbox(this)">
                         <img src="gelleria/omelet.png" alt="Omelet">
                     </div>
 
-                    <div class="meme-item">
+                    <div class="meme-item" onclick="openLightbox(this)">
                         <img src="gelleria/piano.png" alt="Piano">
                     </div>
 
-                    <div class="meme-item">
+                    <div class="meme-item" onclick="openLightbox(this)">
                         <img src="gelleria/rain.png" alt="Rain">
                     </div>
 
-                    <div class="meme-item">
+                    <div class="meme-item" onclick="openLightbox(this)">
                         <img src="gelleria/snack.png" alt="Snack">
                     </div>
                 </div>
@@ -978,6 +978,14 @@
             </div>
         </section>
     </main>
+
+    <!-- Lightbox Modal -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+        <div class="lightbox-content" onclick="event.stopPropagation()">
+            <img class="lightbox-image" id="lightbox-image" alt="">
+        </div>
+    </div>
 
     <footer>
         <div class="container">
@@ -1222,6 +1230,38 @@
                 }, 2000);
             });
         }
+
+        // Lightbox functionality
+        function openLightbox(item) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImage = document.getElementById('lightbox-image');
+            
+            // Get the image source and alt text from clicked item
+            const img = item.querySelector('img');
+            const imageSrc = img.src;
+            const imageAlt = img.alt;
+            
+            // Set lightbox content
+            lightboxImage.src = imageSrc;
+            lightboxImage.alt = imageAlt;
+            
+            // Show lightbox
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close lightbox with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            }
+        });
     </script>
 </body>
 </html>
