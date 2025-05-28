@@ -196,6 +196,7 @@
         .about {
             padding: 40px 0 20px;
             background: #eee;
+            position: relative;
         }
 
         .about-content {
@@ -245,6 +246,7 @@
         .memes {
             padding: 80px 0;
             background: #f5f5f5;
+            position: relative;
         }
 
         .memes h2 {
@@ -517,7 +519,7 @@
         }
 
         .footer-skull img {
-            max-width: 120px;
+            max-width: 180px;
             height: auto;
         }
 
@@ -612,10 +614,38 @@
             color: #ccc;
         }
 
+        /* Floating character between sections */
+        .floating-section-character {
+            position: absolute;
+            left: -80px;
+            z-index: 5;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .floating-section-character img {
+            max-width: 150px;
+            height: auto;
+            animation: bobFloat 4s ease-in-out infinite;
+        }
+
+        .floating-section-character:hover {
+            opacity: 1;
+        }
+
         @keyframes float {
             0%, 100% { transform: translateY(0px); }
             50% { transform: translateY(-20px); }
         }
+@keyframes bobFloat {
+    0%, 100% {
+        transform: translateY(0px) rotate(-2deg);
+    }
+    50% {
+        transform: translateY(-15px) rotate(2deg);
+    }
+}
+
 @keyframes sway {
     0%, 100% {
         transform: translateX(0px) rotate(0deg) scale(1);
@@ -719,6 +749,12 @@
 
         <!-- About Section -->
         <section id="about" class="about">
+            <!-- Floating character between sections -->
+            <div class="floating-section-character" style="top: 20%;">
+                <img src="images/52Works Sticker by 52works(오이웍스).gif" 
+                     alt="Floating 52Works Character">
+            </div>
+            
             <div class="container">
                 <div class="about-content">
                     <div class="about-text">
@@ -760,6 +796,12 @@
 
         <!-- Memes Section -->
         <section id="memes" class="memes">
+            <!-- Floating character between sections -->
+            <div class="floating-section-character" style="top: 15%;">
+                <img src="images/Genius Working Sticker by 52works(오이웍스).gif" 
+                     alt="Floating Genius Working Character">
+            </div>
+            
             <div class="container">
                 <h2 class="memes-title-kr">나는 고양이가 없다</h2>
                 <h2 class="memes-title-en" style="display: none;">I Don't Have a Cat</h2>
