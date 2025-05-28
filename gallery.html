@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Single+Day&display=swap" rel="stylesheet">
-<head>
+    
+    <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gallery - Murun and Soso</title>
+    <title>Murun and Soso</title>
     <style>
         * {
             margin: 0;
@@ -23,15 +24,15 @@
         }
 
         .container {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 10px;
         }
 
         /* Header */
         header {
             background: #fff;
-            padding: 20px 0;
+            padding: 10px 0;
             border-bottom: 2px solid #ccc;
             position: fixed;
             width: 100%;
@@ -65,7 +66,7 @@
             transition: color 0.3s ease;
         }
 
-        .nav-links a:hover, .nav-links a.active {
+        .nav-links a:hover {
             color: #000;
         }
 
@@ -86,270 +87,532 @@
         /* Main Content */
         main {
             margin-top: 80px;
-            padding: 40px 0;
         }
 
-        /* Gallery Header */
-        .gallery-header {
+        /* Hero Section */
+        .hero {
             text-align: center;
-            padding: 60px 0;
+            padding: 20px 0;
             background: linear-gradient(135deg, #e5e5e5 0%, #f5f5f5 100%);
+            margin-top: 0 !important;
+            margin-bottom: 0 !important;
+            padding-top: 0 !important;
+            padding-bottom: 0 !important;
         }
 
-        .gallery-header h1 {
-            font-size: 48px;
-            margin-bottom: 20px;
-            color: #000;
-        }
+.hero h1,
+.hero p,
+.hero-image,
+.ca-bar,
+.social-buttons {
+    margin: 15px auto !important;
+}
 
-        .gallery-header p {
-            font-size: 18px;
-            color: #333;
-            max-width: 600px;
-            margin: 0 auto;
-        }
+.hero h1 {
+    font-size: 42px;
+    margin-bottom: 8px !important;
+    line-height: 1.1;
+}
 
-        /* Gallery Grid */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(8, 1fr);
+.hero p {
+    font-size: 16px;
+    margin-top: 8px !important;
+    margin-bottom: 15px !important;
+    line-height: 1.4;
+}
+
+        /* CA Coming Soon Bar */
+        .ca-bar {
+            background: #e5e5e5;
+            border: 2px solid #ccc;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 10px auto;
+            max-width: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
             gap: 15px;
-            margin: 40px 0;
+        }
+
+        .ca-text {
+            font-size: 18px;
+            font-weight: bold;
+            color: #000;
+            font-family: 'Single Day', cursive;
+        }
+
+        .copy-btn {
+            background: #ccc;
+            border: none;
+            color: #000;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            font-family: 'Single Day', cursive;
+            font-size: 12px;
+        }
+
+        .copy-btn:hover {
+            background: #aaa;
+        }
+
+        .copy-btn:active {
+            background: #888;
+        }
+
+        /* Social/Trading Buttons */
+        .social-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 10px auto;
+            max-width: 600px;
+        }
+
+        .social-btn {
+            background: transparent;
+            border: 2px solid #ccc;
+            color: #333;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-family: 'Single Day', cursive;
+            font-size: 14px;
+            display: inline-block;
+        }
+
+        .social-btn:hover {
+            background: #ccc;
+            color: #000;
+            border-color: #aaa;
+            transform: translateY(-2px);
+        }
+
+        /* About Section */
+        .about {
+            padding: 40px 0 20px;
+            background: #eee;
+            position: relative;
+        }
+
+        .about-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-text {
+            text-align: left;
+        }
+
+        .about-image {
+            text-align: center;
+        }
+
+        .about-image img {
+            max-width: 100%;
+            height: auto;
+        }
+
+.about h2 {
+    font-size: 54px;
+    margin-bottom: 30px;
+    color: #000;
+    text-align: center;
+    animation: floatHeading 3s ease-in-out infinite;
+    transform-origin: center;
+}
+
+        .lang-content {
+            background: #e5e5e5;
+            padding: 40px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #ccc;
+        }
+
+        .lang-content.active {
+            border-left-color: #000;
+        }
+
+        /* Meme Grid */
+        .memes {
+            padding: 80px 0;
+            background: #f5f5f5;
+            position: relative;
+        }
+
+        .memes h2 {
+            text-align: center;
+            font-size: 48px;
+            margin-bottom: 50px;
+            color: #000;
+            animation: sway 3s ease-in-out infinite;
+            transform-origin: center;
+        }
+
+        .meme-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 5px;
+            margin: 0 auto;
+            max-width: 800px;
             padding: 20px;
         }
 
-        .gallery-item {
-            background: #fff;
-            border-radius: 8px;
-            overflow: visible;
-            transition: all 0.3s ease;
+        .meme-item {
+            overflow: hidden;
+            transition: transform 0.2s ease;
             cursor: pointer;
-            position: relative;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            padding: 10px;
-            transform-origin: center;
-            width: fit-content;
+            border-radius: 8px;
             height: fit-content;
+            width: fit-content;
             justify-self: center;
             align-self: start;
         }
 
-        .gallery-item:hover {
-            transform: scale(1.05) rotate(0deg) !important;
-            z-index: 100;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        .meme-item:hover {
+            transform: scale(1.05) rotate(2deg);
+            z-index: 10;
         }
 
-        .gallery-item img {
+        .meme-item img {
             width: 100%;
             height: auto;
             display: block;
+            transition: all 0.3s ease;
+        }
+
+        /* Enhanced hover effect for cat images - full screen overlay */
+        .meme-item:hover {
+            transform: scale(1.05) rotate(2deg);
+            z-index: 1000;
+        }
+
+        .meme-item:hover img {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90vw;
+            height: 90vh;
+            max-width: 90vw;
+            max-height: 90vh;
+            object-fit: contain;
+            z-index: 1001;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Scattered positioning - much closer and overlapping */
+        .meme-item:nth-child(1) {
+            grid-column: 1 / 3;
+            transform: rotate(-3deg);
+            margin-top: 5px;
+        }
+
+        .meme-item:nth-child(2) {
+            grid-column: 3 / 5;
+            transform: rotate(5deg);
+            margin-top: -15px;
+        }
+
+        .meme-item:nth-child(3) {
+            grid-column: 4 / 6;
+            transform: rotate(-2deg);
+            margin-top: 5px;
+        }
+
+        .meme-item:nth-child(4) {
+            grid-column: 2 / 4;
+            transform: rotate(4deg);
+            margin-top: -20px;
+        }
+
+        .meme-item:nth-child(5) {
+            grid-column: 5 / 6;
+            transform: rotate(-6deg);
+            margin-top: -25px;
+        }
+
+        /* Characters Section */
+        .characters {
+            padding: 80px 0;
+            background: #eee;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .characters h2 {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 50px;
+            color: #000;
+            animation: wobbleHeading 4s ease-in-out infinite;
+            transform-origin: center;
+        }
+
+        /* Character Cards */
+        .character-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .character-profile {
+            background: #f5f5f5;
+            padding: 50px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .character-profile:hover {
+            transform: translateY(-5px);
+        }
+
+        .character-name {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #000;
+        }
+
+        .character-title {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .character-stats {
+            text-align: left;
+            margin: 20px 0;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .character-stats strong {
+            color: #000;
+        }
+
+        .character-quote {
+            font-style: italic;
+            color: #333;
+            margin: 20px 0;
+            padding: 15px;
+            background: #e5e5e5;
+            border-left: 4px solid #ccc;
             border-radius: 4px;
         }
 
-        /* Scrapbook scattered positioning */
-        .gallery-item:nth-child(1) { 
-            grid-column: 1 / 3; 
-            transform: rotate(-5deg); 
-            margin-top: 20px; 
-        }
-        
-        .gallery-item:nth-child(2) { 
-            grid-column: 3 / 4; 
-            transform: rotate(8deg); 
-            margin-top: -10px; 
-        }
-        
-        .gallery-item:nth-child(3) { 
-            grid-column: 5 / 7; 
-            transform: rotate(-3deg); 
-            margin-top: 15px; 
-        }
-        
-        .gallery-item:nth-child(4) { 
-            grid-column: 7 / 9; 
-            transform: rotate(6deg); 
-            margin-top: -5px; 
-        }
-        
-        .gallery-item:nth-child(5) { 
-            grid-column: 1 / 2; 
-            transform: rotate(4deg); 
-            margin-top: 25px; 
-        }
-        
-        .gallery-item:nth-child(6) { 
-            grid-column: 2 / 4; 
-            transform: rotate(-7deg); 
-            margin-top: 10px; 
-        }
-        
-        .gallery-item:nth-child(7) { 
-            grid-column: 4 / 5; 
-            transform: rotate(3deg); 
-            margin-top: -15px; 
-        }
-        
-        .gallery-item:nth-child(8) { 
-            grid-column: 6 / 8; 
-            transform: rotate(-4deg); 
-            margin-top: 20px; 
-        }
-        
-        .gallery-item:nth-child(9) { 
-            grid-column: 8 / 9; 
-            transform: rotate(7deg); 
-            margin-top: -8px; 
-        }
-        
-        .gallery-item:nth-child(10) { 
-            grid-column: 1 / 3; 
-            transform: rotate(-2deg); 
-            margin-top: 30px; 
-        }
-        
-        .gallery-item:nth-child(11) { 
-            grid-column: 3 / 5; 
-            transform: rotate(5deg); 
-            margin-top: 12px; 
-        }
-        
-        .gallery-item:nth-child(12) { 
-            grid-column: 5 / 6; 
-            transform: rotate(-6deg); 
-            margin-top: -12px; 
-        }
-        
-        .gallery-item:nth-child(13) { 
-            grid-column: 7 / 9; 
-            transform: rotate(2deg); 
-            margin-top: 18px; 
-        }
-        
-        .gallery-item:nth-child(14) { 
-            grid-column: 1 / 2; 
-            transform: rotate(-8deg); 
-            margin-top: 35px; 
-        }
-        
-        .gallery-item:nth-child(15) { 
-            grid-column: 2 / 4; 
-            transform: rotate(4deg); 
-            margin-top: 8px; 
-        }
-        
-        .gallery-item:nth-child(16) { 
-            grid-column: 4 / 6; 
-            transform: rotate(-3deg); 
-            margin-top: 22px; 
-        }
-        
-        .gallery-item:nth-child(17) { 
-            grid-column: 6 / 7; 
-            transform: rotate(6deg); 
-            margin-top: -18px; 
-        }
-        
-        .gallery-item:nth-child(18) { 
-            grid-column: 7 / 9; 
-            transform: rotate(-5deg); 
-            margin-top: 14px; 
-        }
-        
-        .gallery-item:nth-child(19) { 
-            grid-column: 1 / 3; 
-            transform: rotate(3deg); 
-            margin-top: 28px; 
-        }
-        
-        .gallery-item:nth-child(20) { 
-            grid-column: 3 / 4; 
-            transform: rotate(-4deg); 
-            margin-top: 16px; 
+        .character-bio {
+            font-size: 14px;
+            color: #333;
+            line-height: 1.6;
+            text-align: left;
+            margin-top: 20px;
         }
 
-        /* Lightbox Modal */
-        .lightbox {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.9);
-            z-index: 2000;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .lightbox.active {
-            display: flex;
-        }
-
-        .lightbox-content {
-            max-width: 90%;
-            max-height: 90%;
-            position: relative;
-            text-align: center;
-        }
-
-        .lightbox-image {
-            max-width: 100%;
-            max-height: 90vh;
+        /* Image Scroll Gallery */
+        .image-scroll {
+            margin: 40px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            background: #ddd;
+            padding: 20px 0;
             border-radius: 8px;
-            box-shadow: 0 10px 30px rgba(255,255,255,0.1);
         }
 
-        .lightbox-close {
+        .scroll-track {
+            display: inline-flex;
+            animation: scroll 20s linear infinite;
+            gap: 20px;
+        }
+
+        .scroll-image {
+            height: 280px;
+            width: auto;
+            border-radius: 8px;
+            flex-shrink: 0;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Walking Murun Animation */
+        .walking-murun {
             position: absolute;
-            top: 20px;
-            right: 20px;
-            background: none;
-            border: none;
-            color: #fff;
-            font-size: 30px;
-            cursor: pointer;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: rgba(0,0,0,0.5);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 2001;
+            bottom: 20px;
+            height: 160px;
+            animation: walkAcross 15s linear infinite;
+            z-index: 10;
         }
 
-        .lightbox-close:hover {
-            background: rgba(255,255,255,0.2);
+        .walking-murun img {
+            height: 100%;
+            width: auto;
+            transform: scaleX(-1); /* Flip so he faces the direction he's walking */
         }
 
-        /* Special Gallery Items */
-        .gallery-item.featured {
-            grid-column: span 2;
-            grid-row: span 2;
+        @keyframes walkAcross {
+            0% { left: -200px; }
+            100% { left: 100%; }
         }
 
-        .gallery-item.featured .gallery-image {
-            font-size: 120px;
+        /* Walking Go Sticker Animation - right to left, slower */
+        .walking-go {
+            position: absolute;
+            bottom: 0px;
+            height: 240px;
+            z-index: 10;
+            animation: walkStopGoAcross 20s ease-in-out infinite;
         }
 
-        /* Floating Animation */
-        .floating-char {
-            animation: float 4s ease-in-out infinite;
+        .walking-go img {
+            height: 100%;
+            width: auto;
+            transform: scaleX(-1); /* Flip image horizontally */
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-15px) rotate(5deg); }
+        @keyframes walkStopGoAcross {
+            0% { right: -250px; }      /* Start off-screen right */
+            100% { right: 100%; }      /* End off-screen left */
         }
 
-        /* Filter Animation */
-        .gallery-item {
-            animation: fadeIn 0.5s ease-out;
+        /* Footer */
+        footer {
+            background: #fff;
+            padding: 40px 0;
+            text-align: center;
+            border-top: 2px solid #ccc;
+            position: relative;
         }
 
-        .gallery-item.hidden {
+        footer p {
+            color: #999;
+            font-size: 14px;
+        }
+
+        .footer-logo {
+            margin-bottom: 20px;
+        }
+
+        .footer-logo img {
+            max-width: 150px;
+            height: auto;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+            background: #000;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        .footer-logo img:hover {
+            opacity: 1;
+        }
+
+        /* Skull sticker in footer bottom left */
+        .footer-skull {
+            position: absolute;
+            bottom: 10px;
+            left: 150px;
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
+        }
+
+        .footer-skull img {
+            max-width: 180px;
+            height: auto;
+        }
+
+        .footer-skull:hover {
+            opacity: 1;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 15px;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .meme-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .lang-content {
+                padding: 20px;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .character-cards {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .character-profile {
+                padding: 30px;
+            }
+
+            .walking-murun {
+                height: 180px;
+            }
+
+            .walking-go {
+                height: 180px;
+                bottom: 0px;
+            }
+
+            .scroll-image {
+                height: 220px;
+            }
+
+            .ca-bar {
+                flex-direction: column;
+                gap: 10px;
+                padding: 15px;
+            }
+
+            .social-buttons {
+                gap: 10px;
+            }
+
+            .social-btn {
+                padding: 10px 16px;
+                font-size: 12px;
+            }
+        }
+
+        /* Language Toggle Animation */
+        .lang-content {
             display: none;
+        }
+
+        .lang-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
         }
 
         @keyframes fadeIn {
@@ -357,80 +620,97 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .nav-links {
-                gap: 15px;
-            }
-
-            .gallery-grid {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 10px;
-                padding: 10px;
-            }
-
-            .gallery-item {
-                padding: 8px;
-            }
-
-            .gallery-item:nth-child(n) {
-                grid-column: auto;
-                margin-top: 5px;
-                transform: rotate(0deg);
-            }
-
-            .gallery-item:nth-child(3n+1) { transform: rotate(-2deg); }
-            .gallery-item:nth-child(3n+2) { transform: rotate(3deg); }
-            .gallery-item:nth-child(3n+3) { transform: rotate(-1deg); }
-
-            .lightbox-image {
-                max-height: 80vh;
-            }
+        /* Floating Elements */
+        .floating-character {
+            position: fixed;
+            font-size: 24px;
+            opacity: 0.3;
+            pointer-events: none;
+            z-index: -1;
+            animation: float 6s ease-in-out infinite;
+            color: #ccc;
         }
 
-        /* Back Button */
-        .back-button {
-            display: inline-block;
-            margin: 20px 0;
-            padding: 12px 24px;
-            background: transparent;
-            border: 2px solid #ccc;
-            color: #333;
-            text-decoration: none;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            font-family: 'Single Day', cursive;
+        /* Floating character between sections */
+        .floating-section-character {
+            position: absolute;
+            left: -80px;
+            z-index: 5;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
         }
 
-        .back-button:hover {
-            background: #ccc;
-            color: #000;
-            border-color: #aaa;
+        .floating-section-character img {
+            max-width: 150px;
+            height: auto;
+            animation: bobFloat 4s ease-in-out infinite;
         }
 
-        /* Loading Animation */
-        .loading {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 200px;
-            font-size: 18px;
-            color: #999;
+        .floating-section-character:hover {
+            opacity: 1;
         }
 
-        .loading::after {
-            content: '...';
-            animation: dots 2s infinite;
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
         }
+@keyframes bobFloat {
+    0%, 100% {
+        transform: translateY(0px) rotate(-2deg);
+    }
+    50% {
+        transform: translateY(-15px) rotate(2deg);
+    }
+}
 
-        @keyframes dots {
-            0%, 20% { content: '.'; }
-            40% { content: '..'; }
-            60%, 100% { content: '...'; }
-        }
+@keyframes sway {
+    0%, 100% {
+        transform: translateX(0px) rotate(0deg) scale(1);
+    }
+    25% {
+        transform: translateX(-5px) rotate(-1deg) scale(1.02);
+    }
+    50% {
+        transform: translateX(0px) rotate(0deg) scale(1.05);
+    }
+    75% {
+        transform: translateX(5px) rotate(1deg) scale(1.02);
+    }
+}
+
+@keyframes floatHeading {
+    0%, 100% {
+        transform: translateY(0px) scale(1);
+    }
+    50% {
+        transform: translateY(-8px) scale(1.02);
+    }
+}
+
+@keyframes wobbleHeading {
+    0%, 100% {
+        transform: translateX(0px) rotate(0deg) scale(1);
+    }
+    25% {
+        transform: translateX(-3px) rotate(-1deg) scale(1.01);
+    }
+    50% {
+        transform: translateX(0px) rotate(0deg) scale(1.02);
+    }
+    75% {
+        transform: translateX(3px) rotate(1deg) scale(1.01);
+    }
+}
+    
     </style>
 </head>
 <body>
+    <!-- Background Audio -->
+    <audio id="backgroundAudio" loop>
+        <source src="audio/copy_CEB4583B-874D-4E57-A589-DA85C43329EF.mp4" type="audio/mp4">
+        Your browser does not support the audio element.
+    </audio>
+
     <header>
         <nav class="container">
             <a href="#" class="logo">
@@ -441,7 +721,6 @@
                 <li><a href="#about" class="nav-en" style="display: none;">About</a><a href="#about" class="nav-kr">소개</a></li>
                 <li><a href="#memes" class="nav-en" style="display: none;">Memes</a><a href="#memes" class="nav-kr">밈</a></li>
                 <li><a href="#characters" class="nav-en" style="display: none;">Characters</a><a href="#characters" class="nav-kr">캐릭터</a></li>
-                <li><a href="gallery.html" class="nav-en" style="display: none;">Gallery</a><a href="gallery.html" class="nav-kr">갤러리</a></li>
                 <li><a href="https://52works.kr/" target="_blank" class="nav-en" style="display: none;">Store</a><a href="https://52works.kr/" target="_blank" class="nav-kr">스토어</a></li>
                 <li><button class="lang-toggle" onclick="toggleLanguage()">🇰🇷 / 🇺🇸</button></li>
             </ul>
@@ -449,101 +728,252 @@
     </header>
 
     <main>
-        <div class="container">
-            <a href="index.html" class="back-button">
-                <span class="back-kr">← 홈으로 돌아가기</span>
-                <span class="back-en" style="display: none;">← Back to Home</span>
-            </a>
-        </div>
-
-        <!-- Gallery Header -->
-        <section class="gallery-header">
+        <!-- Hero Section -->
+        <section class="hero">
             <div class="container">
-                <h1 class="gallery-title-kr">작품 갤러리</h1>
-                <h1 class="gallery-title-en" style="display: none;">Gallery</h1>
-                <p class="gallery-desc-kr">조용한 혼돈 속에서 피어나는 미니멀한 아트와 일상의 순간들</p>
-                <p class="gallery-desc-en" style="display: none;">Minimalist art and everyday moments blooming from quiet chaos</p>
+                <h1 class="hero-kr">조용한 혼돈의 세계에 오신 것을 환영합니다</h1>
+                <h1 class="hero-en" style="display: none;">Welcome to the Quiet Chaos</h1>
+                <p class="hero-kr">현대적 부조리를 헤쳐나가는 무표정한 존재들의 미니멀한 세계 탐험</p>
+                <p class="hero-en" style="display: none;">Exploring the minimalist world of expressionless beings navigating modern absurdity</p>
+                
+                <div class="hero-image" style="margin: 15px auto !important;">
+                    <img src="images/Genius Working Sticker by 52works(오이웍스).gif" 
+                         alt="Genius Working - 52works Sticky Monster Lab Animation" 
+                         style="max-width: 100%; height: auto;">
+                </div>
+                
+                <!-- CA Coming Soon Bar -->
+                <div class="ca-bar" style="margin: 20px auto;">
+                    <span class="ca-text">CA: COMING SOON</span>
+                    <button class="copy-btn" onclick="copyCA()">COPY</button>
+                </div>
+                
+                <!-- Social/Trading Buttons -->
+                <div class="social-buttons" style="margin: 15px auto;">
+                    <a href="#" class="social-btn twitter">X (Twitter)</a>
+                    <a href="#" class="social-btn dexscreener">DexScreener</a>
+                    <a href="#" class="social-btn dextools">DexTools</a>
+                    <a href="#" class="social-btn pump">Pump.Fun</a>
+                </div>
             </div>
         </section>
 
-        <section class="container">
-            <!-- Gallery Grid -->
-            <div class="gallery-grid">
-                <!-- All gelleria images scattered like a scrapbook -->
-                <div class="gallery-item" onclick="openLightbox(this)">
-                    <img src="gelleria/bag.png" alt="Bag">
+        <!-- About Section -->
+        <section id="about" class="about">
+            <div class="container">
+                <div class="about-content">
+                    <div class="about-text">
+                        <div class="about-title-kr">
+                            <img src="images/whois-korean.gif" alt="무런 앤 소소란?" style="max-width: 100%; height: auto;">
+                        </div>
+                        <div class="about-title-en" style="display: none;">
+                            <img src="images/whois-english.gif" alt="What is Murun and Soso?" style="max-width: 100%; height: auto;">
+                        </div>
+                        
+                        <div class="lang-content active" id="about-kr">
+                            <p>**무룬**과 **소소** — 번아웃의 비공식 성자들. 무룬은 멍하니 보고, 소소는 조용히 한숨 쉽니다. 아무것도 하지 않는 게 이들의 핵심입니다.</p>
+                            <br>
+                            <p>그들은 열정도, 동기부여도 없습니다. 그저 존재합니다 — 끝없는 스크롤, 생존을 위한 커피, 말 없는 하루.</p>
+                            <br>
+                            <p>이 프로젝트는 그들을 위한 헌정입니다. 감정은 탈주했지만 출근은 하는 이들을 위해. 피곤한데 이유조차 모르는 당신을 위해. 밈에서 위로를 찾고, 무표정 속 평화를 느끼는 모두를 위해.</p>
+                            <br>
+                            <p>이건 성공이 아니라, 조용한 공감입니다. 우리 모두의 몬스터와 함께, 말 없이 공존하는 것.</p>
+                        </div>
+
+                        <div class="lang-content" id="about-en">
+                            <p>Meet <strong>Murun</strong> and <strong>Soso</strong> — the unofficial saints of burnout. Murun stares. Soso sighs. Together, they do absolutely nothing — and that's exactly the point.</p>
+                            <br>
+                            <p>They don't hustle. They don't inspire. They just exist — scrolling endlessly, drinking coffee like it's a coping mechanism, and surviving in silence.</p>
+                            <br>
+                            <p>This project is a tribute to them. To everyone who's emotionally offline but still shows up. To those who are tired for no reason. To those who find peace in memes and meaning in stillness.</p>
+                            <br>
+                            <p>We're not here to win. We're here to vibe quietly with our monsters.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="about-image">
+                        <img src="images/52Works Sticker by 52works(오이웍스).gif" 
+                             alt="52Works Sticky Monster Lab Animation">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Memes Section -->
+        <section id="memes" class="memes">
+            <div class="container">
+                <h2 class="memes-title-kr">나는 고양이가 없다</h2>
+                <h2 class="memes-title-en" style="display: none;">I Don't Have a Cat</h2>
+                <div class="meme-grid">
+                    <div class="meme-item" onclick="openLightbox(this)">
+                        <img src="gelleria/bag.png" alt="Bag">
+                    </div>
+
+                    <div class="meme-item" onclick="openLightbox(this)">
+                        <img src="gelleria/beer.png" alt="Beer">
+                    </div>
+
+                    <div class="meme-item" onclick="openLightbox(this)">
+                        <img src="gelleria/bus.png" alt="Bus">
+                    </div>
+
+                    <div class="meme-item" onclick="openLightbox(this)">
+                        <img src="gelleria/fire.png" alt="Fire">
+                    </div>
+
+                    <div class="meme-item" onclick="openLightbox(this)">
+                        <img src="gelleria/galleria.png" alt="Galleria">
+                    </div>
+
+                    <div class="meme-item" onclick="openLightbox(this)">
+                        <img src="gelleria/huh.png" alt="Huh">
+                    </div>
+
+                    <div class="meme-item" onclick="openLightbox(this)">
+                        <img src="gelleria/job.png" alt="Job">
+                    </div>
+
+                    <div class="meme-item" onclick="openLightbox(this)">
+                        <img src="gelleria/mind1.png" alt="Mind 1">
+                    </div>
+
+                    <div class="meme-item" onclick="openLightbox(this)">
+                        <img src="gelleria/mind12.png" alt="Mind 12">
+                    </div>
+
+                    <div class="meme-item" onclick="openLightbox(this)">
+                        <img src="gelleria/mind123.png" alt="Mind 123">
+                    </div>
+
+                    <div class="meme-item" onclick="openLightbox(this)">
+                        <img src="gelleria/murun.png" alt="Murun">
+                    </div>
+
+                    <div class="meme-item" onclick="openLightbox(this)">
+                        <img src="gelleria/omelet.png" alt="Omelet">
+                    </div>
+
+                    <div class="meme-item" onclick="openLightbox(this)">
+                        <img src="gelleria/piano.png" alt="Piano">
+                    </div>
+
+                    <div class="meme-item" onclick="openLightbox(this)">
+                        <img src="gelleria/rain.png" alt="Rain">
+                    </div>
+
+                    <div class="meme-item" onclick="openLightbox(this)">
+                        <img src="gelleria/snack.png" alt="Snack">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Happy Dance Sticker positioned between sections -->
+        <div style="text-align: left; margin: 40px 0; margin-left: 80px; position: relative; z-index: 10;">
+            <img src="images/Happy Dance Sticker by 52works(오이웍스).gif" 
+                 alt="Happy Dance - 52works Sticky Monster Lab Animation" 
+                 style="max-width: 300px; height: auto;">
+        </div>
+
+        <!-- Characters Section -->
+        <section id="characters" class="characters">
+            <div class="container">
+                <h2 class="characters-title-kr">무룬은 왜 있는 거야?</h2>
+                <h2 class="characters-title-en" style="display: none;">Whats up with Murun?</h2>
+                
+<!-- Elfsight Instagram Feed | Untitled Instagram Feed -->
+<script src="https://static.elfsight.com/platform/platform.js" async></script>
+<div class="elfsight-app-1027be02-3535-4a55-8a9e-53cd4fe74b32" data-elfsight-app-lazy></div>
+
+                            <div class="container">
+                <h2 class="characters-title-kr">소소는 왜 이러는 거야?</h2>
+                <h2 class="characters-title-en" style="display: none;">Whats up with Soso?</h2>
+                
+<!-- Elfsight Instagram Feed | Untitled Instagram Feed -->
+<script src="https://static.elfsight.com/platform/platform.js" async></script>
+<div class="elfsight-app-1027be02-3535-4a55-8a9e-53cd4fe74b32" data-elfsight-app-lazy></div>
+
+                <!-- Character Profiles -->
+                <div class="character-cards">
+                    <!-- Murun Profile -->
+                    <div class="character-profile">
+                        <h3 class="character-name">
+                            <span class="name-kr">무런 (Murun)</span>
+                            <span class="name-en" style="display: none;">Murun</span>
+                        </h3>
+                        <p class="character-title">
+                            <span class="title-kr">무표정한 존재</span>
+                            <span class="title-en" style="display: none;">The Expressionless One</span>
+                        </p>
+                        
+                        <div class="character-stats">
+                            <div class="stats-kr">
+                                <strong>기분:</strong> 영원히 중립적<br>
+                                <strong>직업:</strong> 압박 속에서 존재하기<br>
+                                <strong>좋아하는 활동:</strong> 모든 것이 무너지는 동안 아무것도 보지 않기<br>
+                            </div>
+                            <div class="stats-en" style="display: none;">
+                                <strong>Mood:</strong> Neutral. Permanently.<br>
+                                <strong>Occupation:</strong> Existing under pressure<br>
+                                <strong>Favorite Activity:</strong> Staring at nothing while everything collapses<br>
+                            </div>
+                        </div>
+
+                        <div class="character-quote">
+                            <span class="quote-kr">"..."</span>
+                            <span class="quote-en" style="display: none;">"..."</span>
+                        </div>
+
+                        <div class="character-bio">
+                            <p class="bio-kr">무런은 번아웃의 정신적 얼굴입니다. 그는 말하지 않고, 눈을 깜빡이지도 않습니다. 그저 로그인하고, 앉아서, 무의 심연을 바라봅니다. 무런은 게으른 게 아니라 후기 자본주의에 감정적으로 반응하지 않을 뿐입니다. 형광등과 실존적 공포가 있는 곳이면 어디든 그를 찾을 수 있을 것입니다.</p>
+                            <p class="bio-en" style="display: none;">Murun is the spiritual face of burnout. He doesn't speak. He doesn't blink. He simply logs in, sits down, and zones out into the abyss. Murun isn't lazy — he's just emotionally unresponsive to late-stage capitalism. You'll find him wherever there's fluorescent lighting and existential dread.</p>
+                        </div>
+                    </div>
+
+                    <!-- Soso Profile -->
+                    <div class="character-profile">
+                        <h3 class="character-name">
+                            <span class="name-kr">소소 (Soso)</span>
+                            <span class="name-en" style="display: none;">Soso</span>
+                        </h3>
+                        <p class="character-title">
+                            <span class="title-kr">조용한 저항자</span>
+                            <span class="title-en" style="display: none;">The Quiet Resistor</span>
+                        </p>
+                        
+                        <div class="character-stats">
+                            <div class="stats-kr">
+                                <strong>기분:</strong> 그냥 그럼<br>
+                                <strong>직업:</strong> 초대 거절하기<br>
+                                <strong>좋아하는 활동:</strong> 화면을 보며 한숨쉬기<br>
+                            </div>
+                            <div class="stats-en" style="display: none;">
+                                <strong>Mood:</strong> Meh<br>
+                                <strong>Occupation:</strong> Declining invites<br>
+                                <strong>Favorite Activity:</strong> Sighing at screens<br>
+                            </div>
+                        </div>
+
+                        <div class="character-quote">
+                            <span class="quote-kr">"그냥 그런 하루였어."</span>
+                            <span class="quote-en" style="display: none;">"It was just… a day."</span>
+                        </div>
+
+                        <div class="character-bio">
+                            <p class="bio-kr">소소는 20% 에너지로 살아갑니다. 그녀는 슬프지 않아요, 그냥 **다 끝난** 상태입니다. 2015년 이후로 표정이 바뀌지 않았고, 유일한 취미는 회의 중에 감정적으로 체크아웃하는 것입니다. 소소는 신경 쓰고 싶어하지만 물리적으로 불가능한 모든 사람을 대표합니다. 그녀는 조용한 사직의 여왕이며, 우아하게 해냅니다.</p>
+                            <p class="bio-en" style="display: none;">Soso lives life at 20%. She isn't sad — she's just **done**. Her facial expression hasn't changed since 2015, and her only hobby is emotionally checking out during meetings. Soso represents everyone who wants to care… but physically can't. She's the queen of quiet quitting — and she does it gracefully.</p>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="gallery-item" onclick="openLightbox(this)">
-                    <img src="gelleria/beer.png" alt="Beer">
+                <!-- Walking Murun -->
+                <div class="walking-murun">
+                    <img src="images/Walking Walk Sticker by 52works(오이웍스).gif" alt="Walking Murun">
                 </div>
 
-                <div class="gallery-item" onclick="openLightbox(this)">
-                    <img src="gelleria/bus.png" alt="Bus">
-                </div>
-
-                <div class="gallery-item" onclick="openLightbox(this)">
-                    <img src="gelleria/fire.png" alt="Fire">
-                </div>
-
-                <div class="gallery-item" onclick="openLightbox(this)">
-                    <img src="gelleria/galleria.png" alt="Galleria">
-                </div>
-
-                <div class="gallery-item" onclick="openLightbox(this)">
-                    <img src="gelleria/huh.png" alt="Huh">
-                </div>
-
-                <div class="gallery-item" onclick="openLightbox(this)">
-                    <img src="gelleria/job.png" alt="Job">
-                </div>
-
-                <div class="gallery-item" onclick="openLightbox(this)">
-                    <img src="gelleria/mind1.png" alt="Mind 1">
-                </div>
-
-                <div class="gallery-item" onclick="openLightbox(this)">
-                    <img src="gelleria/mind12.png" alt="Mind 12">
-                </div>
-
-                <div class="gallery-item" onclick="openLightbox(this)">
-                    <img src="gelleria/mind123.png" alt="Mind 123">
-                </div>
-
-                <div class="gallery-item" onclick="openLightbox(this)">
-                    <img src="gelleria/murun.png" alt="Murun">
-                </div>
-
-                <div class="gallery-item" onclick="openLightbox(this)">
-                    <img src="gelleria/omelet.png" alt="Omelet">
-                </div>
-
-                <div class="gallery-item" onclick="openLightbox(this)">
-                    <img src="gelleria/piano.png" alt="Piano">
-                </div>
-
-                <div class="gallery-item" onclick="openLightbox(this)">
-                    <img src="gelleria/rain.png" alt="Rain">
-                </div>
-
-                <div class="gallery-item" onclick="openLightbox(this)">
-                    <img src="gelleria/snack.png" alt="Snack">
-                </div>
-
-                <div class="gallery-item" onclick="openLightbox(this)">
-                    <img src="gelleria/snow.png" alt="Snow">
-                </div>
-
-                <div class="gallery-item" onclick="openLightbox(this)">
-                    <img src="gelleria/speech.png" alt="Speech">
-                </div>
-
-                <div class="gallery-item" onclick="openLightbox(this)">
-                    <img src="gelleria/time.png" alt="Time">
-                </div>
-
-                <div class="gallery-item" onclick="openLightbox(this)">
-                    <img src="gelleria/work2.png" alt="Work 2">
+                <!-- Walking Go Sticker - opposite direction -->
+                <div class="walking-go">
+                    <img src="images/Go-Sticker-by-52works-fast.gif" alt="Go Sticker Walking">
                 </div>
             </div>
         </section>
@@ -557,10 +987,30 @@
         </div>
     </div>
 
+    <footer>
+        <div class="container">
+            <div class="footer-logo">
+                <img src="images/solanaFoundationLogo.png" alt="Solana Foundation Logo">
+            </div>
+            <p class="footer-kr">© 2025 무런 앤 소소 팬 페이지 | 현대 생활의 조용한 혼돈에서 영감을 받음</p>
+            <p class="footer-kr">무런 앤 소소의 독특한 미학에 대한 사랑으로 만든 비공식 팬 페이지입니다</p>
+            <p class="footer-en" style="display: none;">© 2025 Murun and Soso | Inspired by the quiet chaos of modern life</p>
+            <p class="footer-en" style="display: none;">This is an unofficial fan page created with love for Murun and Soso's unique aesthetic</p>
+        </div>
+        
+        <!-- Skull sticker in bottom left -->
+        <div class="footer-skull">
+            <img src="images/Sticker Skull Sticker by 52works(오이웍스).gif" 
+                 alt="Skull Sticker - 52works Animation">
+        </div>
+    </footer>
+
     <script>
         let currentLang = 'kr';
 
         function toggleLanguage() {
+            console.log('Toggle language called, current:', currentLang);
+            
             const elements = {
                 // Navigation
                 navKr: document.querySelectorAll('.nav-kr'),
@@ -569,16 +1019,43 @@
                 // Logo
                 logo: document.querySelector('.logo'),
                 
-                // Back button
-                backKr: document.querySelectorAll('.back-kr'),
-                backEn: document.querySelectorAll('.back-en'),
+                // Hero section
+                heroKr: document.querySelectorAll('.hero-kr'),
+                heroEn: document.querySelectorAll('.hero-en'),
                 
-                // Gallery header
-                galleryTitleKr: document.querySelectorAll('.gallery-title-kr'),
-                galleryTitleEn: document.querySelectorAll('.gallery-title-en'),
-                galleryDescKr: document.querySelectorAll('.gallery-desc-kr'),
-                galleryDescEn: document.querySelectorAll('.gallery-desc-en')
+                // About section
+                aboutTitleKr: document.querySelectorAll('.about-title-kr'),
+                aboutTitleEn: document.querySelectorAll('.about-title-en'),
+                aboutKr: document.getElementById('about-kr'),
+                aboutEn: document.getElementById('about-en'),
+                
+                // Memes section
+                memesTitleKr: document.querySelectorAll('.memes-title-kr'),
+                memesTitleEn: document.querySelectorAll('.memes-title-en'),
+                actionKr: document.querySelectorAll('.action-kr'),
+                actionEn: document.querySelectorAll('.action-en'),
+                
+                // Characters section
+                charTitleKr: document.querySelectorAll('.characters-title-kr'),
+                charTitleEn: document.querySelectorAll('.characters-title-en'),
+                nameKr: document.querySelectorAll('.name-kr'),
+                nameEn: document.querySelectorAll('.name-en'),
+                titleKr: document.querySelectorAll('.title-kr'),
+                titleEn: document.querySelectorAll('.title-en'),
+                statsKr: document.querySelectorAll('.stats-kr'),
+                statsEn: document.querySelectorAll('.stats-en'),
+                quoteKr: document.querySelectorAll('.quote-kr'),
+                quoteEn: document.querySelectorAll('.quote-en'),
+                bioKr: document.querySelectorAll('.bio-kr'),
+                bioEn: document.querySelectorAll('.bio-en'),
+                
+                // Footer
+                footerKr: document.querySelectorAll('.footer-kr'),
+                footerEn: document.querySelectorAll('.footer-en')
             };
+            
+            console.log('Memes title KR found:', elements.memesTitleKr.length);
+            console.log('Memes title EN found:', elements.memesTitleEn.length);
             
             if (currentLang === 'kr') {
                 // Switch to English
@@ -586,15 +1063,40 @@
                 elements.logo.querySelector('.logo-en').style.display = 'inline-block';
                 
                 // Hide Korean, show English
-                [...elements.navKr, ...elements.backKr, ...elements.galleryTitleKr, 
-                 ...elements.galleryDescKr].forEach(el => {
+                elements.navKr.forEach(el => el.style.display = 'none');
+                elements.heroKr.forEach(el => el.style.display = 'none');
+                elements.aboutTitleKr.forEach(el => el.style.display = 'none');
+                elements.memesTitleKr.forEach(el => {
+                    console.log('Hiding KR memes title:', el.textContent);
                     el.style.display = 'none';
                 });
+                elements.actionKr.forEach(el => el.style.display = 'none');
+                elements.charTitleKr.forEach(el => el.style.display = 'none');
+                elements.nameKr.forEach(el => el.style.display = 'none');
+                elements.titleKr.forEach(el => el.style.display = 'none');
+                elements.statsKr.forEach(el => el.style.display = 'none');
+                elements.quoteKr.forEach(el => el.style.display = 'none');
+                elements.bioKr.forEach(el => el.style.display = 'none');
+                elements.footerKr.forEach(el => el.style.display = 'none');
                 
-                [...elements.navEn, ...elements.backEn, ...elements.galleryTitleEn,
-                 ...elements.galleryDescEn].forEach(el => {
+                elements.navEn.forEach(el => el.style.display = 'block');
+                elements.heroEn.forEach(el => el.style.display = 'block');
+                elements.aboutTitleEn.forEach(el => el.style.display = 'block');
+                elements.memesTitleEn.forEach(el => {
+                    console.log('Showing EN memes title:', el.textContent);
                     el.style.display = 'block';
                 });
+                elements.actionEn.forEach(el => el.style.display = 'inline-block');
+                elements.charTitleEn.forEach(el => el.style.display = 'block');
+                elements.nameEn.forEach(el => el.style.display = 'block');
+                elements.titleEn.forEach(el => el.style.display = 'block');
+                elements.statsEn.forEach(el => el.style.display = 'block');
+                elements.quoteEn.forEach(el => el.style.display = 'block');
+                elements.bioEn.forEach(el => el.style.display = 'block');
+                elements.footerEn.forEach(el => el.style.display = 'block');
+                
+                elements.aboutKr.classList.remove('active');
+                elements.aboutEn.classList.add('active');
                 
                 currentLang = 'en';
             } else {
@@ -603,18 +1105,130 @@
                 elements.logo.querySelector('.logo-kr').style.display = 'inline-block';
                 
                 // Hide English, show Korean
-                [...elements.navEn, ...elements.backEn, ...elements.galleryTitleEn,
-                 ...elements.galleryDescEn].forEach(el => {
-                    el.style.display = 'none';
-                });
+                elements.navEn.forEach(el => el.style.display = 'none');
+                elements.heroEn.forEach(el => el.style.display = 'none');
+                elements.aboutTitleEn.forEach(el => el.style.display = 'none');
+                elements.memesTitleEn.forEach(el => el.style.display = 'none');
+                elements.actionEn.forEach(el => el.style.display = 'none');
+                elements.charTitleEn.forEach(el => el.style.display = 'none');
+                elements.nameEn.forEach(el => el.style.display = 'none');
+                elements.titleEn.forEach(el => el.style.display = 'none');
+                elements.statsEn.forEach(el => el.style.display = 'none');
+                elements.quoteEn.forEach(el => el.style.display = 'none');
+                elements.bioEn.forEach(el => el.style.display = 'none');
+                elements.footerEn.forEach(el => el.style.display = 'none');
                 
-                [...elements.navKr, ...elements.backKr, ...elements.galleryTitleKr,
-                 ...elements.galleryDescKr].forEach(el => {
-                    el.style.display = 'block';
-                });
+                elements.navKr.forEach(el => el.style.display = 'block');
+                elements.heroKr.forEach(el => el.style.display = 'block');
+                elements.aboutTitleKr.forEach(el => el.style.display = 'block');
+                elements.memesTitleKr.forEach(el => el.style.display = 'block');
+                elements.actionKr.forEach(el => el.style.display = 'inline-block');
+                elements.charTitleKr.forEach(el => el.style.display = 'block');
+                elements.nameKr.forEach(el => el.style.display = 'block');
+                elements.titleKr.forEach(el => el.style.display = 'block');
+                elements.statsKr.forEach(el => el.style.display = 'block');
+                elements.quoteKr.forEach(el => el.style.display = 'block');
+                elements.bioKr.forEach(el => el.style.display = 'block');
+                elements.footerKr.forEach(el => el.style.display = 'block');
+                
+                elements.aboutEn.classList.remove('active');
+                elements.aboutKr.classList.add('active');
                 
                 currentLang = 'kr';
             }
+        }
+
+        function toggleMemeLanguage(card) {
+            const captionEn = card.querySelector('.caption-en');
+            const captionKr = card.querySelector('.caption-kr');
+            const subcaptionEn = card.querySelector('.subcaption-en');
+            const subcaptionKr = card.querySelector('.subcaption-kr');
+            
+            if (captionKr.style.display !== 'none') {
+                captionKr.style.display = 'none';
+                captionEn.style.display = 'block';
+                subcaptionKr.style.display = 'none';
+                subcaptionEn.style.display = 'block';
+            } else {
+                captionKr.style.display = 'block';
+                captionEn.style.display = 'none';
+                subcaptionKr.style.display = 'block';
+                subcaptionEn.style.display = 'none';
+            }
+        }
+
+        // Add smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add floating animation delays
+        document.querySelectorAll('.floating-character').forEach((char, index) => {
+            char.style.animationDelay = `${index * 2}s`;
+        });
+
+        // Background audio setup
+        const backgroundAudio = document.getElementById('backgroundAudio');
+        if (backgroundAudio) {
+            backgroundAudio.volume = 0.15; // Low volume (15%)
+            
+            // Try to autoplay when user first interacts with the page
+            let hasInteracted = false;
+            
+            const playAudio = () => {
+                if (!hasInteracted) {
+                    backgroundAudio.play().catch(e => {
+                        console.log('Audio autoplay prevented by browser');
+                    });
+                    hasInteracted = true;
+                }
+            };
+
+            // Listen for first user interaction
+            ['click', 'touchstart', 'keydown'].forEach(event => {
+                document.addEventListener(event, playAudio, { once: true });
+            });
+        }
+
+        // Copy CA functionality
+        function copyCA() {
+            const caText = "COMING SOON";
+            navigator.clipboard.writeText(caText).then(() => {
+                const btn = document.querySelector('.copy-btn');
+                const originalText = btn.textContent;
+                btn.textContent = 'COPIED!';
+                btn.style.background = '#4CAF50';
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                    btn.style.background = '#333';
+                }, 2000);
+            }).catch(() => {
+                // Fallback for older browsers
+                const textArea = document.createElement('textarea');
+                textArea.value = caText;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                
+                const btn = document.querySelector('.copy-btn');
+                const originalText = btn.textContent;
+                btn.textContent = 'COPIED!';
+                btn.style.background = '#4CAF50';
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                    btn.style.background = '#333';
+                }, 2000);
+            });
         }
 
         // Lightbox functionality
@@ -646,19 +1260,6 @@
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
                 closeLightbox();
-            }
-        });
-
-        // Random floating animation delays
-        document.querySelectorAll('.floating-char').forEach((char, index) => {
-            char.style.animationDelay = `${Math.random() * 2}s`;
-        });
-
-        // Lazy loading simulation
-        window.addEventListener('load', () => {
-            const loading = document.querySelector('.loading');
-            if (loading) {
-                loading.style.display = 'none';
             }
         });
     </script>
