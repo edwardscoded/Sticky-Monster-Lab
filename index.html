@@ -456,6 +456,12 @@
     <div class="floating-character" style="top: 70%; right: 10%;">👤</div>
     <div class="floating-character" style="top: 30%; left: 85%;">💻</div>
 
+    <!-- Background Audio -->
+    <audio id="backgroundAudio" loop>
+        <source src="audio/copy_CEB4583B-874D-4E57-A589-DA85C43329EF.mp4" type="audio/mp4">
+        Your browser does not support the audio element.
+    </audio>
+
     <header>
         <nav class="container">
             <a href="#" class="logo">무런 앤 소소</a>
@@ -786,6 +792,29 @@
         document.querySelectorAll('.floating-character').forEach((char, index) => {
             char.style.animationDelay = `${index * 2}s`;
         });
+
+        // Background audio setup
+        const backgroundAudio = document.getElementById('backgroundAudio');
+        if (backgroundAudio) {
+            backgroundAudio.volume = 0.15; // Low volume (15%)
+            
+            // Try to autoplay when user first interacts with the page
+            let hasInteracted = false;
+            
+            const playAudio = () => {
+                if (!hasInteracted) {
+                    backgroundAudio.play().catch(e => {
+                        console.log('Audio autoplay prevented by browser');
+                    });
+                    hasInteracted = true;
+                }
+            };
+
+            // Listen for first user interaction
+            ['click', 'touchstart', 'keydown'].forEach(event => {
+                document.addEventListener(event, playAudio, { once: true });
+            });
+        }
 
         // Copy CA functionality
         function copyCA() {
