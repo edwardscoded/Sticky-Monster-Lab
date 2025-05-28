@@ -448,15 +448,15 @@
         .walking-go {
             position: absolute;
             bottom: 30px;
-            height: 160px;
-            animation: walkAcrossReverse 25s linear infinite;
+            height: 200px;
+            animation: walkAcrossReverse 40s linear infinite;
             z-index: 10;
         }
 
         .walking-go img {
             height: 100%;
             width: auto;
-            /* No flip needed - walks naturally right to left */
+            transform: scaleX(-1); /* Flip horizontally */
         }
 
         @keyframes walkAcrossReverse {
@@ -532,7 +532,7 @@
             }
 
             .walking-go {
-                height: 120px;
+                height: 150px;
             }
 
             .scroll-image {
@@ -607,7 +607,7 @@
                 <li><a href="#characters" class="nav-en" style="display: none;">Characters</a><a href="#characters" class="nav-kr">캐릭터</a></li>
                 <li><a href="#memes" class="nav-en" style="display: none;">Memes</a><a href="#memes" class="nav-kr">밈</a></li>
                 <li><a href="gallery.html" class="nav-en" style="display: none;">Gallery</a><a href="gallery.html" class="nav-kr">갤러리</a></li>
-                <li><a href="https://smartstore.naver.com/52works" target="_blank" class="nav-en" style="display: none;">Store</a><a href="https://smartstore.naver.com/52works" target="_blank" class="nav-kr">스토어</a></li>
+                <li><a href="https://52works.kr/" target="_blank" class="nav-en" style="display: none;">Store</a><a href="https://52works.kr/" target="_blank" class="nav-kr">스토어</a></li>
                 <li><button class="lang-toggle" onclick="toggleLanguage()">🇰🇷 / 🇺🇸</button></li>
             </ul>
         </nav>
