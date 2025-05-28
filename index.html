@@ -249,9 +249,11 @@
 
         .memes h2 {
             text-align: center;
-            font-size: 36px;
+            font-size: 48px;
             margin-bottom: 50px;
             color: #000;
+            animation: sway 3s ease-in-out infinite;
+            transform-origin: center;
         }
 
         .meme-grid {
@@ -515,7 +517,7 @@
         }
 
         .footer-skull img {
-            max-width: 60px;
+            max-width: 120px;
             height: auto;
         }
 
@@ -614,6 +616,21 @@
             0%, 100% { transform: translateY(0px); }
             50% { transform: translateY(-20px); }
         }
+@keyframes sway {
+    0%, 100% {
+        transform: translateX(0px) rotate(0deg) scale(1);
+    }
+    25% {
+        transform: translateX(-5px) rotate(-1deg) scale(1.02);
+    }
+    50% {
+        transform: translateX(0px) rotate(0deg) scale(1.05);
+    }
+    75% {
+        transform: translateX(5px) rotate(1deg) scale(1.02);
+    }
+}
+
 @keyframes floatHeading {
     0%, 100% {
         transform: translateY(0px) scale(1);
@@ -679,8 +696,8 @@
                 <p class="hero-en" style="display: none;">Exploring the minimalist world of expressionless beings navigating modern absurdity</p>
                 
                 <div class="hero-image" style="margin: 5px auto !important;">
-                    <img src="images/52Works Sticker by 52works(오이웍스).gif" 
-                         alt="52Works Sticky Monster Lab Animation" 
+                    <img src="images/Genius Working Sticker by 52works(오이웍스).gif" 
+                         alt="Genius Working - 52works Sticky Monster Lab Animation" 
                          style="max-width: 100%; height: auto;">
                 </div>
                 
@@ -704,11 +721,6 @@
         <section id="about" class="about">
             <div class="container">
                 <div class="about-content">
-                    <div class="about-image">
-                        <img src="images/Genius Working Sticker by 52works(오이웍스).gif" 
-                             alt="Genius Working - 52works Sticky Monster Lab Animation">
-                    </div>
-                    
                     <div class="about-text">
                         <div class="about-title-kr">
                             <img src="images/whois-korean.gif" alt="무런 앤 소소란?" style="max-width: 100%; height: auto;">
@@ -736,6 +748,11 @@
                             <br>
                             <p>We're not here to win. We're here to vibe quietly with our monsters.</p>
                         </div>
+                    </div>
+                    
+                    <div class="about-image">
+                        <img src="images/52Works Sticker by 52works(오이웍스).gif" 
+                             alt="52Works Sticky Monster Lab Animation">
                     </div>
                 </div>
             </div>
@@ -772,7 +789,7 @@
                 <div style="text-align: center; margin-top: 30px;">
                     <img src="images/Happy Dance Sticker by 52works(오이웍스).gif" 
                          alt="Happy Dance - 52works Sticky Monster Lab Animation" 
-                         style="max-width: 200px; height: auto;">
+                         style="max-width: 300px; height: auto;">
                 </div>
             </div>
         </section>
