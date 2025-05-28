@@ -306,7 +306,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(255,255,255,0.95);
+            background: rgba(0,0,0,0.9);
             z-index: 2000;
             justify-content: center;
             align-items: center;
@@ -324,32 +324,10 @@
         }
 
         .lightbox-image {
-            font-size: 200px;
-            margin-bottom: 20px;
-            filter: grayscale(100%);
-            transition: filter 0.3s ease;
-        }
-
-        .lightbox.active .lightbox-image {
-            filter: grayscale(0%);
-        }
-
-        .lightbox-info {
-            background: #e5e5e5;
-            padding: 20px;
+            max-width: 100%;
+            max-height: 90vh;
             border-radius: 8px;
-            margin-top: 20px;
-        }
-
-        .lightbox-info h3 {
-            font-size: 24px;
-            margin-bottom: 10px;
-            color: #000;
-        }
-
-        .lightbox-info p {
-            color: #333;
-            margin-bottom: 15px;
+            box-shadow: 0 10px 30px rgba(255,255,255,0.1);
         }
 
         .lightbox-close {
@@ -358,20 +336,21 @@
             right: 20px;
             background: none;
             border: none;
-            color: #000;
+            color: #fff;
             font-size: 30px;
             cursor: pointer;
             width: 40px;
             height: 40px;
             border-radius: 50%;
-            background: rgba(255,255,255,0.8);
+            background: rgba(0,0,0,0.5);
             display: flex;
             align-items: center;
             justify-content: center;
+            z-index: 2001;
         }
 
         .lightbox-close:hover {
-            background: rgba(0,0,0,0.1);
+            background: rgba(255,255,255,0.2);
         }
 
         /* Special Gallery Items */
@@ -540,79 +519,79 @@
             <!-- Gallery Grid -->
             <div class="gallery-grid">
                 <!-- All gelleria images scattered like a scrapbook -->
-                <div class="gallery-item">
+                <div class="gallery-item" onclick="openLightbox(this)">
                     <img src="gelleria/bag.png" alt="Bag">
                 </div>
 
-                <div class="gallery-item">
+                <div class="gallery-item" onclick="openLightbox(this)">
                     <img src="gelleria/beer.png" alt="Beer">
                 </div>
 
-                <div class="gallery-item">
+                <div class="gallery-item" onclick="openLightbox(this)">
                     <img src="gelleria/bus.png" alt="Bus">
                 </div>
 
-                <div class="gallery-item">
+                <div class="gallery-item" onclick="openLightbox(this)">
                     <img src="gelleria/fire.png" alt="Fire">
                 </div>
 
-                <div class="gallery-item">
+                <div class="gallery-item" onclick="openLightbox(this)">
                     <img src="gelleria/galleria.png" alt="Galleria">
                 </div>
 
-                <div class="gallery-item">
+                <div class="gallery-item" onclick="openLightbox(this)">
                     <img src="gelleria/huh.png" alt="Huh">
                 </div>
 
-                <div class="gallery-item">
+                <div class="gallery-item" onclick="openLightbox(this)">
                     <img src="gelleria/job.png" alt="Job">
                 </div>
 
-                <div class="gallery-item">
+                <div class="gallery-item" onclick="openLightbox(this)">
                     <img src="gelleria/mind1.png" alt="Mind 1">
                 </div>
 
-                <div class="gallery-item">
+                <div class="gallery-item" onclick="openLightbox(this)">
                     <img src="gelleria/mind12.png" alt="Mind 12">
                 </div>
 
-                <div class="gallery-item">
+                <div class="gallery-item" onclick="openLightbox(this)">
                     <img src="gelleria/mind123.png" alt="Mind 123">
                 </div>
 
-                <div class="gallery-item">
+                <div class="gallery-item" onclick="openLightbox(this)">
                     <img src="gelleria/murun.png" alt="Murun">
                 </div>
 
-                <div class="gallery-item">
+                <div class="gallery-item" onclick="openLightbox(this)">
                     <img src="gelleria/omelet.png" alt="Omelet">
                 </div>
 
-                <div class="gallery-item">
+                <div class="gallery-item" onclick="openLightbox(this)">
                     <img src="gelleria/piano.png" alt="Piano">
                 </div>
 
-                <div class="gallery-item">
+                <div class="gallery-item" onclick="openLightbox(this)">
                     <img src="gelleria/rain.png" alt="Rain">
                 </div>
 
-                <div class="gallery-item">
+                <div class="gallery-item" onclick="openLightbox(this)">
                     <img src="gelleria/snack.png" alt="Snack">
                 </div>
 
-                <div class="gallery-item">
+                <div class="gallery-item" onclick="openLightbox(this)">
                     <img src="gelleria/snow.png" alt="Snow">
                 </div>
 
-                <div class="gallery-item">
+                <div class="gallery-item" onclick="openLightbox(this)">
                     <img src="gelleria/speech.png" alt="Speech">
                 </div>
 
-                <div class="gallery-item">
+                <div class="gallery-item" onclick="openLightbox(this)">
                     <img src="gelleria/time.png" alt="Time">
                 </div>
 
-                <div class="gallery-item">
+                <div class="gallery-item" onclick="openLightbox(this)">
                     <img src="gelleria/work2.png" alt="Work 2">
                 </div>
             </div>
@@ -623,12 +602,7 @@
     <div class="lightbox" id="lightbox" onclick="closeLightbox()">
         <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
         <div class="lightbox-content" onclick="event.stopPropagation()">
-            <div class="lightbox-image" id="lightbox-image"></div>
-            <div class="lightbox-info">
-                <h3 id="lightbox-title"></h3>
-                <p id="lightbox-description"></p>
-                <p id="lightbox-category"></p>
-            </div>
+            <img class="lightbox-image" id="lightbox-image" alt="">
         </div>
     </div>
 
@@ -734,24 +708,15 @@
         function openLightbox(item) {
             const lightbox = document.getElementById('lightbox');
             const lightboxImage = document.getElementById('lightbox-image');
-            const lightboxTitle = document.getElementById('lightbox-title');
-            const lightboxDescription = document.getElementById('lightbox-description');
-            const lightboxCategory = document.getElementById('lightbox-category');
             
-            // Get content from clicked item
-            const image = item.querySelector('.floating-char').textContent;
-            const titleKr = item.querySelector('.title-kr').textContent;
-            const titleEn = item.querySelector('.title-en').textContent;
-            const descKr = item.querySelector('.desc-kr').textContent;
-            const descEn = item.querySelector('.desc-en').textContent;
-            const catKr = item.querySelector('.cat-kr').textContent;
-            const catEn = item.querySelector('.cat-en').textContent;
+            // Get the image source and alt text from clicked item
+            const img = item.querySelector('img');
+            const imageSrc = img.src;
+            const imageAlt = img.alt;
             
             // Set lightbox content
-            lightboxImage.textContent = image;
-            lightboxTitle.textContent = currentLang === 'kr' ? titleKr : titleEn;
-            lightboxDescription.textContent = currentLang === 'kr' ? descKr : descEn;
-            lightboxCategory.textContent = `${currentLang === 'kr' ? '카테고리' : 'Category'}: ${currentLang === 'kr' ? catKr : catEn}`;
+            lightboxImage.src = imageSrc;
+            lightboxImage.alt = imageAlt;
             
             // Show lightbox
             lightbox.classList.add('active');
