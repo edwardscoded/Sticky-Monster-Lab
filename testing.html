@@ -1,6 +1,6 @@
 .happy-dance-surfer {
                 height: 200px;
-                bottom: -5px;
+                top: 15px;
             }
 
             @keyframes surfAcross {
@@ -27,7 +27,7 @@
             }        /* Happy Dance Surfing Animation */
         .happy-dance-surfer {
             position: absolute;
-            bottom: -10px;
+            top: 20px;
             height: 300px;
             z-index: 15;
             animation: surfAcross 12s ease-in-out infinite;
@@ -925,12 +925,6 @@
 
         <!-- Memes Section -->
         <section id="memes" class="memes">
-            <!-- Happy Dance Surfer positioned at section border -->
-            <div class="happy-dance-surfer">
-                <img src="images/Happy Dance Sticker by 52works(오이웍스).gif" 
-                     alt="Happy Dance Surfer - 52works Sticky Monster Lab Animation">
-            </div>
-            
             <div class="container">
                 <h2 class="memes-title-kr">나는 고양이가 없다</h2>
                 <h2 class="memes-title-en" style="display: none;">I Don't Have a Cat</h2>
@@ -984,9 +978,12 @@
             </div>
         </section>
 
-        <!-- Happy Dance Sticker positioned between sections -->
-        <div style="text-align: left; margin: 40px 0; margin-left: 80px; position: relative; z-index: 10;">
-            <!-- This div is now empty as the animation is moved to the memes section -->
+        <!-- Happy Dance Surfer positioned at the border between memes and characters -->
+        <div style="position: relative;">
+            <div class="happy-dance-surfer">
+                <img src="images/Happy Dance Sticker by 52works(오이웍스).gif" 
+                     alt="Happy Dance Surfer - 52works Sticky Monster Lab Animation">
+            </div>
         </div>
 
         <!-- Characters Section -->
