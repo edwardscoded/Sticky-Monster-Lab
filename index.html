@@ -391,14 +391,39 @@
             margin-top: -25px;
         }
 
-        /* Happy Dance Surfing Animation - MOVED HERE AND CONSOLIDATED */
+        /* Happy Dance Surfing Animation */
         .happy-dance-surfer {
             position: absolute;
-            top: 10px; /* Adjust for vertical positioning within its 100px parent */
-            height: 80px; /* As per your animation CSS */
-            width: auto;
+            top: 10px; /* Vertical position within its 100px parent */
+            height: 80px;
+            width: auto; /* Let the image determine its own width */
             animation: surfAcross 8s linear infinite;
-            z-index: 5; /* To be above the div's background, but can be below modals */
+            z-index: 5;
+        }
+
+        @keyframes surfAcross {
+            0% {
+                left: -150px; /* Start well off-screen to the left */
+                transform: rotate(0deg); /* Initial orientation */
+            }
+            /* Approaching the flip point, still maintaining initial orientation */
+            45% {
+                /* The 'left' property will be interpolated automatically by the linear animation */
+                transform: rotate(0deg);
+            }
+            /* Mid-point of the flip (180 degrees) */
+            50% {
+                transform: rotate(180deg);
+            }
+            /* Flip complete (360 degrees), back to original visual orientation */
+            55% {
+                transform: rotate(360deg);
+            }
+            /* End of travel, maintaining the orientation after the flip */
+            100% {
+                left: calc(100% + 150px); /* Move well off-screen to the right */
+                transform: rotate(360deg);
+            }
         }
 
         @keyframes surfAcross {
