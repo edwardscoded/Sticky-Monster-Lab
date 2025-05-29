@@ -1,4 +1,65 @@
-.hero {
+.happy-dance-surfer {
+                height: 200px;
+                bottom: -5px;
+            }
+
+            @keyframes surfAcross {
+                0% { 
+                    left: -250px; 
+                    transform: rotate(0deg) scaleX(1);
+                }
+                25% { 
+                    left: 25%; 
+                    transform: rotate(180deg) scaleX(1);
+                }
+                50% { 
+                    left: 50%; 
+                    transform: rotate(360deg) scaleX(1);
+                }
+                75% { 
+                    left: 75%; 
+                    transform: rotate(540deg) scaleX(1);
+                }
+                100% { 
+                    left: 100%; 
+                    transform: rotate(720deg) scaleX(1);
+                }
+            }        /* Happy Dance Surfing Animation */
+        .happy-dance-surfer {
+            position: absolute;
+            bottom: -10px;
+            height: 300px;
+            z-index: 15;
+            animation: surfAcross 12s ease-in-out infinite;
+        }
+
+        .happy-dance-surfer img {
+            height: 100%;
+            width: auto;
+        }
+
+        @keyframes surfAcross {
+            0% { 
+                left: -350px; 
+                transform: rotate(0deg) scaleX(1);
+            }
+            25% { 
+                left: 25%; 
+                transform: rotate(180deg) scaleX(1);
+            }
+            50% { 
+                left: 50%; 
+                transform: rotate(360deg) scaleX(1);
+            }
+            75% { 
+                left: 75%; 
+                transform: rotate(540deg) scaleX(1);
+            }
+            100% { 
+                left: 100%; 
+                transform: rotate(720deg) scaleX(1);
+            }
+        }            .hero {
                 padding: 90px 0 35px 0;
             }
 
@@ -864,6 +925,12 @@
 
         <!-- Memes Section -->
         <section id="memes" class="memes">
+            <!-- Happy Dance Surfer positioned at section border -->
+            <div class="happy-dance-surfer">
+                <img src="images/Happy Dance Sticker by 52works(오이웍스).gif" 
+                     alt="Happy Dance Surfer - 52works Sticky Monster Lab Animation">
+            </div>
+            
             <div class="container">
                 <h2 class="memes-title-kr">나는 고양이가 없다</h2>
                 <h2 class="memes-title-en" style="display: none;">I Don't Have a Cat</h2>
@@ -919,9 +986,7 @@
 
         <!-- Happy Dance Sticker positioned between sections -->
         <div style="text-align: left; margin: 40px 0; margin-left: 80px; position: relative; z-index: 10;">
-            <img src="images/Happy Dance Sticker by 52works(오이웍스).gif" 
-                 alt="Happy Dance - 52works Sticky Monster Lab Animation" 
-                 style="max-width: 300px; height: auto;">
+            <!-- This div is now empty as the animation is moved to the memes section -->
         </div>
 
         <!-- Characters Section -->
