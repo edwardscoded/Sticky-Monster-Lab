@@ -352,17 +352,17 @@
             /* No left border when active */
         }
 
-        /* Meme Grid */
+       /* Meme Grid - Scrapbook Style START */
         .memes {
             padding: 80px 0;
-            background: #ffffff;
+            background-color: #ffffff;
             position: relative;
         }
 
         .memes h2 {
             text-align: center;
             font-size: 48px;
-            margin-bottom: 50px;
+            margin-bottom: 60px;
             color: #000;
             animation: sway 3s ease-in-out infinite;
             transform-origin: center;
@@ -370,117 +370,95 @@
 
         .meme-grid {
             display: grid;
-            grid-template-columns: repeat(6, 1fr);
-            gap: 5px;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 25px;
+            max-width: 1100px;
             margin: 0 auto;
-            max-width: 800px;
             padding: 20px;
+            position: relative;
         }
 
         .meme-item {
-            overflow: hidden;
-            transition: transform 0.2s ease;
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 2px 2px 6px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, z-index 0s ease 0s;
             cursor: pointer;
-            border-radius: 8px;
-            height: fit-content;
-            width: fit-content;
-            justify-self: center;
-            align-self: start;
-        }
-
-        .meme-item:hover {
-            transform: scale(1.05) rotate(2deg);
-            z-index: 10;
         }
 
         .meme-item img {
             width: 100%;
             height: auto;
             display: block;
-            transition: all 0.3s ease;
+            border: 1px solid #f0f0f0;
         }
 
-        /* Enhanced hover effect for meme images - full screen overlay */
         .meme-item:hover img {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(1.05) rotate(2deg);
-            width: 90vw;
-            height: 90vh;
-            max-width: 90vw;
-            max-height: 90vh;
-            object-fit: contain;
-            z-index: 1001;
-            background: rgba(0, 0, 0, 0.8);
-            border-radius: 12px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            position: static;
+            width: 100%;
+            height: auto;
+            max-width: none;
+            max-height: none;
+            object-fit: initial;
+            background: transparent;
+            box-shadow: none;
         }
+
+        .meme-item:hover {
+            transform: scale(1.07) rotate(var(--hover-rotate, 1deg)) translateY(-4px);
+            box-shadow: 4px 4px 12px rgba(0,0,0,0.3);
+            z-index: 50;
+        }
+
+        .meme-item:nth-child(1)  { transform: rotate(-3.5deg) translateX(-2%); z-index: 1; --hover-rotate: -1.5deg; }
+        .meme-item:nth-child(2)  { transform: rotate(2.8deg) translateX(1%) translateY(2%); z-index: 3; --hover-rotate: 4deg; }
+        .meme-item:nth-child(3)  { transform: rotate(-4.2deg) translateY(-1%); z-index: 2; --hover-rotate: -2.2deg; }
+        .meme-item:nth-child(4)  { transform: rotate(3.3deg) translateX(-1.5%) translateY(1%); z-index: 4; --hover-rotate: 5deg; }
+        .meme-item:nth-child(5)  { transform: rotate(-2.5deg) translateX(2%); z-index: 1; --hover-rotate: -0.5deg; }
+        .meme-item:nth-child(6)  { transform: rotate(4.0deg) translateY(3%); z-index: 3; --hover-rotate: 5.5deg; }
+        .meme-item:nth-child(7)  { transform: rotate(-3.8deg) translateX(-2.5%) translateY(-2%); z-index: 2; --hover-rotate: -1.8deg; }
+        .meme-item:nth-child(8)  { transform: rotate(2.2deg) translateX(1.5%); z-index: 4; --hover-rotate: 3.5deg; }
+        .meme-item:nth-child(9)  { transform: rotate(-4.5deg) translateY(1%); z-index: 1; --hover-rotate: -2.5deg; }
+        .meme-item:nth-child(10) { transform: rotate(3.0deg) translateX(-1%) translateY(2.5%); z-index: 3; --hover-rotate: 4.8deg; }
+        .meme-item:nth-child(11) { transform: rotate(-2.9deg) translateX(2.2%); z-index: 2; --hover-rotate: -1deg; }
+        .meme-item:nth-child(12) { transform: rotate(3.7deg) translateY(-1.5%); z-index: 4; --hover-rotate: 5.2deg; }
+        .meme-item:nth-child(13) { transform: rotate(-3.2deg) translateX(-1.8%) translateY(1.5%); z-index: 1; --hover-rotate: -1.2deg; }
+        .meme-item:nth-child(14) { transform: rotate(2.5deg) translateX(0.5%); z-index: 3; --hover-rotate: 3.8deg; }
+        .meme-item:nth-child(15) { transform: rotate(-4.0deg) translateY(0.5%); z-index: 2; --hover-rotate: -2deg; }
+
+        .meme-item:nth-child(3n) { margin-top: 5px; }
+        .meme-item:nth-child(4n) { margin-left: -5px; }
+        /* Meme Grid - Scrapbook Style END */
 
         .lightbox.active + .meme-item img {
             position: static;
         }
 
-        /* Scattered positioning */
-        .meme-item:nth-child(1) {
-            grid-column: 1 / 3;
-            transform: rotate(-3deg);
-            margin-top: 5px;
-        }
-
-        .meme-item:nth-child(2) {
-            grid-column: 3 / 5;
-            transform: rotate(5deg);
-            margin-top: -15px;
-        }
-
-        .meme-item:nth-child(3) {
-            grid-column: 4 / 6;
-            transform: rotate(-2deg);
-            margin-top: 5px;
-        }
-
-        .meme-item:nth-child(4) {
-            grid-column: 2 / 4;
-            transform: rotate(4deg);
-            margin-top: -20px;
-        }
-
-        .meme-item:nth-child(5) {
-            grid-column: 5 / 6;
-            transform: rotate(-6deg);
-            margin-top: -25px;
-        }
-
         /* Happy Dance Surfing Animation - BIGGER VERSION */
         .happy-dance-surfer {
             position: absolute;
-            top: 20px;
-            height: 120px; /* Adjusted from previous version */
+            top: 40px; /* ADJUSTED from 20px to move surfer down */
+            height: 120px;
             width: auto;
             animation: surfAcross 8s linear infinite;
             z-index: 5;
         }
 
-        @keyframes surfAcross { /* Version with 1 flip in the middle */
+        @keyframes surfAcross {
             0% {
                 left: -150px;
                 transform: rotate(0deg);
             }
-            /* Travel towards middle */
             45% {
-                /* left is interpolated */
                 transform: rotate(0deg);
             }
-            /* Mid-point of the flip */
             50% {
                 transform: rotate(180deg);
             }
-            /* Flip complete */
             55% {
                 transform: rotate(360deg);
             }
-            /* Travel to end */
             100% {
                 left: calc(100% + 150px);
                 transform: rotate(360deg);
@@ -593,7 +571,7 @@
         /* Walking Go Sticker Animation */
         .walking-go {
             position: absolute;
-            bottom: 0px; /* Adjusted from -30px to align better with Murun if intended */
+            bottom: 0px;
             height: 240px;
             z-index: 10;
             animation: walkStopGoAcross 20s linear infinite;
@@ -602,11 +580,10 @@
         .walking-go img {
             height: 100%;
             width: auto;
-            transform: scaleX(-1); /* This makes it walk left-to-right if animation is for 'right' property */
-                                    /* If you want it to walk right-to-left (original face), remove scaleX and animate 'right' or 'left' from right side. */
+            transform: scaleX(-1);
         }
 
-        @keyframes walkStopGoAcross { /* Animating 'right' means it moves from right to left */
+        @keyframes walkStopGoAcross {
             0% { right: -250px; }
             100% { right: 100%; }
         }
@@ -789,12 +766,10 @@
                 gap: 10px;
             }
 
-            /* Mobile dropdown adjustments */
             .dropdown-content {
-                min-width: 150px; /* Adjust width for mobile */
-                left: -50px; /* Adjust positioning if it goes off-screen */
+                min-width: 150px;
+                left: -50px;
             }
-
 
             .hero h1 {
                 font-size: 32px;
@@ -807,21 +782,38 @@
                 margin-bottom: 30px !important;
             }
 
+            /* Responsive Scrapbook */
             .meme-grid {
-                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-                gap: 10px;
-                padding:10px;
+                grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+                gap: 20px;
+                padding: 15px;
             }
-            
+            .meme-item {
+                padding: 8px;
+            }
+            .meme-item:hover {
+                transform: scale(1.05) translateY(-3px);
+            }
             .meme-item:nth-child(1),
             .meme-item:nth-child(2),
             .meme-item:nth-child(3),
             .meme-item:nth-child(4),
-            .meme-item:nth-child(5) {
-                grid-column: auto;
-                transform: none;
-                margin-top: 0;
+            .meme-item:nth-child(5),
+            .meme-item:nth-child(6),
+            .meme-item:nth-child(7),
+            .meme-item:nth-child(8),
+            .meme-item:nth-child(9),
+            .meme-item:nth-child(10),
+            .meme-item:nth-child(11),
+            .meme-item:nth-child(12),
+            .meme-item:nth-child(13),
+            .meme-item:nth-child(14),
+            .meme-item:nth-child(15) {
+                transform: rotate(0deg);
+                margin: 5px auto;
+                z-index: auto;
             }
+
 
             .lang-content {
                 padding: 20px;
@@ -906,68 +898,79 @@
                 max-width: 120px;
             }
 
-            /* Mobile surfer adjustment */
             .happy-dance-surfer {
-                height: 90px; /* Smaller surfer on mobile */
-                top: 30px; /* Adjust vertical position for smaller container */
+                height: 90px;
+                top: 40px; /* Maintain relative position for smaller surfer */
             }
-            /* Expand mobile container too */
-            .memes + div { /* This targets the div holding the surfer */
-                height: 150px !important; /* Ensure enough space */
-                padding: 15px 0 !important; /* Adjust padding if needed */
+            
+            .memes + div {
+                height: 150px !important;
+                padding: 15px 0 !important;
             }
         }
         
         @media (max-width: 480px) {
-            /* Example: Hide nav links and show a burger icon (burger icon not implemented here) */
-            /* .nav-links { display: none; } */
-            /* .burger-menu-icon { display: block; } */
-            
-            /* If keeping nav links visible, make them stack */
              .nav-links {
-                /* flex-direction: column; Remove if you don't want stacking for all items*/
-                align-items: center; /* Center items if stacked */
+                align-items: center;
                 gap: 8px;
             }
-             .dropdown { /* Ensure dropdown still works in stacked nav */
+             .dropdown {
                 width: 100%;
                 text-align: center;
             }
             .dropdown-content {
-                left: 50%; /* Center dropdown */
+                left: 50%;
                 transform: translateX(-50%);
                 min-width: 120px;
             }
 
-
             .hero h1 {
                 font-size: 28px;
             }
-            
             .hero p {
                 font-size: 14px;
             }
-            
             .ca-bar {
                 margin-top: -80px;
             }
-            
             .about-title-kr img, .about-title-en img {
                 width: 80%;
             }
-            
+
             .memes h2 {
-                font-size: 36px;
+                font-size: 38px;
+                margin-bottom: 40px;
             }
+            .meme-grid {
+                grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+                gap: 15px;
+            }
+            .meme-item {
+                padding: 6px;
+                transform: rotate(calc(var(--initial-rotate, 0deg) / 3));
+            }
+             .meme-item:nth-child(1)  { --initial-rotate: -3.5deg; }
+             .meme-item:nth-child(2)  { --initial-rotate: 2.8deg; }
+             .meme-item:nth-child(3)  { --initial-rotate: -4.2deg; }
+             .meme-item:nth-child(4)  { --initial-rotate: 3.3deg; }
+             .meme-item:nth-child(5)  { --initial-rotate: -2.5deg; }
+             .meme-item:nth-child(6)  { --initial-rotate: 4.0deg; }
+             .meme-item:nth-child(7)  { --initial-rotate: -3.8deg; }
+             .meme-item:nth-child(8)  { --initial-rotate: 2.2deg; }
+             .meme-item:nth-child(9)  { --initial-rotate: -4.5deg; }
+             .meme-item:nth-child(10) { --initial-rotate: 3.0deg; }
+             .meme-item:nth-child(11) { --initial-rotate: -2.9deg; }
+             .meme-item:nth-child(12) { --initial-rotate: 3.7deg; }
+             .meme-item:nth-child(13) { --initial-rotate: -3.2deg; }
+             .meme-item:nth-child(14) { --initial-rotate: 2.5deg; }
+             .meme-item:nth-child(15) { --initial-rotate: -4.0deg; }
             
             .character-name {
                 font-size: 28px;
             }
-            
             .character-profile {
                 padding: 20px;
             }
-            
             .elfsight-app-1027be02-3535-4a55-8a9e-53cd4fe74b32,
             .elfsight-app-cc75ac9e-8d99-4e8c-a1c7-73f0477ab12e {
                 margin-bottom: 30px;
@@ -975,7 +978,7 @@
         }
     </style>
 </head>
-<body>
+<body class="lang-kr">
     <!-- Background Audio -->
     <audio id="backgroundAudio" loop>
         <source src="audio/copy_CEB4583B-874D-4E57-A589-DA85C43329EF.mp4" type="audio/mp4">
@@ -1021,20 +1024,17 @@
                          alt="Genius Working - 52works Sticky Monster Lab Animation"
                          style="max-width: 100%; height: auto;">
 
-                    <!-- Speech bubble above genius working character -->
                     <div class="speech-bubble">
                         <img src="images/speaah-korean.gif" alt="Speech Bubble Korean" class="speech-kr">
                         <img src="images/speaah-english.gif" alt="Speech Bubble English" class="speech-en" style="display: none;">
                     </div>
                 </div>
 
-                <!-- CA Coming Soon Bar -->
                 <div class="ca-bar">
                     <span class="ca-text">CA: COMING SOON</span>
                     <button class="copy-btn" onclick="copyCA()">COPY</button>
                 </div>
 
-                <!-- Social/Trading Buttons -->
                 <div class="social-buttons">
                     <a href="#" class="social-btn twitter">X (Twitter)</a>
                     <a href="#" class="social-btn dexscreener">DexScreener</a>
@@ -1044,29 +1044,27 @@
             </div>
         </section>
 
-        <!-- Logo Scroll Banner -->
         <div class="logo-scroll-banner">
             <div class="logo-scroll-track">
-                <img src="images/plane.gif" alt="무런 앤 소소" class="scroll-logo">
-                <img src="images/plane.gif" alt="무런 앤 소소" class="scroll-logo">
-                <img src="images/plane.gif" alt="무런 앤 소소" class="scroll-logo">
-                <img src="images/plane.gif" alt="무런 앤 소소" class="scroll-logo">
-                <img src="images/plane.gif" alt="무런 앤 소소" class="scroll-logo">
-                <img src="images/plane.gif" alt="무런 앤 소소" class="scroll-logo">
-                <img src="images/plane.gif" alt="무런 앤 소소" class="scroll-logo">
-                <img src="images/plane.gif" alt="무런 앤 소소" class="scroll-logo">
-                <img src="images/plane.gif" alt="무런 앤 소소" class="scroll-logo">
-                <img src="images/plane.gif" alt="무런 앤 소소" class="scroll-logo">
-                <img src="images/plane.gif" alt="무런 앤 소소" class="scroll-logo">
-                <img src="images/plane.gif" alt="무런 앤 소소" class="scroll-logo">
-                <img src="images/plane.gif" alt="무런 앤 소소" class="scroll-logo">
-                <img src="images/plane.gif" alt="무런 앤 소소" class="scroll-logo">
-                <img src="images/plane.gif" alt="무런 앤 소소" class="scroll-logo">
-                <img src="images/plane.gif" alt="무런 앤 소소" class="scroll-logo">
+                <img src="images/plane.gif" alt="Flying Plane Icon" class="scroll-logo">
+                <img src="images/plane.gif" alt="Flying Plane Icon" class="scroll-logo">
+                <img src="images/plane.gif" alt="Flying Plane Icon" class="scroll-logo">
+                <img src="images/plane.gif" alt="Flying Plane Icon" class="scroll-logo">
+                <img src="images/plane.gif" alt="Flying Plane Icon" class="scroll-logo">
+                <img src="images/plane.gif" alt="Flying Plane Icon" class="scroll-logo">
+                <img src="images/plane.gif" alt="Flying Plane Icon" class="scroll-logo">
+                <img src="images/plane.gif" alt="Flying Plane Icon" class="scroll-logo">
+                <img src="images/plane.gif" alt="Flying Plane Icon" class="scroll-logo">
+                <img src="images/plane.gif" alt="Flying Plane Icon" class="scroll-logo">
+                <img src="images/plane.gif" alt="Flying Plane Icon" class="scroll-logo">
+                <img src="images/plane.gif" alt="Flying Plane Icon" class="scroll-logo">
+                <img src="images/plane.gif" alt="Flying Plane Icon" class="scroll-logo">
+                <img src="images/plane.gif" alt="Flying Plane Icon" class="scroll-logo">
+                <img src="images/plane.gif" alt="Flying Plane Icon" class="scroll-logo">
+                <img src="images/plane.gif" alt="Flying Plane Icon" class="scroll-logo">
             </div>
         </div>
 
-        <!-- About Section -->
         <section id="about" class="about">
             <div class="container">
                 <div class="about-content">
@@ -1099,7 +1097,6 @@
                         </div>
                     </div>
 
-                    <!-- Character GIF -->
                     <div class="about-image" style="align-self: flex-start;">
                         <img src="images/whois2.gif" alt="52Works Sticky Monster Lab Animation" style="width: 80%; height: auto; position: relative; top: -20px; left: -50px;" />
                     </div>
@@ -1107,7 +1104,6 @@
             </div>
         </section>
 
-        <!-- Memes Section -->
         <section id="memes" class="memes">
             <div class="container">
                 <h2 class="memes-title-kr">나는 고양이가 없다</h2>
@@ -1162,32 +1158,26 @@
             </div>
         </section>
 
-        <!-- Happy Dance Surfer positioned at the border between memes and characters -->
         <div style="position: relative; height: 180px; overflow: hidden; width: 100%; background: transparent; padding: 20px 0;">
             <img src="images/Happy%20Dance%20Sticker%20by%2052works(%EC%98%A4%EC%9D%B4%EC%9B%8D%EC%8A%A4).gif"
                  alt="Happy Dance Surfer - 52works Sticky Monster Lab Animation"
                  class="happy-dance-surfer">
         </div>
 
-        <!-- Characters Section -->
         <section id="characters" class="characters">
             <div class="container">
                 <h2 class="characters-title-kr">무룬은 왜 있는 거야?</h2>
                 <h2 class="characters-title-en" style="display: none;">What's up with Murun?</h2>
 
-                <!-- Elfsight Instagram Feed -->
                 <script src="https://static.elfsight.com/platform/platform.js" async></script>
                 <div class="elfsight-app-1027be02-3535-4a55-8a9e-53cd4fe74b32" data-elfsight-app-lazy style="margin-bottom: 60px;"></div>
 
                 <h2 class="characters-title-kr">소소는 왜 이러는 거야?</h2>
                 <h2 class="characters-title-en" style="display: none;">What's up with Soso?</h2>
 
-                <!-- Elfsight Instagram Feed 2 -->
                 <div class="elfsight-app-cc75ac9e-8d99-4e8c-a1c7-73f0477ab12e" data-elfsight-app-lazy style="margin-bottom: 60px;"></div>
 
-                <!-- Character Profiles -->
                 <div class="character-cards">
-                    <!-- Murun Profile -->
                     <div class="character-profile">
                         <h3 class="character-name">
                             <span class="name-kr">무런 (Murun)</span>
@@ -1197,7 +1187,6 @@
                             <span class="title-kr">무표정한 존재</span>
                             <span class="title-en" style="display: none;">The Expressionless One</span>
                         </p>
-
                         <div class="character-stats">
                             <div class="stats-kr">
                                 <strong>기분:</strong> 영원히 중립적<br>
@@ -1210,19 +1199,16 @@
                                 <strong>Favorite Activity:</strong> Staring at nothing while everything collapses<br>
                             </div>
                         </div>
-
                         <div class="character-quote">
                             <span class="quote-kr">"..."</span>
                             <span class="quote-en" style="display: none;">"..."</span>
                         </div>
-
                         <div class="character-bio">
                             <p class="bio-kr">무런은 번아웃의 정신적 얼굴입니다. 그는 말하지 않고, 눈을 깜빡이지도 않습니다. 그저 로그인하고, 앉아서, 무의 심연을 바라봅니다. 무런은 게으른 게 아니라 후기 자본주의에 감정적으로 반응하지 않을 뿐입니다. 형광등과 실존적 공포가 있는 곳이면 어디든 그를 찾을 수 있을 것입니다.</p>
                             <p class="bio-en" style="display: none;">Murun is the spiritual face of burnout. He doesn't speak. He doesn't blink. He simply logs in, sits down, and zones out into the abyss. Murun isn't lazy — he's just emotionally unresponsive to late-stage capitalism. You'll find him wherever there's fluorescent lighting and existential dread.</p>
                         </div>
                     </div>
 
-                    <!-- Soso Profile -->
                     <div class="character-profile">
                         <h3 class="character-name">
                             <span class="name-kr">소소 (Soso)</span>
@@ -1232,7 +1218,6 @@
                             <span class="title-kr">조용한 저항자</span>
                             <span class="title-en" style="display: none;">The Quiet Resistor</span>
                         </p>
-
                         <div class="character-stats">
                             <div class="stats-kr">
                                 <strong>기분:</strong> 그냥 그럼<br>
@@ -1245,12 +1230,10 @@
                                 <strong>Favorite Activity:</strong> Sighing at screens<br>
                             </div>
                         </div>
-
                         <div class="character-quote">
                             <span class="quote-kr">"그냥 그런 하루였어."</span>
                             <span class="quote-en" style="display: none;">"It was just… a day."</span>
                         </div>
-
                         <div class="character-bio">
                             <p class="bio-kr">소소는 20% 에너지로 살아갑니다. 그녀는 슬프지 않아요, 그냥 <strong>다 끝난</strong> 상태입니다. 2015년 이후로 표정이 바뀌지 않았고, 유일한 취미는 회의 중에 감정적으로 체크아웃하는 것입니다. 소소는 신경 쓰고 싶어하지만 물리적으로 불가능한 모든 사람을 대표합니다. 그녀는 조용한 사직의 여왕이며, 우아하게 해냅니다.</p>
                             <p class="bio-en" style="display: none;">Soso lives life at 20%. She isn't sad — she's just <strong>done</strong>. Her facial expression hasn't changed since 2015, and her only hobby is emotionally checking out during meetings. Soso represents everyone who wants to care… but physically can't. She's the queen of quiet quitting — and she does it gracefully.</p>
@@ -1258,12 +1241,10 @@
                     </div>
                 </div>
 
-                <!-- Walking Murun -->
                 <div class="walking-murun">
                     <img src="images/Walking-Walk-Sticker-by-52worksnew.gif" alt="Walking Murun">
                 </div>
 
-                <!-- Walking Go Sticker - opposite direction -->
                 <div class="walking-go">
                     <img src="images/Go-Sticker-by-52works-fast.gif" alt="Go Sticker Walking">
                 </div>
@@ -1271,7 +1252,6 @@
         </section>
     </main>
 
-    <!-- Lightbox Modal -->
     <div class="lightbox" id="lightbox" onclick="closeLightbox()">
         <button class="lightbox-close" onclick="closeLightbox(event)">×</button>
         <div class="lightbox-content" onclick="event.stopPropagation()">
@@ -1290,7 +1270,6 @@
             <p class="footer-en" style="display: none;">This is an unofficial fan page created with love for Murun and Soso's unique aesthetic</p>
         </div>
 
-        <!-- Skull sticker in bottom left -->
         <div class="footer-skull">
             <img src="images/Sticker%20Skull%20Sticker%20by%2052works(%EC%98%A4%EC%9D%B4%EC%9B%8D%EC%8A%A4).gif"
                  alt="Skull Sticker - 52works Animation">
@@ -1330,8 +1309,6 @@
             langElements.speechEn = document.querySelectorAll('.speech-en');
             langElements.footerKr = document.querySelectorAll('.footer-kr');
             langElements.footerEn = document.querySelectorAll('.footer-en');
-            // Note: .store-kr and .store-en are handled by CSS via body class,
-            // so they don't strictly need to be in langElements for direct JS manipulation here.
         }
 
         function toggleLanguage() {
@@ -1341,7 +1318,6 @@
 
             const switchToEn = currentLang === 'kr';
 
-            // Toggle visibility of general language-specific elements
             langElements.logoKr.style.display = switchToEn ? 'none' : 'inline-block';
             langElements.logoEn.style.display = switchToEn ? 'inline-block' : 'none';
 
@@ -1349,7 +1325,6 @@
                 const krKey = key + 'Kr';
                 const enKey = key + 'En';
                 if (langElements[krKey] && langElements[enKey]) {
-                    // Handle both single elements and NodeLists
                     const krNodes = langElements[krKey].nodeType === 1 ? [langElements[krKey]] : langElements[krKey];
                     const enNodes = langElements[enKey].nodeType === 1 ? [langElements[enKey]] : langElements[enKey];
 
@@ -1358,7 +1333,6 @@
                 }
             });
 
-            // Toggle active class for about content
             if (langElements.aboutKr && langElements.aboutEn) {
                 langElements.aboutKr.classList.toggle('active', !switchToEn);
                 langElements.aboutEn.classList.toggle('active', switchToEn);
@@ -1366,7 +1340,6 @@
 
             currentLang = switchToEn ? 'en' : 'kr';
 
-            // Toggle body class for CSS-driven language switching (e.g., for dropdown items)
             if (switchToEn) {
                 document.body.classList.remove('lang-kr');
                 document.body.classList.add('lang-en');
@@ -1478,7 +1451,7 @@
                     lightbox.classList.remove('active');
                     document.body.style.overflow = 'auto';
                 }
-            } else if (!event && lightbox) { // Called by Escape key or direct call
+            } else if (!event && lightbox) {
                 lightbox.classList.remove('active');
                 document.body.style.overflow = 'auto';
             }
@@ -1491,14 +1464,13 @@
 
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && lightbox && lightbox.classList.contains('active')) {
-                closeLightbox(); // No event passed here
+                closeLightbox();
             }
         });
 
         document.addEventListener('DOMContentLoaded', () => {
             queryLangElements();
-            // Set initial language state on the body
-            document.body.classList.add('lang-kr'); // Use classList for better practice
+            document.body.classList.add('lang-kr');
         });
     </script>
 </body>
