@@ -70,6 +70,69 @@
             color: #000;
         }
 
+        /* Dropdown Styles */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            min-width: 200px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 10001; /* Ensure dropdown is above other header content */
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            top: 100%; /* Position below the "Stores" link */
+            left: 0; /* Align with the left of "Stores" link */
+            margin-top: 5px; /* Small gap */
+        }
+
+        .dropdown-content a {
+            color: #333;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            transition: background-color 0.3s ease;
+            border-radius: 6px; /* Optional: for individual item rounding */
+            margin: 4px; /* Optional: space between items */
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+            color: #000;
+        }
+
+        /* CSS to control visibility of store links based on body class */
+        body.lang-en .store-kr {
+            display: none !important; /* Use !important if needed to override other display styles */
+        }
+        body.lang-en .store-en {
+            display: block !important;
+        }
+        body.lang-kr .store-kr {
+            display: block !important;
+        }
+        body.lang-kr .store-en {
+            display: none !important;
+        }
+
+        /* Fallback/initial state if body class isn't set or JS fails */
+        .store-en { display: none; }
+        .store-kr { display: block; }
+
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown > a { /* Target the main "Stores" / "스토어" links */
+            cursor: pointer;
+        }
+
+
         .lang-toggle {
             background: #ccc;
             border: none;
@@ -393,29 +456,31 @@
         .happy-dance-surfer {
             position: absolute;
             top: 20px;
-            height: 120px;
+            height: 120px; /* Adjusted from previous version */
             width: auto;
             animation: surfAcross 8s linear infinite;
             z-index: 5;
         }
 
-        @keyframes surfAcross {
+        @keyframes surfAcross { /* Version with 1 flip in the middle */
             0% {
                 left: -150px;
                 transform: rotate(0deg);
             }
+            /* Travel towards middle */
             45% {
-                left: calc(50% - 40px);
+                /* left is interpolated */
                 transform: rotate(0deg);
             }
+            /* Mid-point of the flip */
             50% {
-                left: 50%;
                 transform: rotate(180deg);
             }
+            /* Flip complete */
             55% {
-                left: calc(50% + 40px);
                 transform: rotate(360deg);
             }
+            /* Travel to end */
             100% {
                 left: calc(100% + 150px);
                 transform: rotate(360deg);
@@ -528,7 +593,7 @@
         /* Walking Go Sticker Animation */
         .walking-go {
             position: absolute;
-            bottom: -120px;
+            bottom: 0px; /* Adjusted from -30px to align better with Murun if intended */
             height: 240px;
             z-index: 10;
             animation: walkStopGoAcross 20s linear infinite;
@@ -537,13 +602,15 @@
         .walking-go img {
             height: 100%;
             width: auto;
-            transform: scaleX(-1); /* Flip horizontally so it faces left-to-right direction */
+            transform: scaleX(-1); /* This makes it walk left-to-right if animation is for 'right' property */
+                                    /* If you want it to walk right-to-left (original face), remove scaleX and animate 'right' or 'left' from right side. */
         }
 
-        @keyframes walkStopGoAcross {
+        @keyframes walkStopGoAcross { /* Animating 'right' means it moves from right to left */
             0% { right: -250px; }
             100% { right: 100%; }
         }
+
 
         /* Footer */
         footer {
@@ -722,6 +789,13 @@
                 gap: 10px;
             }
 
+            /* Mobile dropdown adjustments */
+            .dropdown-content {
+                min-width: 150px; /* Adjust width for mobile */
+                left: -50px; /* Adjust positioning if it goes off-screen */
+            }
+
+
             .hero h1 {
                 font-size: 32px;
                 margin-bottom: 15px !important;
@@ -785,7 +859,7 @@
 
             .walking-go {
                 height: 160px;
-                bottom: -80px;
+                bottom: 0px;
             }
             
             .walking-go img {
@@ -834,30 +908,37 @@
 
             /* Mobile surfer adjustment */
             .happy-dance-surfer {
-                height: 90px;
-                top: 30px;
+                height: 90px; /* Smaller surfer on mobile */
+                top: 30px; /* Adjust vertical position for smaller container */
             }
-            
             /* Expand mobile container too */
-            .memes + div {
-                height: 150px !important;
-                padding: 15px 0 !important;
+            .memes + div { /* This targets the div holding the surfer */
+                height: 150px !important; /* Ensure enough space */
+                padding: 15px 0 !important; /* Adjust padding if needed */
             }
         }
         
         @media (max-width: 480px) {
-            .nav-links {
-                flex-direction: column;
-                align-items: flex-end;
-                gap: 5px;
-                position: absolute;
-                background: white;
-                top: 60px;
-                right: 0;
-                padding: 10px;
-                border: 1px solid #ccc;
-                display: none;
+            /* Example: Hide nav links and show a burger icon (burger icon not implemented here) */
+            /* .nav-links { display: none; } */
+            /* .burger-menu-icon { display: block; } */
+            
+            /* If keeping nav links visible, make them stack */
+             .nav-links {
+                /* flex-direction: column; Remove if you don't want stacking for all items*/
+                align-items: center; /* Center items if stacked */
+                gap: 8px;
             }
+             .dropdown { /* Ensure dropdown still works in stacked nav */
+                width: 100%;
+                text-align: center;
+            }
+            .dropdown-content {
+                left: 50%; /* Center dropdown */
+                transform: translateX(-50%);
+                min-width: 120px;
+            }
+
 
             .hero h1 {
                 font-size: 28px;
@@ -911,7 +992,16 @@
                 <li><a href="#about" class="nav-en" style="display: none;">About</a><a href="#about" class="nav-kr">소개</a></li>
                 <li><a href="#memes" class="nav-en" style="display: none;">Memes</a><a href="#memes" class="nav-kr">밈</a></li>
                 <li><a href="#characters" class="nav-en" style="display: none;">Characters</a><a href="#characters" class="nav-kr">캐릭터</a></li>
-                <li><a href="https://52works.kr/" target="_blank" class="nav-en" style="display: none;">Store</a><a href="https://52works.kr/" target="_blank" class="nav-kr">스토어</a></li>
+                <li class="dropdown">
+                    <a href="#" class="nav-en" style="display: none;">Stores</a>
+                    <a href="#" class="nav-kr">스토어</a>
+                    <div class="dropdown-content">
+                        <a href="https://insideobject.com/product/list.html?cate_no=263" target="_blank" class="store-en">52 works store</a>
+                        <a href="https://insideobject.com/product/list.html?cate_no=263" target="_blank" class="store-kr">무런</a>
+                        <a href="https://insideobject.com/product/list.html?cate_no=451" target="_blank" class="store-en">SOSO Family store</a>
+                        <a href="https://insideobject.com/product/list.html?cate_no=451" target="_blank" class="store-kr">소소</a>
+                    </div>
+                </li>
                 <li><button class="lang-toggle" onclick="toggleLanguage()">🇰🇷 / 🇺🇸</button></li>
             </ul>
         </nav>
@@ -1240,6 +1330,8 @@
             langElements.speechEn = document.querySelectorAll('.speech-en');
             langElements.footerKr = document.querySelectorAll('.footer-kr');
             langElements.footerEn = document.querySelectorAll('.footer-en');
+            // Note: .store-kr and .store-en are handled by CSS via body class,
+            // so they don't strictly need to be in langElements for direct JS manipulation here.
         }
 
         function toggleLanguage() {
@@ -1249,6 +1341,7 @@
 
             const switchToEn = currentLang === 'kr';
 
+            // Toggle visibility of general language-specific elements
             langElements.logoKr.style.display = switchToEn ? 'none' : 'inline-block';
             langElements.logoEn.style.display = switchToEn ? 'inline-block' : 'none';
 
@@ -1256,20 +1349,31 @@
                 const krKey = key + 'Kr';
                 const enKey = key + 'En';
                 if (langElements[krKey] && langElements[enKey]) {
-                    const krNodes = langElements[krKey].length !== undefined ? langElements[krKey] : [langElements[krKey]];
-                    const enNodes = langElements[enKey].length !== undefined ? langElements[enKey] : [langElements[enKey]];
+                    // Handle both single elements and NodeLists
+                    const krNodes = langElements[krKey].nodeType === 1 ? [langElements[krKey]] : langElements[krKey];
+                    const enNodes = langElements[enKey].nodeType === 1 ? [langElements[enKey]] : langElements[enKey];
 
                     krNodes.forEach(el => el.style.display = switchToEn ? 'none' : 'block');
                     enNodes.forEach(el => el.style.display = switchToEn ? 'block' : 'none');
                 }
             });
 
+            // Toggle active class for about content
             if (langElements.aboutKr && langElements.aboutEn) {
                 langElements.aboutKr.classList.toggle('active', !switchToEn);
                 langElements.aboutEn.classList.toggle('active', switchToEn);
             }
 
             currentLang = switchToEn ? 'en' : 'kr';
+
+            // Toggle body class for CSS-driven language switching (e.g., for dropdown items)
+            if (switchToEn) {
+                document.body.classList.remove('lang-kr');
+                document.body.classList.add('lang-en');
+            } else {
+                document.body.classList.remove('lang-en');
+                document.body.classList.add('lang-kr');
+            }
         }
 
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -1374,7 +1478,7 @@
                     lightbox.classList.remove('active');
                     document.body.style.overflow = 'auto';
                 }
-            } else if (!event && lightbox) {
+            } else if (!event && lightbox) { // Called by Escape key or direct call
                 lightbox.classList.remove('active');
                 document.body.style.overflow = 'auto';
             }
@@ -1387,12 +1491,14 @@
 
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && lightbox && lightbox.classList.contains('active')) {
-                closeLightbox();
+                closeLightbox(); // No event passed here
             }
         });
 
         document.addEventListener('DOMContentLoaded', () => {
             queryLangElements();
+            // Set initial language state on the body
+            document.body.classList.add('lang-kr'); // Use classList for better practice
         });
     </script>
 </body>
