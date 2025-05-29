@@ -1,63 +1,32 @@
 .happy-dance-surfer {
-                height: 200px;
-                top: 15px;
-            }
-
-            @keyframes surfAcross {
-                0% { 
-                    left: -250px; 
-                    transform: rotate(0deg) scaleX(1);
-                }
-                25% { 
-                    left: 25%; 
-                    transform: rotate(180deg) scaleX(1);
-                }
-                50% { 
-                    left: 50%; 
-                    transform: rotate(360deg) scaleX(1);
-                }
-                75% { 
-                    left: 75%; 
-                    transform: rotate(540deg) scaleX(1);
-                }
-                100% { 
-                    left: 100%; 
-                    transform: rotate(720deg) scaleX(1);
-                }
+                height: 60px;
+                top: 20px;
             }        /* Happy Dance Surfing Animation */
         .happy-dance-surfer {
             position: absolute;
-            top: 20px;
-            height: 300px;
-            z-index: 15;
-            animation: surfAcross 12s ease-in-out infinite;
-        }
-
-        .happy-dance-surfer img {
-            height: 100%;
+            top: 10px;
+            height: 80px;
             width: auto;
+            animation: surfAcross 8s linear infinite;
         }
 
         @keyframes surfAcross {
             0% { 
-                left: -350px; 
-                transform: rotate(0deg) scaleX(1);
+                left: -100px; 
+                transform: rotate(0deg);
             }
             25% { 
-                left: 25%; 
-                transform: rotate(180deg) scaleX(1);
+                transform: rotate(90deg);
             }
             50% { 
-                left: 50%; 
-                transform: rotate(360deg) scaleX(1);
+                transform: rotate(180deg);
             }
             75% { 
-                left: 75%; 
-                transform: rotate(540deg) scaleX(1);
+                transform: rotate(270deg);
             }
             100% { 
-                left: 100%; 
-                transform: rotate(720deg) scaleX(1);
+                left: calc(100vw + 100px); 
+                transform: rotate(360deg);
             }
         }            .hero {
                 padding: 90px 0 35px 0;
@@ -290,6 +259,8 @@
             0% { transform: translateX(0); }
             100% { transform: translateX(-50%); }
         }
+
+        /* About Section */
 
         .social-btn {
             background: transparent;
@@ -979,11 +950,10 @@
         </section>
 
         <!-- Happy Dance Surfer positioned at the border between memes and characters -->
-        <div style="position: relative;">
-            <div class="happy-dance-surfer">
-                <img src="images/Happy Dance Sticker by 52works(오이웍스).gif" 
-                     alt="Happy Dance Surfer - 52works Sticky Monster Lab Animation">
-            </div>
+        <div style="position: relative; height: 100px; overflow: hidden; width: 100%;">
+            <img src="images/Happy Dance Sticker by 52works(오이웍스).gif" 
+                 alt="Happy Dance Surfer - 52works Sticky Monster Lab Animation"
+                 class="happy-dance-surfer">
         </div>
 
         <!-- Characters Section -->
