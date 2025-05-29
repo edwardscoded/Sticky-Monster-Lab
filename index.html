@@ -86,15 +86,15 @@
 
         /* Main Content */
         main {
-            margin-top: 0; /* This was 70px in one version, but header is fixed, so hero needs its own margin/padding top */
+            margin-top: 0;
         }
 
         /* Hero Section */
         .hero {
             text-align: center;
-            padding: 100px 0 40px 0; /* Kept this version, seems more complete */
+            padding: 100px 0 40px 0;
             background: linear-gradient(135deg, #e5e5e5 0%, #f5f5f5 100%);
-            margin-top: 0 !important; /* Ensure no extra space above hero */
+            margin-top: 0 !important;
             margin-bottom: 0 !important;
             position: relative;
         }
@@ -118,15 +118,15 @@
         }
 
         .hero h1 {
-            font-size: 42px; /* Kept this version */
-            margin-bottom: 20px !important; /* Kept this version */
+            font-size: 42px;
+            margin-bottom: 20px !important;
             line-height: 1.1;
         }
 
         .hero p {
-            font-size: 18px; /* Kept this version */
-            margin-top: 30px !important; /* Kept this version */
-            margin-bottom: 50px !important; /* Kept this version */
+            font-size: 18px;
+            margin-top: 30px !important;
+            margin-bottom: 50px !important;
             line-height: 1.4;
         }
 
@@ -186,7 +186,7 @@
         /* Logo Scroll Banner */
         .logo-scroll-banner {
             background: #ffffff;
-            padding: 20px 0; /* Kept this version */
+            padding: 20px 0;
             overflow: hidden;
             white-space: nowrap;
             border-top: 1px solid #ddd;
@@ -201,7 +201,7 @@
         }
 
         .scroll-logo {
-            height: 60px; /* Kept this version */
+            height: 60px;
             width: auto;
             flex-shrink: 0;
             opacity: 0.8;
@@ -268,7 +268,7 @@
             margin-top: 10px;
         }
 
-        .about h2 { /* This was targeting .about h2, but your HTML uses images for "whois" title */
+        .about h2 {
             font-size: 54px;
             margin-bottom: 30px;
             color: #000;
@@ -342,23 +342,21 @@
             position: fixed;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%) scale(1.05) rotate(2deg); /* Keep original hover transform */
+            transform: translate(-50%, -50%) scale(1.05) rotate(2deg);
             width: 90vw;
             height: 90vh;
             max-width: 90vw;
             max-height: 90vh;
             object-fit: contain;
-            z-index: 1001; /* Ensure it's above other content */
+            z-index: 1001;
             background: rgba(0, 0, 0, 0.8);
             border-radius: 12px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
         }
-        /* Prevent the non-hovered image from also applying fixed styles if lightbox is active via JS */
-        .lightbox.active + .meme-item img {
-            position: static; /* Or whatever its original position was */
-            /* Revert other styles if needed */
-        }
 
+        .lightbox.active + .meme-item img {
+            position: static;
+        }
 
         /* Scattered positioning */
         .meme-item:nth-child(1) {
@@ -391,59 +389,35 @@
             margin-top: -25px;
         }
 
-        /* Happy Dance Surfing Animation */
+        /* Happy Dance Surfing Animation - FIXED VERSION */
         .happy-dance-surfer {
             position: absolute;
-            top: 10px; /* Vertical position within its 100px parent */
+            top: 10px;
             height: 80px;
-            width: auto; /* Let the image determine its own width */
+            width: auto;
             animation: surfAcross 8s linear infinite;
             z-index: 5;
         }
 
         @keyframes surfAcross {
             0% {
-                left: -150px; /* Start well off-screen to the left */
-                transform: rotate(0deg); /* Initial orientation */
+                left: -150px;
+                transform: rotate(0deg);
             }
-            /* Approaching the flip point, still maintaining initial orientation */
             45% {
-                /* The 'left' property will be interpolated automatically by the linear animation */
+                left: calc(50% - 40px);
                 transform: rotate(0deg);
             }
-            /* Mid-point of the flip (180 degrees) */
             50% {
+                left: 50%;
                 transform: rotate(180deg);
             }
-            /* Flip complete (360 degrees), back to original visual orientation */
             55% {
+                left: calc(50% + 40px);
                 transform: rotate(360deg);
             }
-            /* End of travel, maintaining the orientation after the flip */
             100% {
-                left: calc(100% + 150px); /* Move well off-screen to the right */
-                transform: rotate(360deg);
-            }
-        }
-
-        @keyframes surfAcross {
-            0% {
-                left: -150px; /* Start further off-screen to accommodate wider GIFs */
-                transform: rotate(0deg);
-            }
-            25% {
-                /* Optional: define left position if non-linear horizontal movement is desired */
-                transform: rotate(90deg);
-            }
-            50% {
-                transform: rotate(180deg);
-            }
-            75% {
-                transform: rotate(270deg);
-            }
-            100% {
-                left: calc(100% + 150px); /* Ensure it goes completely off-screen right of its parent */
-                                         /* Using 100% (of parent) since parent is 100vw effectively */
+                left: calc(100% + 150px);
                 transform: rotate(360deg);
             }
         }
@@ -453,7 +427,7 @@
             padding: 80px 0 120px;
             background: #eee;
             position: relative;
-            overflow: hidden; /* Important for walking animations if they exceed bounds */
+            overflow: hidden;
         }
 
         .characters h2 {
@@ -537,18 +511,18 @@
             bottom: 0px;
             height: 180px;
             z-index: 10;
-            animation: walkAcross 20s linear infinite; /* Changed ease-in-out to linear for smoother continuous walk */
+            animation: walkAcross 20s linear infinite;
         }
 
         .walking-murun img {
             height: 100%;
             width: auto;
-            transform: scaleX(-1); /* Flips image to walk left to right */
+            transform: scaleX(-1);
         }
 
         @keyframes walkAcross {
-            0% { left: -200px; } /* Start off-screen left */
-            100% { left: 100%; } /* End off-screen right (relative to .characters section) */
+            0% { left: -200px; }
+            100% { left: 100%; }
         }
 
         /* Walking Go Sticker Animation */
@@ -557,19 +531,17 @@
             bottom: -30px;
             height: 240px;
             z-index: 10;
-            animation: walkStopGoAcross 20s linear infinite; /* Changed to linear */
+            animation: walkStopGoAcross 20s linear infinite;
         }
 
         .walking-go img {
             height: 100%;
             width: auto;
-            /* transform: scaleX(-1); This was making it walk backwards with right: -250px */
-            /* To walk right to left, keep original image orientation and animate 'right' */
         }
 
         @keyframes walkStopGoAcross {
-            0% { right: -250px; } /* Start off-screen right */
-            100% { right: 100%; } /* End off-screen left (relative to .characters section) */
+            0% { right: -250px; }
+            100% { right: 100%; }
         }
 
         /* Footer */
@@ -608,7 +580,7 @@
         .footer-skull {
             position: absolute;
             bottom: 10px;
-            left: 150px; /* This might be too far left on smaller screens */
+            left: 150px;
             opacity: 0.6;
             transition: opacity 0.3s ease;
         }
@@ -731,39 +703,41 @@
             .nav-links {
                 gap: 15px;
             }
-            /* Adjust header padding or logo size if needed for smaller nav links */
+            
             header nav {
                 padding-left: 5px;
                 padding-right: 5px;
             }
+            
             .logo-img {
                 height: 40px;
             }
+            
             .nav-links a, .lang-toggle {
-                font-size: 13px; /* Example adjustment */
+                font-size: 13px;
             }
-             .nav-links {
-                gap: 10px; /* Further reduce gap */
+            
+            .nav-links {
+                gap: 10px;
             }
-
 
             .hero h1 {
-                font-size: 32px; /* Adjusted from your 36px to match internal style better */
+                font-size: 32px;
                 margin-bottom: 15px !important;
             }
+            
             .hero p {
                 font-size: 16px;
                 margin-top: 20px !important;
                 margin-bottom: 30px !important;
             }
 
-
             .meme-grid {
-                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* More responsive meme grid */
+                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
                 gap: 10px;
                 padding:10px;
             }
-            /* Reset specific meme item transforms for simpler mobile layout */
+            
             .meme-item:nth-child(1),
             .meme-item:nth-child(2),
             .meme-item:nth-child(3),
@@ -774,7 +748,6 @@
                 margin-top: 0;
             }
 
-
             .lang-content {
                 padding: 20px;
             }
@@ -783,14 +756,14 @@
                 grid-template-columns: 1fr;
                 gap: 40px;
             }
-             .about-image img { /* Center image better on mobile */
+            
+            .about-image img {
                 max-width: 80%;
                 margin-left: auto;
                 margin-right: auto;
                 display: block;
                 left: 0;
             }
-
 
             .character-cards {
                 grid-template-columns: 1fr;
@@ -804,96 +777,111 @@
             .walking-murun {
                 height: 120px;
             }
+            
             .walking-murun img {
                 max-height: 100%;
             }
-
 
             .walking-go {
                 height: 160px;
                 bottom: -20px;
             }
-             .walking-go img {
+            
+            .walking-go img {
                 max-height: 100%;
             }
-
 
             .ca-bar {
                 flex-direction: column;
                 gap: 10px;
-                padding: 20px; /* Increased padding a bit */
-                margin: -100px auto 20px auto !important; /* Adjusted margin */
+                padding: 20px;
+                margin: -100px auto 20px auto !important;
                 max-width: 90%;
             }
 
             .social-buttons {
                 gap: 10px;
                 margin: 10px auto 30px auto;
-                flex-direction: column; /* Stack buttons on small screens */
+                flex-direction: column;
                 align-items: center;
             }
-             .social-btn {
-                padding: 12px 20px; /* Slightly larger buttons */
+            
+            .social-btn {
+                padding: 12px 20px;
                 font-size: 14px;
-                width: 80%; /* Make buttons wider */
+                width: 80%;
                 max-width: 250px;
             }
 
             .speech-bubble {
                 left: 50%;
-                transform: translateX(-50%); /* Better centering */
-                top: -15px; /* Adjust vertical position */
+                transform: translateX(-50%);
+                top: -15px;
             }
 
             .speech-bubble img {
-                width: 200px; /* Smaller speech bubble */
+                width: 200px;
             }
+            
             .footer-skull {
-                left: 10px; /* Adjust for smaller screens */
+                left: 10px;
             }
+            
             .footer-skull img {
                 max-width: 120px;
             }
+
+            /* Mobile surfer adjustment */
+            .happy-dance-surfer {
+                height: 60px;
+            }
         }
-         @media (max-width: 480px) {
+        
+        @media (max-width: 480px) {
             .nav-links {
                 flex-direction: column;
-                align-items: flex-end; /* Or center */
+                align-items: flex-end;
                 gap: 5px;
-                position: absolute; /* Example: make it a dropdown, needs JS toggle */
+                position: absolute;
                 background: white;
-                top: 60px; /* below header */
+                top: 60px;
                 right: 0;
                 padding: 10px;
                 border: 1px solid #ccc;
-                display: none; /* Initially hidden, toggled by a burger icon (not implemented here) */
+                display: none;
             }
-            /* Basic burger menu would be needed to toggle .nav-links visibility */
 
             .hero h1 {
                 font-size: 28px;
             }
+            
             .hero p {
                 font-size: 14px;
             }
-             .ca-bar {
+            
+            .ca-bar {
                 margin-top: -80px;
             }
-             .about-title-kr img, .about-title-en img {
+            
+            .about-title-kr img, .about-title-en img {
                 width: 80%;
             }
+            
             .memes h2 {
                 font-size: 36px;
             }
+            
             .character-name {
                 font-size: 28px;
             }
+            
             .character-profile {
                 padding: 20px;
             }
-             .elfsight-app-1027be02-3535-4a55-8a9e-53cd4fe74b32,
+            
+            .elfsight-app-1027be02-3535-4a55-8a9e-53cd4fe74b32,
             .elfsight-app-cc75ac9e-8d99-4e8c-a1c7-73f0477ab12e {
-                margin-bottom: 30px; /* Reduce margin for Elfsight widgets */
+                margin-bottom: 30px;
             }
         }
     </style>
@@ -973,7 +961,6 @@
                 <img src="images/-Sticker-by-52works-english.gif" alt="Murun and Soso" class="scroll-logo">
                 <img src="images/-Sticker-by-52works-korean.gif" alt="무런 앤 소소" class="scroll-logo">
                 <img src="images/-Sticker-by-52works-english.gif" alt="Murun and Soso" class="scroll-logo">
-                 <!-- Added more for continuous scroll -->
                 <img src="images/-Sticker-by-52works-korean.gif" alt="무런 앤 소소" class="scroll-logo">
                 <img src="images/-Sticker-by-52works-english.gif" alt="Murun and Soso" class="scroll-logo">
                 <img src="images/-Sticker-by-52works-korean.gif" alt="무런 앤 소소" class="scroll-logo">
@@ -1214,7 +1201,7 @@
 
     <script>
         let currentLang = 'kr';
-        const langElements = {}; // Cache elements for slightly better performance
+        const langElements = {};
 
         function queryLangElements() {
             langElements.navKr = document.querySelectorAll('.nav-kr');
@@ -1248,18 +1235,15 @@
         }
 
         function toggleLanguage() {
-            // Ensure elements are queried if not already
             if (Object.keys(langElements).length === 0) {
                 queryLangElements();
             }
 
             const switchToEn = currentLang === 'kr';
 
-            // Toggle logos
             langElements.logoKr.style.display = switchToEn ? 'none' : 'inline-block';
             langElements.logoEn.style.display = switchToEn ? 'inline-block' : 'none';
 
-            // Toggle general elements
             ['nav', 'hero', 'aboutTitle', 'memesTitle', 'charTitle', 'name', 'title', 'stats', 'quote', 'bio', 'speech', 'footer'].forEach(key => {
                 const krKey = key + 'Kr';
                 const enKey = key + 'En';
@@ -1272,7 +1256,6 @@
                 }
             });
 
-            // Toggle about content specifically
             if (langElements.aboutKr && langElements.aboutEn) {
                 langElements.aboutKr.classList.toggle('active', !switchToEn);
                 langElements.aboutEn.classList.toggle('active', switchToEn);
@@ -1281,16 +1264,13 @@
             currentLang = switchToEn ? 'en' : 'kr';
         }
 
-
-        // Add smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const targetId = this.getAttribute('href');
                 const targetElement = document.querySelector(targetId);
                 if (targetElement) {
-                    // Calculate offset for fixed header
-                    const headerOffset = document.querySelector('header').offsetHeight || 70; // Fallback offset
+                    const headerOffset = document.querySelector('header').offsetHeight || 70;
                     const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
                     const offsetPosition = elementPosition - headerOffset;
 
@@ -1302,51 +1282,45 @@
             });
         });
 
-
-        // Background audio setup
         const backgroundAudio = document.getElementById('backgroundAudio');
         if (backgroundAudio) {
-            backgroundAudio.volume = 0.02; // Low volume (2%)
+            backgroundAudio.volume = 0.02;
             let hasInteracted = false;
             const playAudio = () => {
-                if (!hasInteracted && backgroundAudio.paused) { // Check if paused
+                if (!hasInteracted && backgroundAudio.paused) {
                     backgroundAudio.play().then(() => {
                         hasInteracted = true;
-                         // Remove listeners after successful play to avoid multiple triggers
                         ['click', 'touchstart', 'keydown'].forEach(event => {
                             document.removeEventListener(event, playAudio);
                         });
                     }).catch(e => {
-                        // console.log('Audio autoplay prevented by browser. User interaction still needed.');
+                        // Audio autoplay prevented
                     });
                 }
             };
-            // Listen for first user interaction
             ['click', 'touchstart', 'keydown'].forEach(event => {
                 document.addEventListener(event, playAudio, { once: true });
             });
         }
 
-        // Copy CA functionality
         function copyCA() {
-            const caText = "COMING SOON"; // Or the actual CA when available
+            const caText = "COMING SOON";
             const btn = document.querySelector('.copy-btn');
             const originalText = btn.textContent;
 
             navigator.clipboard.writeText(caText).then(() => {
                 btn.textContent = 'COPIED!';
-                btn.style.background = '#4CAF50'; // Green for success
+                btn.style.background = '#4CAF50';
                 setTimeout(() => {
                     btn.textContent = originalText;
-                    btn.style.background = '#ccc'; // Revert to original style
+                    btn.style.background = '#ccc';
                 }, 2000);
             }).catch(err => {
                 console.warn('Async clipboard copy failed, trying fallback:', err);
-                // Fallback for older browsers or if clipboard permission denied
                 try {
                     const textArea = document.createElement('textarea');
                     textArea.value = caText;
-                    textArea.style.position = 'fixed'; // Prevent scrolling to bottom of page in MS Edge.
+                    textArea.style.position = 'fixed';
                     textArea.style.top = '0';
                     textArea.style.left = '0';
                     document.body.appendChild(textArea);
@@ -1364,8 +1338,8 @@
                 } catch (fallbackErr) {
                     console.error('Fallback copy method failed:', fallbackErr);
                     btn.textContent = 'ERROR';
-                    btn.style.background = '#F44336'; // Red for error
-                     setTimeout(() => {
+                    btn.style.background = '#F44336';
+                    setTimeout(() => {
                         btn.textContent = originalText;
                         btn.style.background = '#ccc';
                     }, 2000);
@@ -1373,8 +1347,6 @@
             });
         }
 
-
-        // Lightbox functionality
         const lightbox = document.getElementById('lightbox');
         const lightboxImage = document.getElementById('lightbox-image');
 
@@ -1384,43 +1356,36 @@
                 lightboxImage.src = img.src;
                 lightboxImage.alt = img.alt;
                 lightbox.classList.add('active');
-                document.body.style.overflow = 'hidden'; // Prevent background scroll
+                document.body.style.overflow = 'hidden';
             }
         }
 
         function closeLightbox(event) {
-            // Check if the click was directly on the lightbox overlay or the close button
-             if (event && (event.target === lightbox || event.target.classList.contains('lightbox-close'))) {
+            if (event && (event.target === lightbox || event.target.classList.contains('lightbox-close'))) {
                 if (lightbox) {
                     lightbox.classList.remove('active');
-                    document.body.style.overflow = 'auto'; // Restore background scroll
+                    document.body.style.overflow = 'auto';
                 }
-            } else if (!event && lightbox) { // Called by Escape key
-                 lightbox.classList.remove('active');
-                 document.body.style.overflow = 'auto';
+            } else if (!event && lightbox) {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = 'auto';
             }
         }
-         // Ensure the close button itself calls with an event
+
         const closeButton = document.querySelector('.lightbox-close');
         if(closeButton) {
             closeButton.onclick = function(event) { closeLightbox(event); };
         }
 
-
-        // Close lightbox with Escape key
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && lightbox && lightbox.classList.contains('active')) {
-                closeLightbox(); // Call without event for Escape key scenario
+                closeLightbox();
             }
         });
 
-        // Initial call to set up language elements cache
         document.addEventListener('DOMContentLoaded', () => {
             queryLangElements();
-            // If you want to default to a specific language based on browser or localStorage, do it here.
-            // For now, it defaults to Korean as per HTML structure.
         });
-
     </script>
 </body>
 </html>
