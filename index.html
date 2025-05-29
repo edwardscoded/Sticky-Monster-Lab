@@ -389,11 +389,11 @@
             margin-top: -25px;
         }
 
-        /* Happy Dance Surfing Animation - FIXED VERSION */
+        /* Happy Dance Surfing Animation - BIGGER VERSION */
         .happy-dance-surfer {
             position: absolute;
-            top: 10px;
-            height: 80px;
+            top: 20px;
+            height: 120px;
             width: auto;
             animation: surfAcross 8s linear infinite;
             z-index: 5;
@@ -833,7 +833,14 @@
 
             /* Mobile surfer adjustment */
             .happy-dance-surfer {
-                height: 60px;
+                height: 90px;
+                top: 30px;
+            }
+            
+            /* Expand mobile container too */
+            .memes + div {
+                height: 150px !important;
+                padding: 15px 0 !important;
             }
         }
         
@@ -1065,7 +1072,7 @@
         </section>
 
         <!-- Happy Dance Surfer positioned at the border between memes and characters -->
-        <div style="position: relative; height: 100px; overflow: hidden; width: 100%; background: transparent;">
+        <div style="position: relative; height: 180px; overflow: hidden; width: 100%; background: transparent; padding: 20px 0;">
             <img src="images/Happy%20Dance%20Sticker%20by%2052works(%EC%98%A4%EC%9D%B4%EC%9B%8D%EC%8A%A4).gif"
                  alt="Happy Dance Surfer - 52works Sticky Monster Lab Animation"
                  class="happy-dance-surfer">
