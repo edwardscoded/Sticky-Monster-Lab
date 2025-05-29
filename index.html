@@ -75,6 +75,15 @@
             position: relative;
             display: inline-block;
         }
+        .dropdown-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown:hover .dropdown-content,
+.dropdown-wrapper:hover .dropdown-content {
+    display: block;
+}
 
         .dropdown-content {
             display: none;
@@ -995,16 +1004,19 @@
                 <li><a href="#about" class="nav-en" style="display: none;">About</a><a href="#about" class="nav-kr">소개</a></li>
                 <li><a href="#memes" class="nav-en" style="display: none;">Memes</a><a href="#memes" class="nav-kr">밈</a></li>
                 <li><a href="#characters" class="nav-en" style="display: none;">Characters</a><a href="#characters" class="nav-kr">캐릭터</a></li>
-                <li class="dropdown">
-                    <a href="#" class="nav-en" style="display: none;">Stores</a>
-                    <a href="#" class="nav-kr">스토어</a>
-                    <div class="dropdown-content">
-                        <a href="https://insideobject.com/product/list.html?cate_no=263" target="_blank" class="store-en">52 works store</a>
-                        <a href="https://insideobject.com/product/list.html?cate_no=263" target="_blank" class="store-kr">무런</a>
-                        <a href="https://insideobject.com/product/list.html?cate_no=451" target="_blank" class="store-en">SOSO Family store</a>
-                        <a href="https://insideobject.com/product/list.html?cate_no=451" target="_blank" class="store-kr">소소</a>
-                    </div>
-                </li>
+<li class="dropdown">
+    <div class="dropdown-wrapper">
+        <a href="#" class="nav-en" style="display: none;">Stores</a>
+        <a href="#" class="nav-kr">스토어</a>
+        <div class="dropdown-content">
+            <a href="https://insideobject.com/product/list.html?cate_no=263" target="_blank" class="store-en">52 works store</a>
+            <a href="https://insideobject.com/product/list.html?cate_no=263" target="_blank" class="store-kr">무런</a>
+            <a href="https://insideobject.com/product/list.html?cate_no=451" target="_blank" class="store-en">SOSO Family store</a>
+            <a href="https://insideobject.com/product/list.html?cate_no=451" target="_blank" class="store-kr">소소</a>
+        </div>
+    </div>
+</li>
+
                 <li><button class="lang-toggle" onclick="toggleLanguage()">🇰🇷 / 🇺🇸</button></li>
             </ul>
         </nav>
