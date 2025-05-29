@@ -1,4 +1,10 @@
-<!DOCTYPE html>
+.logo-scroll-banner {
+                padding: 15px 0;
+            }
+
+            .scroll-logo {
+                height: 45px;
+            }<!DOCTYPE html>
 <html lang="en">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
@@ -181,8 +187,42 @@
             gap: 15px;
             justify-content: center;
             flex-wrap: wrap;
-            margin: 15px auto 30px auto;
+            margin: 15px auto 0px auto;
             max-width: 600px;
+        }
+
+        /* Logo Scroll Banner */
+        .logo-scroll-banner {
+            background: linear-gradient(135deg, #f0f0f0 0%, #ffffff 100%);
+            padding: 20px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            border-top: 1px solid #ddd;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .logo-scroll-track {
+            display: inline-flex;
+            animation: logoScroll 25s linear infinite;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .scroll-logo {
+            height: 60px;
+            width: auto;
+            flex-shrink: 0;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .scroll-logo:hover {
+            opacity: 1;
+        }
+
+        @keyframes logoScroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
         }
 
         .social-btn {
@@ -756,6 +796,24 @@
                 </div>
             </div>
         </section>
+
+        <!-- Logo Scroll Banner -->
+        <div class="logo-scroll-banner">
+            <div class="logo-scroll-track">
+                <img src="images/-Sticker-by-52works-korean.gif" alt="무런 앤 소소" class="scroll-logo">
+                <img src="images/-Sticker-by-52works-english.gif" alt="Murun and Soso" class="scroll-logo">
+                <img src="images/-Sticker-by-52works-korean.gif" alt="무런 앤 소소" class="scroll-logo">
+                <img src="images/-Sticker-by-52works-english.gif" alt="Murun and Soso" class="scroll-logo">
+                <img src="images/-Sticker-by-52works-korean.gif" alt="무런 앤 소소" class="scroll-logo">
+                <img src="images/-Sticker-by-52works-english.gif" alt="Murun and Soso" class="scroll-logo">
+                <img src="images/-Sticker-by-52works-korean.gif" alt="무런 앤 소소" class="scroll-logo">
+                <img src="images/-Sticker-by-52works-english.gif" alt="Murun and Soso" class="scroll-logo">
+                <img src="images/-Sticker-by-52works-korean.gif" alt="무런 앤 소소" class="scroll-logo">
+                <img src="images/-Sticker-by-52works-english.gif" alt="Murun and Soso" class="scroll-logo">
+                <img src="images/-Sticker-by-52works-korean.gif" alt="무런 앤 소소" class="scroll-logo">
+                <img src="images/-Sticker-by-52works-english.gif" alt="Murun and Soso" class="scroll-logo">
+            </div>
+        </div>
         
         <!-- About Section -->
         <section id="about" class="about">
