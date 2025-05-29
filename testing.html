@@ -4,7 +4,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Single+Day&display=swap" rel="stylesheet">
     
-    <head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Murun and Soso</title>
@@ -47,11 +47,11 @@
             align-items: center;
         }
 
-.logo-img {
-    height: 48px; /* Adjust as needed */
-    width: auto;
-    vertical-align: middle;
-}
+        .logo-img {
+            height: 48px;
+            width: auto;
+            vertical-align: middle;
+        }
 
         .nav-links {
             display: flex;
@@ -101,60 +101,51 @@
             position: relative;
         }
 
-.hero h1,
-.hero p,
-    .hero-image {
-        position: relative;
-    }
+        .hero h1,
+        .hero p,
+        .hero-image {
+            position: relative;
+        }
 
-    .speech-bubble {
-        position: absolute; /* Position aolutelbys relatiev to the .hero-image parent */
-        top: -28px;        /* Adjust this value:
-                              Negative values move it *above* the top edge of the character image.
-                              Positive values move it downwards from the top edge.
-                              e.g., 0 would align its top with the character image's top. */
-        left: 42%;         /* Adjust this value:
-                              Positions the left edge of the speech bubble.
-                              50% would be the center-line of the character image.
-                              >50% moves it to the right of the center. */
-        z-index: 10;       /* Ensures the speech bubble is on top of the character image */
-    }
+        .speech-bubble {
+            position: absolute;
+            top: -28px;
+            left: 42%;
+            z-index: 10;
+        }
 
-    .speech-bubble img {
-        width: 400px;      /* Adjust this value to control the size of the speech bubble.
-                              This makes it 180 pixels wide. */
-        height: auto;      /* Maintains the aspect ratio of the image */
-    }
-.ca-bar,
-.social-buttons {
-    margin: 15px auto !important;
-}
+        .speech-bubble img {
+            width: 400px;
+            height: auto;
+        }
 
-.hero h1 {
-    font-size: 42px;
-    margin-bottom: 8px !important;
-    line-height: 1.1;
-}
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 8px !important;
+            line-height: 1.1;
+        }
 
-.hero p {
-    font-size: 18px;
-    margin-top: 8px !important;
-    margin-bottom: 60px !important;
-    line-height: 1.4;
-}
+        .hero p {
+            font-size: 18px;
+            margin-top: 8px !important;
+            margin-bottom: 30px !important;
+            line-height: 1.4;
+        }
 
         /* CA Coming Soon Bar */
         .ca-bar {
             background: #e5e5e5;
             border: 2px solid #ccc;
             border-radius: 12px;
-            padding: 20px;
-            margin: 10px auto;
-            max-width: 500px;
+            padding: 30px;
+            margin: -140px auto 15px auto !important;
+            max-width: 520px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             gap: 15px;
+            position: relative;
+            z-index: 20;
         }
 
         .ca-text {
@@ -190,7 +181,7 @@
             gap: 15px;
             justify-content: center;
             flex-wrap: wrap;
-            margin: 10px auto;
+            margin: 15px auto 30px auto;
             max-width: 600px;
         }
 
@@ -241,16 +232,17 @@
         .about-image img {
             max-width: 130%;
             height: auto;
+            margin-top: 10px;
         }
 
-.about h2 {
-    font-size: 54px;
-    margin-bottom: 30px;
-    color: #000;
-    text-align: center;
-    animation: floatHeading 3s ease-in-out infinite;
-    transform-origin: center;
-}
+        .about h2 {
+            font-size: 54px;
+            margin-bottom: 30px;
+            color: #000;
+            text-align: center;
+            animation: floatHeading 3s ease-in-out infinite;
+            transform-origin: center;
+        }
 
         .lang-content {
             background: #ffffff;
@@ -312,12 +304,7 @@
             transition: all 0.3s ease;
         }
 
-        /* Enhanced hover effect for cat images - full screen overlay */
-        .meme-item:hover {
-            transform: scale(1.05) rotate(2deg);
-            z-index: 1000;
-        }
-
+        /* Enhanced hover effect for meme images - full screen overlay */
         .meme-item:hover img {
             position: fixed;
             top: 50%;
@@ -334,7 +321,7 @@
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
         }
 
-        /* Scattered positioning - much closer and overlapping */
+        /* Scattered positioning */
         .meme-item:nth-child(1) {
             grid-column: 1 / 3;
             transform: rotate(-3deg);
@@ -448,49 +435,19 @@
             margin-top: 20px;
         }
 
-        /* Image Scroll Gallery */
-        .image-scroll {
-            margin: 40px 0;
-            overflow: hidden;
-            white-space: nowrap;
-            background: #ddd;
-            padding: 20px 0;
-            border-radius: 8px;
-        }
-
-        .scroll-track {
-            display: inline-flex;
-            animation: scroll 20s linear infinite;
-            gap: 20px;
-        }
-
-        .scroll-image {
-            height: 280px;
-            width: auto;
-            border-radius: 8px;
-            flex-shrink: 0;
-        }
-
-        @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
         /* Walking Murun Animation */
-.walking-murun {
-    position: absolute;
-    /* bottom: -20px; <- Original */
-    bottom: 0px;    /* <- Changed: Places it 5px from the bottom edge. Adjust as needed. */
-    height: 180px;
-    z-index: 10;
-    animation: walkAcross 20s ease-in-out infinite
-    
-}
+        .walking-murun {
+            position: absolute;
+            bottom: 0px;
+            height: 180px;
+            z-index: 10;
+            animation: walkAcross 20s ease-in-out infinite;
+        }
 
         .walking-murun img {
             height: 100%;
             width: auto;
-            transform: scaleX(-1); /* Flip so he faces the direction he's walking */
+            transform: scaleX(-1);
         }
 
         @keyframes walkAcross {
@@ -498,25 +455,24 @@
             100% { left: 100%; }
         }
 
-        /* Walking Go Sticker Animation - right to left, slower */
-.walking-go {
-    position: absolute;
-    /* bottom: -30px; <- Original */
-    bottom: 0px;    /* <- Changed: Places it 5px from the bottom edge. Adjust as needed. */
-    height: 240px;
-    z-index: 10;
-    animation: walkStopGoAcross 20s ease-in-out infinite;
-}
+        /* Walking Go Sticker Animation */
+        .walking-go {
+            position: absolute;
+            bottom: 0px;
+            height: 240px;
+            z-index: 10;
+            animation: walkStopGoAcross 20s ease-in-out infinite;
+        }
 
         .walking-go img {
             height: 100%;
             width: auto;
-            transform: scaleX(-1); /* Flip image horizontally */
+            transform: scaleX(-1);
         }
 
         @keyframes walkStopGoAcross {
-            0% { right: -250px; }      /* Start off-screen right */
-            100% { right: 100%; }      /* End off-screen left */
+            0% { right: -250px; }
+            100% { right: 100%; }
         }
 
         /* Footer */
@@ -569,6 +525,110 @@
             opacity: 1;
         }
 
+        /* Lightbox styles */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            transition: opacity 0.3s ease;
+        }
+
+        .lightbox.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        .lightbox-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            background: none;
+            border: none;
+            cursor: pointer;
+            z-index: 10000;
+        }
+
+        .lightbox-close:hover {
+            color: #ccc;
+        }
+
+        /* Language Toggle Animation */
+        .lang-content {
+            display: none;
+        }
+
+        .lang-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Animations */
+        @keyframes sway {
+            0%, 100% {
+                transform: translateX(0px) rotate(0deg) scale(1);
+            }
+            25% {
+                transform: translateX(-5px) rotate(-1deg) scale(1.02);
+            }
+            50% {
+                transform: translateX(0px) rotate(0deg) scale(1.05);
+            }
+            75% {
+                transform: translateX(5px) rotate(1deg) scale(1.02);
+            }
+        }
+
+        @keyframes floatHeading {
+            0%, 100% {
+                transform: translateY(0px) scale(1);
+            }
+            50% {
+                transform: translateY(-8px) scale(1.02);
+            }
+        }
+
+        @keyframes wobbleHeading {
+            0%, 100% {
+                transform: translateX(0px) rotate(0deg) scale(1);
+            }
+            25% {
+                transform: translateX(-3px) rotate(-1deg) scale(1.01);
+            }
+            50% {
+                transform: translateX(0px) rotate(0deg) scale(1.02);
+            }
+            75% {
+                transform: translateX(3px) rotate(1deg) scale(1.01);
+            }
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .nav-links {
@@ -602,131 +662,38 @@
             }
 
             .walking-murun {
-                height: 180px;
+                height: 120px;
             }
 
             .walking-go {
-                height: 180px;
-                bottom: 0px;
-            }
-
-            .scroll-image {
-                height: 220px;
+                height: 160px;
             }
 
             .ca-bar {
                 flex-direction: column;
                 gap: 10px;
                 padding: 15px;
+                margin: -80px auto 15px auto !important;
             }
 
             .social-buttons {
                 gap: 10px;
+                margin: 10px auto 20px auto;
             }
 
             .social-btn {
                 padding: 10px 16px;
                 font-size: 12px;
             }
+
+            .speech-bubble {
+                left: 30%;
+            }
+
+            .speech-bubble img {
+                width: 250px;
+            }
         }
-
-        /* Language Toggle Animation */
-        .lang-content {
-            display: none;
-        }
-
-        .lang-content.active {
-            display: block;
-            animation: fadeIn 0.5s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Floating Elements */
-        .floating-character {
-            position: fixed;
-            font-size: 24px;
-            opacity: 0.3;
-            pointer-events: none;
-            z-index: -1;
-            animation: float 6s ease-in-out infinite;
-            color: #ccc;
-        }
-
-        /* Floating character between sections */
-        .floating-section-character {
-            position: absolute;
-            left: -80px;
-            z-index: 5;
-            opacity: 0.8;
-            transition: opacity 0.3s ease;
-        }
-
-        .floating-section-character img {
-            max-width: 150px;
-            height: auto;
-            animation: bobFloat 4s ease-in-out infinite;
-        }
-
-        .floating-section-character:hover {
-            opacity: 1;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-        }
-@keyframes bobFloat {
-    0%, 100% {
-        transform: translateY(0px) rotate(-2deg);
-    }
-    50% {
-        transform: translateY(-15px) rotate(2deg);
-    }
-}
-
-@keyframes sway {
-    0%, 100% {
-        transform: translateX(0px) rotate(0deg) scale(1);
-    }
-    25% {
-        transform: translateX(-5px) rotate(-1deg) scale(1.02);
-    }
-    50% {
-        transform: translateX(0px) rotate(0deg) scale(1.05);
-    }
-    75% {
-        transform: translateX(5px) rotate(1deg) scale(1.02);
-    }
-}
-
-@keyframes floatHeading {
-    0%, 100% {
-        transform: translateY(0px) scale(1);
-    }
-    50% {
-        transform: translateY(-8px) scale(1.02);
-    }
-}
-
-@keyframes wobbleHeading {
-    0%, 100% {
-        transform: translateX(0px) rotate(0deg) scale(1);
-    }
-    25% {
-        transform: translateX(-3px) rotate(-1deg) scale(1.01);
-    }
-    50% {
-        transform: translateX(0px) rotate(0deg) scale(1.02);
-    }
-    75% {
-        transform: translateX(3px) rotate(1deg) scale(1.01);
-    }
-}
-    
     </style>
 </head>
 <body>
@@ -739,9 +706,9 @@
     <header>
         <nav class="container">
             <a href="#" class="logo">
-  <img src="images/-Sticker-by-52works-korean.gif" alt="무런 앤 소소" class="logo-img logo-kr">
-  <img src="images/-Sticker-by-52works-english.gif" alt="Murun and Soso" class="logo-img logo-en" style="display: none;">
-</a>
+                <img src="images/-Sticker-by-52works-korean.gif" alt="무런 앤 소소" class="logo-img logo-kr">
+                <img src="images/-Sticker-by-52works-english.gif" alt="Murun and Soso" class="logo-img logo-en" style="display: none;">
+            </a>
             <ul class="nav-links">
                 <li><a href="#about" class="nav-en" style="display: none;">About</a><a href="#about" class="nav-kr">소개</a></li>
                 <li><a href="#memes" class="nav-en" style="display: none;">Memes</a><a href="#memes" class="nav-kr">밈</a></li>
@@ -774,34 +741,35 @@
                 </div>
                 
                 <!-- CA Coming Soon Bar -->
-                <div class="ca-bar" style="margin: 20px auto;">
+                <div class="ca-bar">
                     <span class="ca-text">CA: COMING SOON</span>
                     <button class="copy-btn" onclick="copyCA()">COPY</button>
                 </div>
                 
                 <!-- Social/Trading Buttons -->
-                <div class="social-buttons" style="margin: 15px auto;">
+                <div class="social-buttons">
                     <a href="#" class="social-btn twitter">X (Twitter)</a>
                     <a href="#" class="social-btn dexscreener">DexScreener</a>
                     <a href="#" class="social-btn dextools">DexTools</a>
                     <a href="#" class="social-btn pump">Pump.Fun</a>
                 </div>
+            </div>
         </section>
         
- <!-- About Section -->
+        <!-- About Section -->
         <section id="about" class="about">
             <div class="container">
                 <div class="about-content">
                     <div class="about-text">
                         <div class="about-title-kr">
-                            <img src="images/whois-korean.gif" alt="무런 앤 소소란?" style="width: 60%; height: auto; position: relative; top: 50px; left: 10px;z-index: 8888;" />
+                            <img src="images/whois-korean.gif" alt="무런 앤 소소란?" style="width: 60%; height: auto; position: relative; top: 50px; left: 10px; z-index: 8888;" />
                         </div>
                         <div class="about-title-en" style="display: none;">
-                            <img src="images/whois-english.gif" alt="What is Murun and Soso?" style="width: 60%; height: auto; position: relative; top: 50px; left: 10px;z-index: 8888;" />>
+                            <img src="images/whois-english.gif" alt="What is Murun and Soso?" style="width: 60%; height: auto; position: relative; top: 50px; left: 10px; z-index: 8888;" />
                         </div>
                         
                         <div class="lang-content active" id="about-kr">
-                            <p>**무룬**과 **소소** — 번아웃의 비공식 성자들. 무룬은 멍하니 보고, 소소는 조용히 한숨 쉽니다. 아무것도 하지 않는 게 이들의 핵심입니다.</p>
+                            <p><strong>무룬</strong>과 <strong>소소</strong> — 번아웃의 비공식 성자들. 무룬은 멍하니 보고, 소소는 조용히 한숨 쉽니다. 아무것도 하지 않는 게 이들의 핵심입니다.</p>
                             <br>
                             <p>그들은 열정도, 동기부여도 없습니다. 그저 존재합니다 — 끝없는 스크롤, 생존을 위한 커피, 말 없는 하루.</p>
                             <br>
@@ -820,16 +788,14 @@
                             <p>We're not here to win. We're here to vibe quietly with our monsters.</p>
                         </div>
                     </div>
-    
-     
 
-          <!-- Character GIF -->
-          <div class="about-image" style="align-self: flex-start;">
-            <img src="images/whois2.gif" alt="52Works Sticky Monster Lab Animation" style="width: 80%; height: auto; position: relative; top: -80px; left: -50px;" />
-          </div>
-        </div>
-      </div>
-    </section>
+                    <!-- Character GIF -->
+                    <div class="about-image" style="align-self: flex-start;">
+                        <img src="images/whois2.gif" alt="52Works Sticky Monster Lab Animation" style="width: 80%; height: auto; position: relative; top: -80px; left: -50px;" />
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <!-- Memes Section -->
         <section id="memes" class="memes">
@@ -840,59 +806,45 @@
                     <div class="meme-item" onclick="openLightbox(this)">
                         <img src="gelleria/bag.png" alt="Bag">
                     </div>
-
                     <div class="meme-item" onclick="openLightbox(this)">
                         <img src="gelleria/beer.png" alt="Beer">
                     </div>
-
                     <div class="meme-item" onclick="openLightbox(this)">
                         <img src="gelleria/bus.png" alt="Bus">
                     </div>
-
                     <div class="meme-item" onclick="openLightbox(this)">
                         <img src="gelleria/fire.png" alt="Fire">
                     </div>
-
                     <div class="meme-item" onclick="openLightbox(this)">
                         <img src="gelleria/galleria.png" alt="Galleria">
                     </div>
-
                     <div class="meme-item" onclick="openLightbox(this)">
                         <img src="gelleria/huh.png" alt="Huh">
                     </div>
-
                     <div class="meme-item" onclick="openLightbox(this)">
                         <img src="gelleria/job.png" alt="Job">
                     </div>
-
                     <div class="meme-item" onclick="openLightbox(this)">
                         <img src="gelleria/mind1.png" alt="Mind 1">
                     </div>
-
                     <div class="meme-item" onclick="openLightbox(this)">
                         <img src="gelleria/mind12.png" alt="Mind 12">
                     </div>
-
                     <div class="meme-item" onclick="openLightbox(this)">
                         <img src="gelleria/mind123.png" alt="Mind 123">
                     </div>
-
                     <div class="meme-item" onclick="openLightbox(this)">
                         <img src="gelleria/murun.png" alt="Murun">
                     </div>
-
                     <div class="meme-item" onclick="openLightbox(this)">
                         <img src="gelleria/omelet.png" alt="Omelet">
                     </div>
-
                     <div class="meme-item" onclick="openLightbox(this)">
                         <img src="gelleria/piano.png" alt="Piano">
                     </div>
-
                     <div class="meme-item" onclick="openLightbox(this)">
                         <img src="gelleria/rain.png" alt="Rain">
                     </div>
-
                     <div class="meme-item" onclick="openLightbox(this)">
                         <img src="gelleria/snack.png" alt="Snack">
                     </div>
@@ -911,19 +863,17 @@
         <section id="characters" class="characters">
             <div class="container">
                 <h2 class="characters-title-kr">무룬은 왜 있는 거야?</h2>
-                <h2 class="characters-title-en" style="display: none;">Whats up with Murun?</h2>
+                <h2 class="characters-title-en" style="display: none;">What's up with Murun?</h2>
                 
-<!-- Elfsight Instagram Feed | Untitled Instagram Feed -->
-<script src="https://static.elfsight.com/platform/platform.js" async></script>
-<div class="elfsight-app-1027be02-3535-4a55-8a9e-53cd4fe74b32" data-elfsight-app-lazy style="margin-bottom: 60px;"></div>
+                <!-- Elfsight Instagram Feed -->
+                <script src="https://static.elfsight.com/platform/platform.js" async></script>
+                <div class="elfsight-app-1027be02-3535-4a55-8a9e-53cd4fe74b32" data-elfsight-app-lazy style="margin-bottom: 60px;"></div>
 
-                            <div class="container">
                 <h2 class="characters-title-kr">소소는 왜 이러는 거야?</h2>
-                <h2 class="characters-title-en" style="display: none;">Whats up with Soso?</h2>
+                <h2 class="characters-title-en" style="display: none;">What's up with Soso?</h2>
                 
-<!-- Elfsight Instagram Feed | Untitled Instagram Feed 2 -->
-<script src="https://static.elfsight.com/platform/platform.js" async></script>
-<div class="elfsight-app-cc75ac9e-8d99-4e8c-a1c7-73f0477ab12e" data-elfsight-app-lazy></div>
+                <!-- Elfsight Instagram Feed 2 -->
+                <div class="elfsight-app-cc75ac9e-8d99-4e8c-a1c7-73f0477ab12e" data-elfsight-app-lazy style="margin-bottom: 60px;"></div>
 
                 <!-- Character Profiles -->
                 <div class="character-cards">
@@ -992,8 +942,8 @@
                         </div>
 
                         <div class="character-bio">
-                            <p class="bio-kr">소소는 20% 에너지로 살아갑니다. 그녀는 슬프지 않아요, 그냥 **다 끝난** 상태입니다. 2015년 이후로 표정이 바뀌지 않았고, 유일한 취미는 회의 중에 감정적으로 체크아웃하는 것입니다. 소소는 신경 쓰고 싶어하지만 물리적으로 불가능한 모든 사람을 대표합니다. 그녀는 조용한 사직의 여왕이며, 우아하게 해냅니다.</p>
-                            <p class="bio-en" style="display: none;">Soso lives life at 20%. She isn't sad — she's just **done**. Her facial expression hasn't changed since 2015, and her only hobby is emotionally checking out during meetings. Soso represents everyone who wants to care… but physically can't. She's the queen of quiet quitting — and she does it gracefully.</p>
+                            <p class="bio-kr">소소는 20% 에너지로 살아갑니다. 그녀는 슬프지 않아요, 그냥 <strong>다 끝난</strong> 상태입니다. 2015년 이후로 표정이 바뀌지 않았고, 유일한 취미는 회의 중에 감정적으로 체크아웃하는 것입니다. 소소는 신경 쓰고 싶어하지만 물리적으로 불가능한 모든 사람을 대표합니다. 그녀는 조용한 사직의 여왕이며, 우아하게 해냅니다.</p>
+                            <p class="bio-en" style="display: none;">Soso lives life at 20%. She isn't sad — she's just <strong>done</strong>. Her facial expression hasn't changed since 2015, and her only hobby is emotionally checking out during meetings. Soso represents everyone who wants to care… but physically can't. She's the queen of quiet quitting — and she does it gracefully.</p>
                         </div>
                     </div>
                 </div>
@@ -1064,8 +1014,6 @@
                 // Memes section
                 memesTitleKr: document.querySelectorAll('.memes-title-kr'),
                 memesTitleEn: document.querySelectorAll('.memes-title-en'),
-                actionKr: document.querySelectorAll('.action-kr'),
-                actionEn: document.querySelectorAll('.action-en'),
                 
                 // Characters section
                 charTitleKr: document.querySelectorAll('.characters-title-kr'),
@@ -1090,9 +1038,6 @@
                 footerEn: document.querySelectorAll('.footer-en')
             };
             
-            console.log('Memes title KR found:', elements.memesTitleKr.length);
-            console.log('Memes title EN found:', elements.memesTitleEn.length);
-            
             if (currentLang === 'kr') {
                 // Switch to English
                 elements.logo.querySelector('.logo-kr').style.display = 'none';
@@ -1102,11 +1047,7 @@
                 elements.navKr.forEach(el => el.style.display = 'none');
                 elements.heroKr.forEach(el => el.style.display = 'none');
                 elements.aboutTitleKr.forEach(el => el.style.display = 'none');
-                elements.memesTitleKr.forEach(el => {
-                    console.log('Hiding KR memes title:', el.textContent);
-                    el.style.display = 'none';
-                });
-                elements.actionKr.forEach(el => el.style.display = 'none');
+                elements.memesTitleKr.forEach(el => el.style.display = 'none');
                 elements.charTitleKr.forEach(el => el.style.display = 'none');
                 elements.nameKr.forEach(el => el.style.display = 'none');
                 elements.titleKr.forEach(el => el.style.display = 'none');
@@ -1119,11 +1060,7 @@
                 elements.navEn.forEach(el => el.style.display = 'block');
                 elements.heroEn.forEach(el => el.style.display = 'block');
                 elements.aboutTitleEn.forEach(el => el.style.display = 'block');
-                elements.memesTitleEn.forEach(el => {
-                    console.log('Showing EN memes title:', el.textContent);
-                    el.style.display = 'block';
-                });
-                elements.actionEn.forEach(el => el.style.display = 'inline-block');
+                elements.memesTitleEn.forEach(el => el.style.display = 'block');
                 elements.charTitleEn.forEach(el => el.style.display = 'block');
                 elements.nameEn.forEach(el => el.style.display = 'block');
                 elements.titleEn.forEach(el => el.style.display = 'block');
@@ -1147,7 +1084,6 @@
                 elements.heroEn.forEach(el => el.style.display = 'none');
                 elements.aboutTitleEn.forEach(el => el.style.display = 'none');
                 elements.memesTitleEn.forEach(el => el.style.display = 'none');
-                elements.actionEn.forEach(el => el.style.display = 'none');
                 elements.charTitleEn.forEach(el => el.style.display = 'none');
                 elements.nameEn.forEach(el => el.style.display = 'none');
                 elements.titleEn.forEach(el => el.style.display = 'none');
@@ -1161,7 +1097,6 @@
                 elements.heroKr.forEach(el => el.style.display = 'block');
                 elements.aboutTitleKr.forEach(el => el.style.display = 'block');
                 elements.memesTitleKr.forEach(el => el.style.display = 'block');
-                elements.actionKr.forEach(el => el.style.display = 'inline-block');
                 elements.charTitleKr.forEach(el => el.style.display = 'block');
                 elements.nameKr.forEach(el => el.style.display = 'block');
                 elements.titleKr.forEach(el => el.style.display = 'block');
@@ -1178,25 +1113,6 @@
             }
         }
 
-        function toggleMemeLanguage(card) {
-            const captionEn = card.querySelector('.caption-en');
-            const captionKr = card.querySelector('.caption-kr');
-            const subcaptionEn = card.querySelector('.subcaption-en');
-            const subcaptionKr = card.querySelector('.subcaption-kr');
-            
-            if (captionKr.style.display !== 'none') {
-                captionKr.style.display = 'none';
-                captionEn.style.display = 'block';
-                subcaptionKr.style.display = 'none';
-                subcaptionEn.style.display = 'block';
-            } else {
-                captionKr.style.display = 'block';
-                captionEn.style.display = 'none';
-                subcaptionKr.style.display = 'block';
-                subcaptionEn.style.display = 'none';
-            }
-        }
-
         // Add smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -1209,11 +1125,6 @@
                     });
                 }
             });
-        });
-
-        // Add floating animation delays
-        document.querySelectorAll('.floating-character').forEach((char, index) => {
-            char.style.animationDelay = `${index * 2}s`;
         });
 
         // Background audio setup
@@ -1249,7 +1160,7 @@
                 btn.style.background = '#4CAF50';
                 setTimeout(() => {
                     btn.textContent = originalText;
-                    btn.style.background = '#333';
+                    btn.style.background = '#ccc';
                 }, 2000);
             }).catch(() => {
                 // Fallback for older browsers
@@ -1266,7 +1177,7 @@
                 btn.style.background = '#4CAF50';
                 setTimeout(() => {
                     btn.textContent = originalText;
-                    btn.style.background = '#333';
+                    btn.style.background = '#ccc';
                 }, 2000);
             });
         }
