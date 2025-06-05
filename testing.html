@@ -70,69 +70,6 @@
             color: #000;
         }
 
-        /* Dropdown Styles */
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: #fff;
-            min-width: 200px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            z-index: 10001; /* Ensure dropdown is above other header content */
-            border: 2px solid #ccc;
-            border-radius: 8px;
-            top: 100%; /* Position below the "Stores" link */
-            left: 0; /* Align with the left of "Stores" link */
-            margin-top: 5px; /* Small gap */
-        }
-
-        .dropdown-content a {
-            color: #333;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-            transition: background-color 0.3s ease;
-            border-radius: 6px; /* Optional: for individual item rounding */
-            margin: 4px; /* Optional: space between items */
-        }
-
-        .dropdown-content a:hover {
-            background-color: #f1f1f1;
-            color: #000;
-        }
-
-        /* CSS to control visibility of store links based on body class */
-        body.lang-en .store-kr {
-            display: none !important; /* Use !important if needed to override other display styles */
-        }
-        body.lang-en .store-en {
-            display: block !important;
-        }
-        body.lang-kr .store-kr {
-            display: block !important;
-        }
-        body.lang-kr .store-en {
-            display: none !important;
-        }
-
-        /* Fallback/initial state if body class isn't set or JS fails */
-        .store-en { display: none; }
-        .store-kr { display: block; }
-
-
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
-
-        .dropdown > a { /* Target the main "Stores" / "스토어" links */
-            cursor: pointer;
-        }
-
-
         .lang-toggle {
             background: #ccc;
             border: none;
@@ -355,8 +292,6 @@
        /* Meme Grid - Scrapbook Style START */
         .memes {
             padding: 80px 0;
-            /* background-image: url('path/to/your/scrapbook-texture.jpg'); */
-            /* background-color: #fdf5e6; */
             background-color: #ffffff;
             position: relative;
         }
@@ -396,9 +331,8 @@
             border: 1px solid #f0f0f0;
         }
 
-        /* REMOVED the old .meme-item:hover img rule that made it fixed */
         .meme-item:hover img {
-            position: static; /* Override any fixed positioning */
+            position: static;
             width: 100%;
             height: auto;
             max-width: none;
@@ -434,42 +368,34 @@
         .meme-item:nth-child(4n) { margin-left: -5px; }
         /* Meme Grid - Scrapbook Style END */
 
-
-        /* Lightbox specific rules - to ensure image clicked does not also apply meme-item:hover img */
-        .lightbox.active + .meme-item img { /* This rule might be too broad or not specific enough */
-            position: static; /* This was to prevent issues, but with new scrapbook style, it might not be necessary */
+        .lightbox.active + .meme-item img {
+            position: static;
         }
-
 
         /* Happy Dance Surfing Animation - BIGGER VERSION */
         .happy-dance-surfer {
             position: absolute;
-            top: 20px;
-            height: 120px; /* Adjusted from previous version */
+            top: 40px; /* ADJUSTED from 20px to move surfer down */
+            height: 120px;
             width: auto;
             animation: surfAcross 8s linear infinite;
             z-index: 5;
         }
 
-        @keyframes surfAcross { /* Version with 1 flip in the middle */
+        @keyframes surfAcross {
             0% {
                 left: -150px;
                 transform: rotate(0deg);
             }
-            /* Travel towards middle */
             45% {
-                /* left is interpolated */
                 transform: rotate(0deg);
             }
-            /* Mid-point of the flip */
             50% {
                 transform: rotate(180deg);
             }
-            /* Flip complete */
             55% {
                 transform: rotate(360deg);
             }
-            /* Travel to end */
             100% {
                 left: calc(100% + 150px);
                 transform: rotate(360deg);
@@ -758,6 +684,7 @@
         @media (max-width: 768px) {
             .nav-links {
                 gap: 15px;
+                flex-wrap: wrap;
             }
             
             header nav {
@@ -775,11 +702,6 @@
             
             .nav-links {
                 gap: 10px;
-            }
-
-            .dropdown-content {
-                min-width: 150px;
-                left: -50px;
             }
 
             .hero h1 {
@@ -803,9 +725,8 @@
                 padding: 8px;
             }
             .meme-item:hover {
-                transform: scale(1.05) translateY(-3px); /* Simpler hover for mobile */
+                transform: scale(1.05) translateY(-3px);
             }
-            /* Remove complex nth-child transforms for mobile if they cause layout issues */
             .meme-item:nth-child(1),
             .meme-item:nth-child(2),
             .meme-item:nth-child(3),
@@ -821,8 +742,8 @@
             .meme-item:nth-child(13),
             .meme-item:nth-child(14),
             .meme-item:nth-child(15) {
-                transform: rotate(0deg); /* Or a much smaller, consistent rotation */
-                margin: 5px auto; /* Center items more simply */
+                transform: rotate(0deg);
+                margin: 5px auto;
                 z-index: auto;
             }
 
@@ -912,7 +833,7 @@
 
             .happy-dance-surfer {
                 height: 90px;
-                top: 30px;
+                top: 40px; /* Maintain relative position for smaller surfer */
             }
             
             .memes + div {
@@ -925,15 +846,8 @@
              .nav-links {
                 align-items: center;
                 gap: 8px;
-            }
-             .dropdown {
-                width: 100%;
-                text-align: center;
-            }
-            .dropdown-content {
-                left: 50%;
-                transform: translateX(-50%);
-                min-width: 120px;
+                flex-wrap: wrap;
+                justify-content: center;
             }
 
             .hero h1 {
@@ -949,7 +863,6 @@
                 width: 80%;
             }
 
-            /* Responsive Scrapbook - Smallest Screens */
             .memes h2 {
                 font-size: 38px;
                 margin-bottom: 40px;
@@ -960,7 +873,7 @@
             }
             .meme-item {
                 padding: 6px;
-                transform: rotate(calc(var(--initial-rotate, 0deg) / 3)); /* Even less rotation */
+                transform: rotate(calc(var(--initial-rotate, 0deg) / 3));
             }
              .meme-item:nth-child(1)  { --initial-rotate: -3.5deg; }
              .meme-item:nth-child(2)  { --initial-rotate: 2.8deg; }
@@ -991,7 +904,7 @@
         }
     </style>
 </head>
-<body class="lang-kr"> <!-- Initial language class on body -->
+<body class="lang-kr">
     <!-- Background Audio -->
     <audio id="backgroundAudio" loop>
         <source src="audio/copy_CEB4583B-874D-4E57-A589-DA85C43329EF.mp4" type="audio/mp4">
@@ -1008,16 +921,10 @@
                 <li><a href="#about" class="nav-en" style="display: none;">About</a><a href="#about" class="nav-kr">소개</a></li>
                 <li><a href="#memes" class="nav-en" style="display: none;">Memes</a><a href="#memes" class="nav-kr">밈</a></li>
                 <li><a href="#characters" class="nav-en" style="display: none;">Characters</a><a href="#characters" class="nav-kr">캐릭터</a></li>
-                <li class="dropdown">
-                    <a href="#" class="nav-en" style="display: none;">Stores</a>
-                    <a href="#" class="nav-kr">스토어</a>
-                    <div class="dropdown-content">
-                        <a href="https://insideobject.com/product/list.html?cate_no=263" target="_blank" class="store-en">52 works store</a>
-                        <a href="https://insideobject.com/product/list.html?cate_no=263" target="_blank" class="store-kr">무런</a>
-                        <a href="https://insideobject.com/product/list.html?cate_no=451" target="_blank" class="store-en">SOSO Family store</a>
-                        <a href="https://insideobject.com/product/list.html?cate_no=451" target="_blank" class="store-kr">소소</a>
-                    </div>
-                </li>
+                <li><a href="https://insideobject.com/product/list.html?cate_no=263" target="_blank" class="nav-en" style="display: none;">52 works store</a>
+                    <a href="https://insideobject.com/product/list.html?cate_no=263" target="_blank" class="nav-kr">무런</a></li>
+                <li><a href="https://insideobject.com/product/list.html?cate_no=451" target="_blank" class="nav-en" style="display: none;">SOSO Family store</a>
+                    <a href="https://insideobject.com/product/list.html?cate_no=451" target="_blank" class="nav-kr">소소</a></li>
                 <li><button class="lang-toggle" onclick="toggleLanguage()">🇰🇷 / 🇺🇸</button></li>
             </ul>
         </nav>
@@ -1037,20 +944,17 @@
                          alt="Genius Working - 52works Sticky Monster Lab Animation"
                          style="max-width: 100%; height: auto;">
 
-                    <!-- Speech bubble above genius working character -->
                     <div class="speech-bubble">
                         <img src="images/speaah-korean.gif" alt="Speech Bubble Korean" class="speech-kr">
                         <img src="images/speaah-english.gif" alt="Speech Bubble English" class="speech-en" style="display: none;">
                     </div>
                 </div>
 
-                <!-- CA Coming Soon Bar -->
                 <div class="ca-bar">
                     <span class="ca-text">CA: COMING SOON</span>
                     <button class="copy-btn" onclick="copyCA()">COPY</button>
                 </div>
 
-                <!-- Social/Trading Buttons -->
                 <div class="social-buttons">
                     <a href="#" class="social-btn twitter">X (Twitter)</a>
                     <a href="#" class="social-btn dexscreener">DexScreener</a>
@@ -1060,7 +964,6 @@
             </div>
         </section>
 
-        <!-- Logo Scroll Banner -->
         <div class="logo-scroll-banner">
             <div class="logo-scroll-track">
                 <img src="images/plane.gif" alt="Flying Plane Icon" class="scroll-logo">
@@ -1082,7 +985,6 @@
             </div>
         </div>
 
-        <!-- About Section -->
         <section id="about" class="about">
             <div class="container">
                 <div class="about-content">
@@ -1115,7 +1017,6 @@
                         </div>
                     </div>
 
-                    <!-- Character GIF -->
                     <div class="about-image" style="align-self: flex-start;">
                         <img src="images/whois2.gif" alt="52Works Sticky Monster Lab Animation" style="width: 80%; height: auto; position: relative; top: -20px; left: -50px;" />
                     </div>
@@ -1123,7 +1024,6 @@
             </div>
         </section>
 
-        <!-- Memes Section -->
         <section id="memes" class="memes">
             <div class="container">
                 <h2 class="memes-title-kr">나는 고양이가 없다</h2>
@@ -1178,32 +1078,26 @@
             </div>
         </section>
 
-        <!-- Happy Dance Surfer positioned at the border between memes and characters -->
         <div style="position: relative; height: 180px; overflow: hidden; width: 100%; background: transparent; padding: 20px 0;">
             <img src="images/Happy%20Dance%20Sticker%20by%2052works(%EC%98%A4%EC%9D%B4%EC%9B%8D%EC%8A%A4).gif"
                  alt="Happy Dance Surfer - 52works Sticky Monster Lab Animation"
                  class="happy-dance-surfer">
         </div>
 
-        <!-- Characters Section -->
         <section id="characters" class="characters">
             <div class="container">
                 <h2 class="characters-title-kr">무룬은 왜 있는 거야?</h2>
                 <h2 class="characters-title-en" style="display: none;">What's up with Murun?</h2>
 
-                <!-- Elfsight Instagram Feed -->
                 <script src="https://static.elfsight.com/platform/platform.js" async></script>
                 <div class="elfsight-app-1027be02-3535-4a55-8a9e-53cd4fe74b32" data-elfsight-app-lazy style="margin-bottom: 60px;"></div>
 
                 <h2 class="characters-title-kr">소소는 왜 이러는 거야?</h2>
                 <h2 class="characters-title-en" style="display: none;">What's up with Soso?</h2>
 
-                <!-- Elfsight Instagram Feed 2 -->
                 <div class="elfsight-app-cc75ac9e-8d99-4e8c-a1c7-73f0477ab12e" data-elfsight-app-lazy style="margin-bottom: 60px;"></div>
 
-                <!-- Character Profiles -->
                 <div class="character-cards">
-                    <!-- Murun Profile -->
                     <div class="character-profile">
                         <h3 class="character-name">
                             <span class="name-kr">무런 (Murun)</span>
@@ -1213,7 +1107,6 @@
                             <span class="title-kr">무표정한 존재</span>
                             <span class="title-en" style="display: none;">The Expressionless One</span>
                         </p>
-
                         <div class="character-stats">
                             <div class="stats-kr">
                                 <strong>기분:</strong> 영원히 중립적<br>
@@ -1226,19 +1119,16 @@
                                 <strong>Favorite Activity:</strong> Staring at nothing while everything collapses<br>
                             </div>
                         </div>
-
                         <div class="character-quote">
                             <span class="quote-kr">"..."</span>
                             <span class="quote-en" style="display: none;">"..."</span>
                         </div>
-
                         <div class="character-bio">
                             <p class="bio-kr">무런은 번아웃의 정신적 얼굴입니다. 그는 말하지 않고, 눈을 깜빡이지도 않습니다. 그저 로그인하고, 앉아서, 무의 심연을 바라봅니다. 무런은 게으른 게 아니라 후기 자본주의에 감정적으로 반응하지 않을 뿐입니다. 형광등과 실존적 공포가 있는 곳이면 어디든 그를 찾을 수 있을 것입니다.</p>
                             <p class="bio-en" style="display: none;">Murun is the spiritual face of burnout. He doesn't speak. He doesn't blink. He simply logs in, sits down, and zones out into the abyss. Murun isn't lazy — he's just emotionally unresponsive to late-stage capitalism. You'll find him wherever there's fluorescent lighting and existential dread.</p>
                         </div>
                     </div>
 
-                    <!-- Soso Profile -->
                     <div class="character-profile">
                         <h3 class="character-name">
                             <span class="name-kr">소소 (Soso)</span>
@@ -1248,7 +1138,6 @@
                             <span class="title-kr">조용한 저항자</span>
                             <span class="title-en" style="display: none;">The Quiet Resistor</span>
                         </p>
-
                         <div class="character-stats">
                             <div class="stats-kr">
                                 <strong>기분:</strong> 그냥 그럼<br>
@@ -1261,12 +1150,10 @@
                                 <strong>Favorite Activity:</strong> Sighing at screens<br>
                             </div>
                         </div>
-
                         <div class="character-quote">
                             <span class="quote-kr">"그냥 그런 하루였어."</span>
                             <span class="quote-en" style="display: none;">"It was just… a day."</span>
                         </div>
-
                         <div class="character-bio">
                             <p class="bio-kr">소소는 20% 에너지로 살아갑니다. 그녀는 슬프지 않아요, 그냥 <strong>다 끝난</strong> 상태입니다. 2015년 이후로 표정이 바뀌지 않았고, 유일한 취미는 회의 중에 감정적으로 체크아웃하는 것입니다. 소소는 신경 쓰고 싶어하지만 물리적으로 불가능한 모든 사람을 대표합니다. 그녀는 조용한 사직의 여왕이며, 우아하게 해냅니다.</p>
                             <p class="bio-en" style="display: none;">Soso lives life at 20%. She isn't sad — she's just <strong>done</strong>. Her facial expression hasn't changed since 2015, and her only hobby is emotionally checking out during meetings. Soso represents everyone who wants to care… but physically can't. She's the queen of quiet quitting — and she does it gracefully.</p>
@@ -1274,12 +1161,10 @@
                     </div>
                 </div>
 
-                <!-- Walking Murun -->
                 <div class="walking-murun">
                     <img src="images/Walking-Walk-Sticker-by-52worksnew.gif" alt="Walking Murun">
                 </div>
 
-                <!-- Walking Go Sticker - opposite direction -->
                 <div class="walking-go">
                     <img src="images/Go-Sticker-by-52works-fast.gif" alt="Go Sticker Walking">
                 </div>
@@ -1287,7 +1172,6 @@
         </section>
     </main>
 
-    <!-- Lightbox Modal -->
     <div class="lightbox" id="lightbox" onclick="closeLightbox()">
         <button class="lightbox-close" onclick="closeLightbox(event)">×</button>
         <div class="lightbox-content" onclick="event.stopPropagation()">
@@ -1306,7 +1190,6 @@
             <p class="footer-en" style="display: none;">This is an unofficial fan page created with love for Murun and Soso's unique aesthetic</p>
         </div>
 
-        <!-- Skull sticker in bottom left -->
         <div class="footer-skull">
             <img src="images/Sticker%20Skull%20Sticker%20by%2052works(%EC%98%A4%EC%9D%B4%EC%9B%8D%EC%8A%A4).gif"
                  alt="Skull Sticker - 52works Animation">
@@ -1376,14 +1259,6 @@
             }
 
             currentLang = switchToEn ? 'en' : 'kr';
-
-            if (switchToEn) {
-                document.body.classList.remove('lang-kr');
-                document.body.classList.add('lang-en');
-            } else {
-                document.body.classList.remove('lang-en');
-                document.body.classList.add('lang-kr');
-            }
         }
 
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -1507,7 +1382,6 @@
 
         document.addEventListener('DOMContentLoaded', () => {
             queryLangElements();
-            document.body.classList.add('lang-kr');
         });
     </script>
 </body>
