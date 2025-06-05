@@ -70,78 +70,6 @@
             color: #000;
         }
 
-        /* Dropdown Styles */
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
-        .dropdown-wrapper {
-    position: relative;
-    display: inline-block;
-}
-
-.dropdown:hover .dropdown-content,
-.dropdown-wrapper:hover .dropdown-content {
-    display: block;
-}
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: #fff;
-            min-width: 200px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            z-index: 10001; /* Ensure dropdown is above other header content */
-            border: 2px solid #ccc;
-            border-radius: 8px;
-            top: 100%; /* Position below the "Stores" link */
-            left: 0; /* Align with the left of "Stores" link */
-            margin-top: 5px; /* Small gap */
-        }
-
-        .dropdown-content a {
-            color: #333;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-            transition: background-color 0.3s ease;
-            border-radius: 6px; /* Optional: for individual item rounding */
-            margin: 4px; /* Optional: space between items */
-        }
-
-        .dropdown-content a:hover {
-            background-color: #f1f1f1;
-            color: #000;
-        }
-
-        /* CSS to control visibility of store links based on body class */
-        body.lang-en .store-kr {
-            display: none !important; /* Use !important if needed to override other display styles */
-        }
-        body.lang-en .store-en {
-            display: block !important;
-        }
-        body.lang-kr .store-kr {
-            display: block !important;
-        }
-        body.lang-kr .store-en {
-            display: none !important;
-        }
-
-        /* Fallback/initial state if body class isn't set or JS fails */
-        .store-en { display: none; }
-        .store-kr { display: block; }
-
-
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
-
-        .dropdown > a { /* Target the main "Stores" / "스토어" links */
-            cursor: pointer;
-        }
-
-
         .lang-toggle {
             background: #ccc;
             border: none;
@@ -756,6 +684,7 @@
         @media (max-width: 768px) {
             .nav-links {
                 gap: 15px;
+                flex-wrap: wrap;
             }
             
             header nav {
@@ -773,11 +702,6 @@
             
             .nav-links {
                 gap: 10px;
-            }
-
-            .dropdown-content {
-                min-width: 150px;
-                left: -50px;
             }
 
             .hero h1 {
@@ -922,15 +846,8 @@
              .nav-links {
                 align-items: center;
                 gap: 8px;
-            }
-             .dropdown {
-                width: 100%;
-                text-align: center;
-            }
-            .dropdown-content {
-                left: 50%;
-                transform: translateX(-50%);
-                min-width: 120px;
+                flex-wrap: wrap;
+                justify-content: center;
             }
 
             .hero h1 {
@@ -1004,19 +921,10 @@
                 <li><a href="#about" class="nav-en" style="display: none;">About</a><a href="#about" class="nav-kr">소개</a></li>
                 <li><a href="#memes" class="nav-en" style="display: none;">Memes</a><a href="#memes" class="nav-kr">밈</a></li>
                 <li><a href="#characters" class="nav-en" style="display: none;">Characters</a><a href="#characters" class="nav-kr">캐릭터</a></li>
-<li class="dropdown">
-    <div class="dropdown-wrapper">
-        <a href="#" class="nav-en" style="display: none;">Stores</a>
-        <a href="#" class="nav-kr">스토어</a>
-        <div class="dropdown-content">
-            <a href="https://insideobject.com/product/list.html?cate_no=263" target="_blank" class="store-en">52 works store</a>
-            <a href="https://insideobject.com/product/list.html?cate_no=263" target="_blank" class="store-kr">무런</a>
-            <a href="https://insideobject.com/product/list.html?cate_no=451" target="_blank" class="store-en">SOSO Family store</a>
-            <a href="https://insideobject.com/product/list.html?cate_no=451" target="_blank" class="store-kr">소소</a>
-        </div>
-    </div>
-</li>
-
+                <li><a href="https://insideobject.com/product/list.html?cate_no=263" target="_blank" class="nav-en" style="display: none;">52 works store</a>
+                    <a href="https://insideobject.com/product/list.html?cate_no=263" target="_blank" class="nav-kr">무런</a></li>
+                <li><a href="https://insideobject.com/product/list.html?cate_no=451" target="_blank" class="nav-en" style="display: none;">SOSO Family store</a>
+                    <a href="https://insideobject.com/product/list.html?cate_no=451" target="_blank" class="nav-kr">소소</a></li>
                 <li><button class="lang-toggle" onclick="toggleLanguage()">🇰🇷 / 🇺🇸</button></li>
             </ul>
         </nav>
@@ -1351,14 +1259,6 @@
             }
 
             currentLang = switchToEn ? 'en' : 'kr';
-
-            if (switchToEn) {
-                document.body.classList.remove('lang-kr');
-                document.body.classList.add('lang-en');
-            } else {
-                document.body.classList.remove('lang-en');
-                document.body.classList.add('lang-kr');
-            }
         }
 
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -1482,7 +1382,6 @@
 
         document.addEventListener('DOMContentLoaded', () => {
             queryLangElements();
-            document.body.classList.add('lang-kr');
         });
     </script>
 </body>
