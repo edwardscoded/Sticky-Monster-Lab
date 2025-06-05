@@ -71,17 +71,45 @@
         }
 
         .lang-toggle {
-            background: #ccc;
-            border: none;
-            color: #000;
-            padding: 8px 12px;
-            border-radius: 4px;
+            background: linear-gradient(135deg, #333 0%, #555 100%);
+            border: 2px solid #666;
+            color: #fff;
+            padding: 10px 16px;
+            border-radius: 8px;
             cursor: pointer;
-            transition: background 0.3s ease;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            font-size: 14px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
         }
 
         .lang-toggle:hover {
-            background: #aaa;
+            background: linear-gradient(135deg, #444 0%, #666 100%);
+            border-color: #777;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        .lang-toggle:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        }
+
+        .lang-toggle::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .lang-toggle:hover::before {
+            left: 100%;
         }
 
         /* Main Content */
@@ -419,7 +447,7 @@
             transform-origin: center;
         }
 
-        /* Character Cards */
+        /* Character Cards - Interactive Flip Style */
         .character-cards {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -429,60 +457,165 @@
             padding: 0 20px;
         }
 
-        .character-profile {
-            background: #f5f5f5;
-            padding: 50px;
-            border-radius: 12px;
+        .character-flip-card {
+            background-color: transparent;
+            width: 100%;
+            height: 400px;
+            perspective: 1000px;
+            position: relative;
+        }
+
+        .character-flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
             text-align: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+            cursor: pointer;
         }
 
-        .character-profile:hover {
-            transform: translateY(-5px);
+        .character-flip-card:hover .character-flip-card-inner {
+            transform: rotateY(180deg);
         }
 
-        .character-name {
-            font-size: 32px;
+        .character-flip-card-front, .character-flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 12px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+        }
+
+        .character-flip-card-front {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            color: #333;
+        }
+
+        .character-flip-card-back {
+            background: linear-gradient(135deg, #495057 0%, #343a40 100%);
+            color: #f8f9fa;
+            transform: rotateY(180deg);
+        }
+
+        .character-flip-card:hover .character-flip-card-front,
+        .character-flip-card:hover .character-flip-card-back {
+            box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+        }
+
+        .character-title-flip {
+            font-size: 28px;
             font-weight: bold;
-            margin-bottom: 20px;
-            color: #000;
+            margin-bottom: 15px;
+            color: inherit;
         }
 
-        .character-title {
-            font-size: 18px;
-            color: #666;
-            margin-bottom: 30px;
+        .character-subtitle {
+            font-size: 16px;
             font-style: italic;
+            margin-bottom: 25px;
+            opacity: 0.8;
         }
 
-        .character-stats {
+        .character-traits {
+            list-style: none;
+            padding: 0;
+            margin: 0;
             text-align: left;
-            margin: 20px 0;
+            width: 100%;
+        }
+
+        .character-traits li {
+            margin: 12px 0;
             font-size: 14px;
-            line-height: 1.8;
+            line-height: 1.4;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
         }
 
-        .character-stats strong {
-            color: #000;
-        }
-
-        .character-quote {
+        .character-quote-flip {
             font-style: italic;
-            color: #333;
-            margin: 20px 0;
-            padding: 15px;
-            background: #e5e5e5;
-            border-left: 4px solid #ccc;
-            border-radius: 4px;
-        }
-
-        .character-bio {
-            font-size: 14px;
-            color: #333;
-            line-height: 1.6;
-            text-align: left;
             margin-top: 20px;
+            padding: 15px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            border-left: 4px solid rgba(255,255,255,0.3);
+        }
+
+        .character-thoughts {
+            text-align: left;
+            width: 100%;
+        }
+
+        .character-thoughts p {
+            margin: 15px 0;
+            font-size: 14px;
+            line-height: 1.5;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .character-thoughts p:last-child {
+            border-bottom: none;
+        }
+
+        .flip-prompt {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 12px;
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
+        }
+
+        .character-flip-card:hover .flip-prompt {
+            opacity: 0;
+        }
+
+        /* Murun specific styling */
+        .murun-card .character-flip-card-front {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+        }
+
+        .murun-card .character-flip-card-back {
+            background: linear-gradient(135deg, #1565c0 0%, #0d47a1 100%);
+        }
+
+        /* Soso specific styling */
+        .soso-card .character-flip-card-front {
+            background: linear-gradient(135deg, #fce4ec 0%, #f8bbd9 100%);
+        }
+
+        .soso-card .character-flip-card-back {
+            background: linear-gradient(135deg, #ad1457 0%, #880e4f 100%);
+        }
+
+        /* Subtle animations */
+        .character-flip-card-front::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            border-radius: 12px;
+        }
+
+        .character-flip-card:hover .character-flip-card-front::before {
+            opacity: 1;
         }
 
         /* Walking Murun Animation */
@@ -770,8 +903,16 @@
                 gap: 40px;
             }
 
-            .character-profile {
-                padding: 30px;
+            .character-flip-card {
+                height: 350px;
+            }
+
+            .character-flip-card-front, .character-flip-card-back {
+                padding: 25px;
+            }
+
+            .character-title-flip {
+                font-size: 24px;
             }
 
             .walking-murun {
@@ -891,10 +1032,13 @@
              .meme-item:nth-child(14) { --initial-rotate: 2.5deg; }
              .meme-item:nth-child(15) { --initial-rotate: -4.0deg; }
             
-            .character-name {
-                font-size: 28px;
+            .character-title-flip {
+                font-size: 22px;
             }
-            .character-profile {
+            .character-flip-card {
+                height: 320px;
+            }
+            .character-flip-card-front, .character-flip-card-back {
                 padding: 20px;
             }
             .elfsight-app-1027be02-3535-4a55-8a9e-53cd4fe74b32,
@@ -966,6 +1110,24 @@
 
         <div class="logo-scroll-banner">
             <div class="logo-scroll-track">
+                <!-- First set of planes -->
+                <img src="images/plane.gif" alt="Flying Plane Icon" class="scroll-logo">
+                <img src="images/plane.gif" alt="Flying Plane Icon" class="scroll-logo">
+                <img src="images/plane.gif" alt="Flying Plane Icon" class="scroll-logo">
+                <img src="images/plane.gif" alt="Flying Plane Icon" class="scroll-logo">
+                <img src="images/plane.gif" alt="Flying Plane Icon" class="scroll-logo">
+                <img src="images/plane.gif" alt="Flying Plane Icon" class="scroll-logo">
+                <img src="images/plane.gif" alt="Flying Plane Icon" class="scroll-logo">
+                <img src="images/plane.gif" alt="Flying Plane Icon" class="scroll-logo">
+                <img src="images/plane.gif" alt="Flying Plane Icon" class="scroll-logo">
+                <img src="images/plane.gif" alt="Flying Plane Icon" class="scroll-logo">
+                <img src="images/plane.gif" alt="Flying Plane Icon" class="scroll-logo">
+                <img src="images/plane.gif" alt="Flying Plane Icon" class="scroll-logo">
+                <img src="images/plane.gif" alt="Flying Plane Icon" class="scroll-logo">
+                <img src="images/plane.gif" alt="Flying Plane Icon" class="scroll-logo">
+                <img src="images/plane.gif" alt="Flying Plane Icon" class="scroll-logo">
+                <img src="images/plane.gif" alt="Flying Plane Icon" class="scroll-logo">
+                <!-- Duplicate set for seamless loop -->
                 <img src="images/plane.gif" alt="Flying Plane Icon" class="scroll-logo">
                 <img src="images/plane.gif" alt="Flying Plane Icon" class="scroll-logo">
                 <img src="images/plane.gif" alt="Flying Plane Icon" class="scroll-logo">
@@ -997,23 +1159,35 @@
                         </div>
 
                         <div class="lang-content active" id="about-kr">
-                            <p><strong>무룬</strong>과 <strong>소소</strong> — 번아웃의 비공식 성자들. 무룬은 멍하니 보고, 소소는 조용히 한숨 쉽니다. 아무것도 하지 않는 게 이들의 핵심입니다.</p>
+                            <p>무른과 소소를 소개합니다. 두 룸메이트이자 존재감 희미한 피로의 화신. 번아웃의 비공식 성자들이죠.</p>
                             <br>
-                            <p>그들은 열정도, 동기부여도 없습니다. 그저 존재합니다 — 끝없는 스크롤, 생존을 위한 커피, 말 없는 하루.</p>
+                            <p>무른은 말이 없습니다. 그냥 멍하니 바라봅니다. 벽을, 핸드폰을, 혹은 아무것도 아닌 공허함을. 그의 에너지는 늘 '로딩 중'입니다.</p>
                             <br>
-                            <p>이 프로젝트는 그들을 위한 헌정입니다. 감정은 탈주했지만 출근은 하는 이들을 위해. 피곤한데 이유조차 모르는 당신을 위해. 밈에서 위로를 찾고, 무표정 속 평화를 느끼는 모두를 위해.</p>
+                            <p>소소는 한숨을 쉽니다. 자주요. 마시지도 않을 커피를 내리고, 매일 같은 후드를 입습니다. 빨래는 전쟁처럼 느껴져서 시작조차 못 해요. 언젠가 "나중에"라는 알람을 설정한 적도 있죠.</p>
                             <br>
-                            <p>이건 성공이 아니라, 조용한 공감입니다. 우리 모두의 몬스터와 함께, 말 없이 공존하는 것.</p>
+                            <p>둘은 열정도, 목표도 없습니다. 생산성 따위엔 관심 없고, 자아계발서 한 권 읽어본 적도 없습니다.</p>
+                            <br>
+                            <p>대신 그들은 그냥 흘러갑니다. 끝없이 스크롤을 내리고, 존재만으로 하루를 버팁니다. 밈으로 숨을 쉬고, 전자레인지 음식과 말 없는 피로의 유대감으로 살아갑니다.</p>
+                            <br>
+                            <p>이 프로젝트는 무른과 소소를 위한 헌사입니다. 감정적으로 오프라인된 사람들, 아무 이유 없이 지친 이들, 정적 속에서 위로를 찾는 모두를 위한 이야기입니다.</p>
+                            <br>
+                            <p>세상을 바꾸려는 게 아닙니다. 그저 오늘 하루를 버티는 것. 그거면 충분합니다.</p>
                         </div>
 
                         <div class="lang-content" id="about-en">
-                            <p>Meet <strong>Murun</strong> and <strong>Soso</strong> — the unofficial saints of burnout. Murun stares. Soso sighs. Together, they do absolutely nothing — and that's exactly the point.</p>
+                            <p>Meet <strong>Murun</strong> and <strong>Soso</strong>. Two roommates. Two existential blobs. The unofficial saints of burnout.</p>
                             <br>
-                            <p>They don't hustle. They don't inspire. They just exist — scrolling endlessly, drinking coffee like it's a coping mechanism, and surviving in silence.</p>
+                            <p>Murun doesn't talk much. He just stares into the void. Sometimes at a wall. Sometimes at his phone. Sometimes at nothing. His energy is permanently set to buffering.</p>
                             <br>
-                            <p>This project is a tribute to them. To everyone who's emotionally offline but still shows up. To those who are tired for no reason. To those who find peace in memes and meaning in stillness.</p>
+                            <p>Soso sighs. A lot. She makes coffee she never finishes and wears the same hoodie every day because laundry feels like a battle she's not ready to fight. She once set an alarm for "maybe later."</p>
                             <br>
-                            <p>We're not here to win. We're here to vibe quietly with our monsters.</p>
+                            <p>They don't hustle. They don't grind. They've never read a productivity thread in their lives.</p>
+                            <br>
+                            <p>Instead, they drift. They scroll. They exist in quiet resistance to a world that never shuts up. They survive off memes, microwave noodles, and the unspoken bond of shared fatigue.</p>
+                            <br>
+                            <p>This project is for them. For the emotionally unplugged. For anyone who's ever felt like a loading screen in human form. For those who don't need to be fixed. Just left alone in peace with their monsters.</p>
+                            <br>
+                            <p>Murun and Soso aren't here to change the world. They're just trying to make it through the day. And honestly, that's enough.</p>
                         </div>
                     </div>
 
@@ -1098,65 +1272,95 @@
                 <div class="elfsight-app-cc75ac9e-8d99-4e8c-a1c7-73f0477ab12e" data-elfsight-app-lazy style="margin-bottom: 60px;"></div>
 
                 <div class="character-cards">
-                    <div class="character-profile">
-                        <h3 class="character-name">
-                            <span class="name-kr">무런 (Murun)</span>
-                            <span class="name-en" style="display: none;">Murun</span>
-                        </h3>
-                        <p class="character-title">
-                            <span class="title-kr">무표정한 존재</span>
-                            <span class="title-en" style="display: none;">The Expressionless One</span>
-                        </p>
-                        <div class="character-stats">
-                            <div class="stats-kr">
-                                <strong>기분:</strong> 영원히 중립적<br>
-                                <strong>직업:</strong> 압박 속에서 존재하기<br>
-                                <strong>좋아하는 활동:</strong> 모든 것이 무너지는 동안 아무것도 보지 않기<br>
+                    <!-- Murun Character Card -->
+                    <div class="character-flip-card murun-card">
+                        <div class="character-flip-card-inner">
+                            <div class="character-flip-card-front">
+                                <h3 class="character-title-flip">
+                                    <span class="name-kr">무런 (Murun)</span>
+                                    <span class="name-en" style="display: none;">Murun</span>
+                                </h3>
+                                <p class="character-subtitle">
+                                    <span class="title-kr">멍하니 바라보는 존재</span>
+                                    <span class="title-en" style="display: none;">The Staring Void</span>
+                                </p>
+                                <ul class="character-traits">
+                                    <li class="traits-kr">🧍‍♂️ 빈 시선</li>
+                                    <li class="traits-kr">☕ 항상 든 커피</li>
+                                    <li class="traits-kr">📱 손에서 떨어지지 않는 폰</li>
+                                    <li class="traits-en" style="display: none;">🧍‍♂️ Blank stare</li>
+                                    <li class="traits-en" style="display: none;">☕ Holding coffee</li>
+                                    <li class="traits-en" style="display: none;">📱 Phone always in hand</li>
+                                </ul>
+                                <div class="character-quote-flip">
+                                    <span class="quote-kr">"괜찮아요. 그냥 피곤해서..."</span>
+                                    <span class="quote-en" style="display: none;">"I'm fine. Just tired."</span>
+                                </div>
+                                <div class="flip-prompt">
+                                    <span class="prompt-kr">진짜 생각을 보려면 호버하세요...</span>
+                                    <span class="prompt-en" style="display: none;">Flip to see what he's really thinking...</span>
+                                </div>
                             </div>
-                            <div class="stats-en" style="display: none;">
-                                <strong>Mood:</strong> Neutral. Permanently.<br>
-                                <strong>Occupation:</strong> Existing under pressure<br>
-                                <strong>Favorite Activity:</strong> Staring at nothing while everything collapses<br>
+                            <div class="character-flip-card-back">
+                                <h3 class="character-title-flip">
+                                    <span class="name-kr">무런의 속마음</span>
+                                    <span class="name-en" style="display: none;">Murun's Inner Thoughts</span>
+                                </h3>
+                                <div class="character-thoughts">
+                                    <p class="thoughts-kr">💭 "메시지에 답할 이유가 뭐지? 난 이미 읽씹당한 메시지 같은데..."</p>
+                                    <p class="thoughts-kr">📡 "존재가 로딩 중입니다. 잠시만 기다려주세요."</p>
+                                    <p class="thoughts-kr">🫥 "충분히 오래 아무것도 안 하면, 진짜 아무것도 안 될 수 있을까?"</p>
+                                    <p class="thoughts-en" style="display: none;">💭 "What's the point of answering messages when I'm the message left on read?"</p>
+                                    <p class="thoughts-en" style="display: none;">📡 "Existence is buffering. Please wait."</p>
+                                    <p class="thoughts-en" style="display: none;">🫥 "If I do nothing long enough, maybe I'll become nothing."</p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="character-quote">
-                            <span class="quote-kr">"..."</span>
-                            <span class="quote-en" style="display: none;">"..."</span>
-                        </div>
-                        <div class="character-bio">
-                            <p class="bio-kr">무런은 번아웃의 정신적 얼굴입니다. 그는 말하지 않고, 눈을 깜빡이지도 않습니다. 그저 로그인하고, 앉아서, 무의 심연을 바라봅니다. 무런은 게으른 게 아니라 후기 자본주의에 감정적으로 반응하지 않을 뿐입니다. 형광등과 실존적 공포가 있는 곳이면 어디든 그를 찾을 수 있을 것입니다.</p>
-                            <p class="bio-en" style="display: none;">Murun is the spiritual face of burnout. He doesn't speak. He doesn't blink. He simply logs in, sits down, and zones out into the abyss. Murun isn't lazy — he's just emotionally unresponsive to late-stage capitalism. You'll find him wherever there's fluorescent lighting and existential dread.</p>
                         </div>
                     </div>
 
-                    <div class="character-profile">
-                        <h3 class="character-name">
-                            <span class="name-kr">소소 (Soso)</span>
-                            <span class="name-en" style="display: none;">Soso</span>
-                        </h3>
-                        <p class="character-title">
-                            <span class="title-kr">조용한 저항자</span>
-                            <span class="title-en" style="display: none;">The Quiet Resistor</span>
-                        </p>
-                        <div class="character-stats">
-                            <div class="stats-kr">
-                                <strong>기분:</strong> 그냥 그럼<br>
-                                <strong>직업:</strong> 초대 거절하기<br>
-                                <strong>좋아하는 활동:</strong> 화면을 보며 한숨쉬기<br>
+                    <!-- Soso Character Card -->
+                    <div class="character-flip-card soso-card">
+                        <div class="character-flip-card-inner">
+                            <div class="character-flip-card-front">
+                                <h3 class="character-title-flip">
+                                    <span class="name-kr">소소 (Soso)</span>
+                                    <span class="name-en" style="display: none;">Soso</span>
+                                </h3>
+                                <p class="character-subtitle">
+                                    <span class="title-kr">조용한 한숨</span>
+                                    <span class="title-en" style="display: none;">The Quiet Sigh</span>
+                                </p>
+                                <ul class="character-traits">
+                                    <li class="traits-kr">🧥 후드티와 흐트러진 머리</li>
+                                    <li class="traits-kr">🥄 반만 먹은 시리얼</li>
+                                    <li class="traits-kr">🎧 항상 끼고 있는 헤드폰</li>
+                                    <li class="traits-en" style="display: none;">🧥 Hoodie, messy bun</li>
+                                    <li class="traits-en" style="display: none;">🥄 Half-eaten cereal</li>
+                                    <li class="traits-en" style="display: none;">🎧 Headphones always on</li>
+                                </ul>
+                                <div class="character-quote-flip">
+                                    <span class="quote-kr">"잠깐만... 시간 좀 주세요..."</span>
+                                    <span class="quote-en" style="display: none;">"Just need a second..."</span>
+                                </div>
+                                <div class="flip-prompt">
+                                    <span class="prompt-kr">진짜 생각을 보려면 호버하세요...</span>
+                                    <span class="prompt-en" style="display: none;">Flip to see what she's really thinking...</span>
+                                </div>
                             </div>
-                            <div class="stats-en" style="display: none;">
-                                <strong>Mood:</strong> Meh<br>
-                                <strong>Occupation:</strong> Declining invites<br>
-                                <strong>Favorite Activity:</strong> Sighing at screens<br>
+                            <div class="character-flip-card-back">
+                                <h3 class="character-title-flip">
+                                    <span class="name-kr">소소의 속마음</span>
+                                    <span class="name-en" style="display: none;">Soso's Inner Thoughts</span>
+                                </h3>
+                                <div class="character-thoughts">
+                                    <p class="thoughts-kr">💭 "세상이 닫지 못한 브라우저 탭 같아."</p>
+                                    <p class="thoughts-kr">🪫 "모든 게 에너지를 소모해. 기쁨마저도."</p>
+                                    <p class="thoughts-kr">🕯️ "가끔 나를 천천히 타들어가는 촛불이라고 생각하면, 따뜻해져."</p>
+                                    <p class="thoughts-en" style="display: none;">💭 "The world feels like an open tab I forgot to close."</p>
+                                    <p class="thoughts-en" style="display: none;">🪫 "Everything costs energy. Even joy."</p>
+                                    <p class="thoughts-en" style="display: none;">🕯️ "Sometimes I pretend I'm a candle slowly burning out, and it makes me feel warm."</p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="character-quote">
-                            <span class="quote-kr">"그냥 그런 하루였어."</span>
-                            <span class="quote-en" style="display: none;">"It was just… a day."</span>
-                        </div>
-                        <div class="character-bio">
-                            <p class="bio-kr">소소는 20% 에너지로 살아갑니다. 그녀는 슬프지 않아요, 그냥 <strong>다 끝난</strong> 상태입니다. 2015년 이후로 표정이 바뀌지 않았고, 유일한 취미는 회의 중에 감정적으로 체크아웃하는 것입니다. 소소는 신경 쓰고 싶어하지만 물리적으로 불가능한 모든 사람을 대표합니다. 그녀는 조용한 사직의 여왕이며, 우아하게 해냅니다.</p>
-                            <p class="bio-en" style="display: none;">Soso lives life at 20%. She isn't sad — she's just <strong>done</strong>. Her facial expression hasn't changed since 2015, and her only hobby is emotionally checking out during meetings. Soso represents everyone who wants to care… but physically can't. She's the queen of quiet quitting — and she does it gracefully.</p>
                         </div>
                     </div>
                 </div>
