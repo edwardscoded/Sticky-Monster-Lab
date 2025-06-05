@@ -1,14 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Single+Day&display=swap" rel="stylesheet">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Murun and Soso</title>
+    <title>Puns Intended - Museum of Warped Fame</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary-gold: #d4af37;
+            --dark-gold: #b8860b;
+            --bg-dark: #1a1a1a;
+            --bg-darker: #0a0a0a;
+            --text-light: #f5f5f5;
+            --text-muted: #888;
+            --glass-bg: rgba(26,26,26,0.3);
+            --border-gold: rgba(212,175,55,0.3);
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -16,1584 +24,758 @@
         }
 
         body {
-            font-family: 'Single Day', cursive;
-            background: #FFFFFF;
-            color: #000000;
-            line-height: 1.6;
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-light);
             overflow-x: hidden;
+            min-height: 100vh;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 10px;
-        }
-
-        /* Header */
-        header {
-            background: #fff;
-            padding: 10px 0;
-            border-bottom: 2px solid #ccc;
+        /* Background Effects */
+        .background-effects {
             position: fixed;
-            width: 100%;
             top: 0;
-            z-index: 10000;
-            backdrop-filter: blur(10px);
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
         }
 
-        nav {
+        .ambient-lighting {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(ellipse 800px 300px at 50% 0%, rgba(255,255,255,0.03) 0%, transparent 50%),
+                radial-gradient(ellipse 400px 200px at 20% 100%, var(--border-gold) 0%, transparent 70%),
+                radial-gradient(ellipse 400px 200px at 80% 100%, var(--border-gold) 0%, transparent 70%);
+            animation: ambientPulse 8s ease-in-out infinite;
+        }
+
+        @keyframes ambientPulse {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; }
+        }
+
+        .floating-orbs {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .orb {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle, rgba(212,175,55,0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(1px);
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .orb:nth-child(1) {
+            top: 15%;
+            left: 10%;
+            animation-duration: 6s;
+        }
+
+        .orb:nth-child(2) {
+            top: 60%;
+            right: 15%;
+            animation-duration: 10s;
+            animation-delay: -3s;
+        }
+
+        .orb:nth-child(3) {
+            bottom: 20%;
+            left: 20%;
+            animation-duration: 8s;
+            animation-delay: -5s;
+        }
+
+        @keyframes float {
+            0%, 100% { 
+                transform: translateY(0px) scale(1);
+                opacity: 0.6;
+            }
+            33% { 
+                transform: translateY(-20px) scale(1.1);
+                opacity: 0.8;
+            }
+            66% { 
+                transform: translateY(10px) scale(0.95);
+                opacity: 0.7;
+            }
+        }
+
+        /* Gallery Architecture */
+        .gallery-architecture {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+        }
+
+        .gallery-ceiling {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 180px;
+            background: linear-gradient(180deg, #3a3a3a 0%, rgba(42,42,42,0.9) 30%, rgba(26,26,26,0.6) 70%, transparent 100%);
+            box-shadow: inset 0 -8px 25px rgba(0,0,0,0.7), 0 0 50px var(--border-gold);
+        }
+
+        .gallery-columns {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            justify-content: space-around;
+            align-items: stretch;
         }
 
-        .logo-img {
-            height: 48px;
-            width: auto;
-            vertical-align: middle;
+        .column {
+            width: 6px;
+            background: linear-gradient(180deg, 
+                transparent 0%, 
+                rgba(212,175,55,0.2) 10%, 
+                rgba(212,175,55,0.6) 50%, 
+                rgba(212,175,55,0.2) 90%, 
+                transparent 100%);
+            box-shadow: 0 0 30px rgba(212,175,55,0.3);
+            border-radius: 3px;
+            animation: columnGlow 4s ease-in-out infinite alternate;
         }
 
-        .nav-links {
+        .column:nth-child(2n) {
+            animation-delay: 1s;
+        }
+
+        .column:nth-child(3n) {
+            animation-delay: 2s;
+        }
+
+        @keyframes columnGlow {
+            0% { opacity: 0.6; transform: scaleY(0.95); }
+            100% { opacity: 1; transform: scaleY(1); }
+        }
+
+        .gallery-floor {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 250px;
+            background: 
+                linear-gradient(180deg, transparent 0%, rgba(26,26,26,0.4) 20%, rgba(15,15,15,0.8) 60%, rgba(8,8,8,0.95) 100%);
+            background-image: 
+                repeating-linear-gradient(90deg, transparent, transparent 95px, rgba(212,175,55,0.1) 95px, rgba(212,175,55,0.1) 98px, rgba(255,255,255,0.03) 98px, rgba(255,255,255,0.03) 100px);
+            box-shadow: inset 0 20px 40px rgba(0,0,0,0.6);
+        }
+
+        /* Navigation */
+        .navigation {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            z-index: 100;
             display: flex;
-            list-style: none;
-            gap: 30px;
-            align-items: center;
+            gap: 0.5rem;
+            background: var(--glass-bg);
+            padding: 0.5rem;
+            border-radius: 25px;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
 
-        .nav-links a {
-            color: #333;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: #000;
-        }
-
-        .lang-toggle {
-            background: linear-gradient(135deg, #333 0%, #555 100%);
-            border: 2px solid #666;
-            color: #fff;
-            padding: 10px 16px;
-            border-radius: 8px;
+        .nav-link {
+            background: transparent;
+            border: none;
+            color: var(--text-light);
+            padding: 0.8rem 1.5rem;
+            border-radius: 20px;
             cursor: pointer;
             transition: all 0.3s ease;
-            font-weight: bold;
-            font-size: 14px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-decoration: none;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            background: var(--primary-gold);
+            color: var(--bg-darker);
+            box-shadow: 0 0 15px rgba(212,175,55,0.3);
+        }
+
+        /* Main Content */
+        .main-content {
+            position: relative;
+            z-index: 10;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            padding-bottom: 120px; /* Space for CA bar */
+        }
+
+        .content-card {
+            max-width: 1100px;
+            padding: 4rem 3rem;
+            background: linear-gradient(135deg, rgba(26,26,26,0.7) 0%, rgba(15,15,15,0.8) 100%);
+            border-radius: 40px;
+            backdrop-filter: blur(25px);
+            border: 2px solid var(--border-gold);
+            box-shadow: 
+                0 40px 100px rgba(0,0,0,0.8),
+                inset 0 2px 0 rgba(255,255,255,0.15),
+                0 0 80px rgba(212,175,55,0.1);
+            text-align: center;
+            animation: contentFloat 6s ease-in-out infinite;
+        }
+
+        @keyframes contentFloat {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-10px) scale(1.01); }
+        }
+
+        .content-card::before {
+            content: '';
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 6px;
+            background: linear-gradient(90deg, transparent, var(--primary-gold) 20%, var(--text-light) 50%, var(--primary-gold) 80%, transparent);
+            border-radius: 6px;
+            animation: topGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes topGlow {
+            0% { opacity: 0.7; width: 150px; }
+            100% { opacity: 1; width: 250px; }
+        }
+
+        /* Typography */
+        .welcome-plaque {
+            background: linear-gradient(135deg, var(--bg-dark) 0%, #151515 100%);
+            border: 3px solid rgba(212,175,55,0.4);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2.5rem;
             position: relative;
             overflow: hidden;
         }
 
-        .lang-toggle:hover {
-            background: linear-gradient(135deg, #444 0%, #666 100%);
-            border-color: #777;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-        }
-
-        .lang-toggle:active {
-            transform: translateY(0);
-            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-        }
-
-        .lang-toggle::before {
+        .welcome-plaque::before {
             content: '';
             position: absolute;
             top: 0;
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.5s ease;
+            background: linear-gradient(90deg, transparent, rgba(212,175,55,0.1), transparent);
+            animation: plaqueShine 4s ease-in-out infinite;
         }
 
-        .lang-toggle:hover::before {
+        @keyframes plaqueShine {
+            0% { left: -100%; }
+            50% { left: 100%; }
+            100% { left: 100%; }
+        }
+
+        .plaque-title {
+            color: var(--primary-gold);
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            text-shadow: 0 2px 10px rgba(212,175,55,0.3);
+        }
+
+        .plaque-text {
+            color: #bbb;
+            line-height: 1.8;
+        }
+
+        .main-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, var(--primary-gold) 0%, var(--text-light) 30%, var(--primary-gold) 60%, var(--text-light) 100%);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 4px;
+            line-height: 1.1;
+            animation: titleShimmer 4s ease-in-out infinite;
+        }
+
+        @keyframes titleShimmer {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .subtitle {
+            font-size: 2rem;
+            font-style: italic;
+            color: #ccc;
+            margin-bottom: 2.5rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            animation: subtitlePulse 3s ease-in-out infinite;
+        }
+
+        @keyframes subtitlePulse {
+            0%, 100% { opacity: 0.9; }
+            50% { opacity: 1; }
+        }
+
+        .description {
+            font-size: 1.2rem;
+            color: #aaa;
+            line-height: 1.9;
+            margin-bottom: 3.5rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            gap: 2.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .primary-btn {
+            background: linear-gradient(45deg, var(--primary-gold), var(--dark-gold), var(--primary-gold));
+            background-size: 200% 200%;
+            color: var(--bg-darker);
+            border: none;
+            padding: 2rem 4rem;
+            font-size: 1.3rem;
+            font-weight: 700;
+            border-radius: 60px;
+            cursor: pointer;
+            transition: all 0.5s ease;
+            box-shadow: 
+                0 20px 50px rgba(212, 175, 55, 0.4),
+                inset 0 2px 0 rgba(255,255,255,0.4);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+            animation: btnPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes btnPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        .primary-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.8s ease;
+        }
+
+        .primary-btn:hover {
+            transform: translateY(-6px) scale(1.05);
+            background-position: 100% 0%;
+            box-shadow: 
+                0 30px 80px rgba(212, 175, 55, 0.6),
+                inset 0 2px 0 rgba(255,255,255,0.4);
+        }
+
+        .primary-btn:hover::before {
             left: 100%;
         }
 
-        /* Main Content */
-        main {
-            margin-top: 0;
+        .secondary-btn {
+            background: linear-gradient(45deg, rgba(255,255,255,0.15), rgba(212,175,55,0.2));
+            color: var(--text-light);
+            border: 3px solid rgba(212,175,55,0.6);
+            padding: 1.8rem 3rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 60px;
+            cursor: pointer;
+            transition: all 0.5s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            backdrop-filter: blur(15px);
+            text-decoration: none;
+            display: inline-block;
         }
 
-        /* Hero Section */
-        .hero {
+        .secondary-btn:hover {
+            background: rgba(212,175,55,0.3);
+            border-color: var(--primary-gold);
+            transform: translateY(-4px);
+            box-shadow: 0 15px 40px rgba(212,175,55,0.3);
+        }
+
+        /* Features */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 2px solid var(--border-gold);
+        }
+
+        .feature-card {
             text-align: center;
-            padding: 100px 0 40px 0;
-            background: linear-gradient(135deg, #e5e5e5 0%, #f5f5f5 100%);
-            margin-top: 0 !important;
-            margin-bottom: 0 !important;
+            color: #bbb;
+            padding: 1.5rem;
+            background: var(--glass-bg);
+            border-radius: 20px;
+            border: 1px solid var(--border-gold);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
             position: relative;
+            overflow: hidden;
         }
 
-        .hero h1,
-        .hero p,
-        .hero-image {
-            position: relative;
-        }
-
-        .speech-bubble {
+        .feature-card::before {
+            content: '';
             position: absolute;
-            top: -28px;
-            left: 42%;
-            z-index: 10;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212,175,55,0.05), transparent);
+            transition: left 0.6s ease;
         }
 
-        .speech-bubble img {
-            width: 400px;
-            height: auto;
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(212,175,55,0.5);
+            box-shadow: 0 10px 30px rgba(212,175,55,0.2);
         }
 
-        .hero h1 {
-            font-size: 42px;
-            margin-bottom: 20px !important;
-            line-height: 1.1;
+        .feature-card:hover::before {
+            left: 100%;
         }
 
-        .hero p {
-            font-size: 18px;
-            margin-top: 30px !important;
-            margin-bottom: 50px !important;
-            line-height: 1.4;
+        .feature-text {
+            font-size: 1rem;
+            line-height: 1.6;
+            font-weight: 500;
         }
 
         /* CA Coming Soon Bar */
         .ca-bar {
-            background: #e5e5e5;
-            border: 2px solid #ccc;
-            border-radius: 12px;
-            padding: 30px;
-            margin: -140px auto 15px auto !important;
-            max-width: 520px;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, rgba(212,175,55,0.95) 0%, rgba(184,134,11,0.95) 100%);
+            backdrop-filter: blur(15px);
+            border-top: 2px solid rgba(255,255,255,0.2);
+            padding: 1rem 2rem;
+            z-index: 200;
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            gap: 15px;
-            position: relative;
-            z-index: 20;
+            justify-content: center;
+            gap: 2rem;
+            box-shadow: 0 -10px 30px rgba(0,0,0,0.3);
+            animation: barGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes barGlow {
+            0% { box-shadow: 0 -10px 30px rgba(0,0,0,0.3); }
+            100% { box-shadow: 0 -10px 30px rgba(0,0,0,0.3), 0 0 40px rgba(212,175,55,0.6); }
         }
 
         .ca-text {
-            font-size: 18px;
-            font-weight: bold;
-            color: #000;
-            font-family: 'Single Day', cursive;
+            color: var(--bg-darker);
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .ca-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
         }
 
         .copy-btn {
-            background: #ccc;
-            border: none;
-            color: #000;
-            padding: 8px 16px;
-            border-radius: 6px;
+            background: rgba(10,10,10,0.8);
+            color: var(--primary-gold);
+            border: 2px solid rgba(10,10,10,0.8);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
             cursor: pointer;
-            transition: background 0.3s ease;
-            font-family: 'Single Day', cursive;
-            font-size: 12px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .copy-btn:hover {
-            background: #aaa;
-        }
-
-        .copy-btn:active {
-            background: #888;
-        }
-
-        /* Social/Trading Buttons */
-        .social-buttons {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin: 15px auto 40px auto;
-            max-width: 600px;
-        }
-
-        /* Logo Scroll Banner */
-        .logo-scroll-banner {
-            background: #ffffff;
-            padding: 20px 0;
-            overflow: hidden;
-            white-space: nowrap;
-            border-top: 1px solid #ddd;
-            border-bottom: 1px solid #ddd;
-        }
-
-        .logo-scroll-track {
-            display: inline-flex;
-            animation: logoScroll 25s linear infinite;
-            gap: 40px;
-            align-items: center;
-        }
-
-        .scroll-logo {
-            height: 60px;
-            width: auto;
-            flex-shrink: 0;
-            opacity: 0.8;
-            transition: opacity 0.3s ease;
-        }
-
-        .scroll-logo:hover {
-            opacity: 1;
-        }
-
-        @keyframes logoScroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
-        /* About Section */
-        .social-btn {
-            background: transparent;
-            border: 2px solid #ccc;
-            color: #333;
-            padding: 12px 24px;
-            border-radius: 8px;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            font-family: 'Single Day', cursive;
-            font-size: 14px;
-            display: inline-block;
-        }
-
-        .social-btn:hover {
-            background: #ccc;
-            color: #000;
-            border-color: #aaa;
+            background: rgba(10,10,10,0.9);
             transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
 
-        /* About Section */
-        .about {
-            padding: 0px 0 20px;
-            background: #eee;
-            position: relative;
+        .copy-btn.copied {
+            background: rgba(34,197,94,0.8);
+            color: white;
+            border-color: rgba(34,197,94,0.8);
         }
 
-        .about-content {
-            max-width: 1000px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .about-text {
-            text-align: center;
-        }
-
-        .about-image {
-            text-align: center;
-        }
-
-        .about-image img {
-            max-width: 130%;
-            height: auto;
-            margin-top: 10px;
-        }
-
-        .about h2 {
-            font-size: 54px;
-            margin-bottom: 30px;
-            color: #000;
-            text-align: center;
-            animation: floatHeading 3s ease-in-out infinite;
-            transform-origin: center;
-        }
-
-        .lang-content {
-            background: #ffffff;
-            padding: 25px;
-            border-radius: 8px;
-            margin: 20px 0;
-            text-align: left;
-        }
-
-        .lang-content.active {
-            /* No left border when active */
-        }
-
-       /* Meme Grid - Scrapbook Style START */
-        .memes {
-            padding: 80px 0;
-            background-color: #ffffff;
-            position: relative;
-        }
-
-        .memes h2 {
-            text-align: center;
-            font-size: 48px;
-            margin-bottom: 60px;
-            color: #000;
-            animation: sway 3s ease-in-out infinite;
-            transform-origin: center;
-        }
-
-        .meme-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 25px;
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 20px;
-            position: relative;
-        }
-
-        .meme-item {
-            background-color: #fff;
-            padding: 10px;
-            border-radius: 5px;
-            box-shadow: 2px 2px 6px rgba(0,0,0,0.2);
-            transition: transform 0.3s ease, box-shadow 0.3s ease, z-index 0s ease 0s;
+        .twitter-btn,
+        .community-btn {
+            background: #1d9bf0;
+            color: white;
+            border: 2px solid #1d9bf0;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
             cursor: pointer;
-        }
-
-        .meme-item img {
-            width: 100%;
-            height: auto;
-            display: block;
-            border: 1px solid #f0f0f0;
-        }
-
-        .meme-item:hover img {
-            position: static;
-            width: 100%;
-            height: auto;
-            max-width: none;
-            max-height: none;
-            object-fit: initial;
-            background: transparent;
-            box-shadow: none;
-        }
-
-        .meme-item:hover {
-            transform: scale(1.07) rotate(var(--hover-rotate, 1deg)) translateY(-4px);
-            box-shadow: 4px 4px 12px rgba(0,0,0,0.3);
-            z-index: 50;
-        }
-
-        .meme-item:nth-child(1)  { transform: rotate(-3.5deg) translateX(-2%); z-index: 1; --hover-rotate: -1.5deg; }
-        .meme-item:nth-child(2)  { transform: rotate(2.8deg) translateX(1%) translateY(2%); z-index: 3; --hover-rotate: 4deg; }
-        .meme-item:nth-child(3)  { transform: rotate(-4.2deg) translateY(-1%); z-index: 2; --hover-rotate: -2.2deg; }
-        .meme-item:nth-child(4)  { transform: rotate(3.3deg) translateX(-1.5%) translateY(1%); z-index: 4; --hover-rotate: 5deg; }
-        .meme-item:nth-child(5)  { transform: rotate(-2.5deg) translateX(2%); z-index: 1; --hover-rotate: -0.5deg; }
-        .meme-item:nth-child(6)  { transform: rotate(4.0deg) translateY(3%); z-index: 3; --hover-rotate: 5.5deg; }
-        .meme-item:nth-child(7)  { transform: rotate(-3.8deg) translateX(-2.5%) translateY(-2%); z-index: 2; --hover-rotate: -1.8deg; }
-        .meme-item:nth-child(8)  { transform: rotate(2.2deg) translateX(1.5%); z-index: 4; --hover-rotate: 3.5deg; }
-        .meme-item:nth-child(9)  { transform: rotate(-4.5deg) translateY(1%); z-index: 1; --hover-rotate: -2.5deg; }
-        .meme-item:nth-child(10) { transform: rotate(3.0deg) translateX(-1%) translateY(2.5%); z-index: 3; --hover-rotate: 4.8deg; }
-        .meme-item:nth-child(11) { transform: rotate(-2.9deg) translateX(2.2%); z-index: 2; --hover-rotate: -1deg; }
-        .meme-item:nth-child(12) { transform: rotate(3.7deg) translateY(-1.5%); z-index: 4; --hover-rotate: 5.2deg; }
-        .meme-item:nth-child(13) { transform: rotate(-3.2deg) translateX(-1.8%) translateY(1.5%); z-index: 1; --hover-rotate: -1.2deg; }
-        .meme-item:nth-child(14) { transform: rotate(2.5deg) translateX(0.5%); z-index: 3; --hover-rotate: 3.8deg; }
-        .meme-item:nth-child(15) { transform: rotate(-4.0deg) translateY(0.5%); z-index: 2; --hover-rotate: -2deg; }
-
-        .meme-item:nth-child(3n) { margin-top: 5px; }
-        .meme-item:nth-child(4n) { margin-left: -5px; }
-        /* Meme Grid - Scrapbook Style END */
-
-        .lightbox.active + .meme-item img {
-            position: static;
-        }
-
-        /* Happy Dance Surfing Animation - BIGGER VERSION */
-        .happy-dance-surfer {
-            position: absolute;
-            top: 40px; /* ADJUSTED from 20px to move surfer down */
-            height: 120px;
-            width: auto;
-            animation: surfAcross 8s linear infinite;
-            z-index: 5;
-        }
-
-        @keyframes surfAcross {
-            0% {
-                left: -150px;
-                transform: rotate(0deg);
-            }
-            45% {
-                transform: rotate(0deg);
-            }
-            50% {
-                transform: rotate(180deg);
-            }
-            55% {
-                transform: rotate(360deg);
-            }
-            100% {
-                left: calc(100% + 150px);
-                transform: rotate(360deg);
-            }
-        }
-
-        /* Characters Section */
-        .characters {
-            padding: 80px 0 120px;
-            background: #eee;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .characters h2 {
-            text-align: center;
-            font-size: 36px;
-            margin-bottom: 50px;
-            color: #000;
-            animation: wobbleHeading 4s ease-in-out infinite;
-            transform-origin: center;
-        }
-
-        /* Character Cards - Interactive Flip Style */
-        .character-cards {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .character-flip-card {
-            background-color: transparent;
-            width: 100%;
-            height: 400px;
-            perspective: 1000px;
-            position: relative;
-        }
-
-        .character-flip-card-inner {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            text-align: center;
-            transition: transform 0.8s;
-            transform-style: preserve-3d;
-            cursor: pointer;
-        }
-
-        .character-flip-card:hover .character-flip-card-inner {
-            transform: rotateY(180deg);
-        }
-
-        .character-flip-card-front, .character-flip-card-back {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
-            border-radius: 12px;
-            padding: 30px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            font-weight: 600;
+            font-size: 0.9rem;
             transition: all 0.3s ease;
-        }
-
-        .character-flip-card-front {
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            color: #333;
-        }
-
-        .character-flip-card-back {
-            background: linear-gradient(135deg, #495057 0%, #343a40 100%);
-            color: #f8f9fa;
-            transform: rotateY(180deg);
-        }
-
-        .character-flip-card:hover .character-flip-card-front,
-        .character-flip-card:hover .character-flip-card-back {
-            box-shadow: 0 12px 30px rgba(0,0,0,0.25);
-        }
-
-        .character-title-flip {
-            font-size: 28px;
-            font-weight: bold;
-            margin-bottom: 15px;
-            color: inherit;
-        }
-
-        .character-subtitle {
-            font-size: 16px;
-            font-style: italic;
-            margin-bottom: 25px;
-            opacity: 0.8;
-        }
-
-        .character-traits {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            text-align: left;
-            width: 100%;
-        }
-
-        .character-traits li {
-            margin: 12px 0;
-            font-size: 14px;
-            line-height: 1.4;
-            display: flex;
-            align-items: flex-start;
-            gap: 8px;
-        }
-
-        .character-quote-flip {
-            font-style: italic;
-            margin-top: 20px;
-            padding: 15px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 8px;
-            border-left: 4px solid rgba(255,255,255,0.3);
-        }
-
-        .character-thoughts {
-            text-align: left;
-            width: 100%;
-        }
-
-        .character-thoughts p {
-            margin: 15px 0;
-            font-size: 14px;
-            line-height: 1.5;
-            padding: 10px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .character-thoughts p:last-child {
-            border-bottom: none;
-        }
-
-        .flip-prompt {
-            position: absolute;
-            bottom: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 12px;
-            opacity: 0.6;
-            transition: opacity 0.3s ease;
-        }
-
-        .character-flip-card:hover .flip-prompt {
-            opacity: 0;
-        }
-
-        /* Murun specific styling */
-        .murun-card .character-flip-card-front {
-            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
-        }
-
-        .murun-card .character-flip-card-back {
-            background: linear-gradient(135deg, #1565c0 0%, #0d47a1 100%);
-        }
-
-        /* Soso specific styling */
-        .soso-card .character-flip-card-front {
-            background: linear-gradient(135deg, #fce4ec 0%, #f8bbd9 100%);
-        }
-
-        .soso-card .character-flip-card-back {
-            background: linear-gradient(135deg, #ad1457 0%, #880e4f 100%);
-        }
-
-        /* Subtle animations */
-        .character-flip-card-front::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.1) 0%, transparent 70%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            border-radius: 12px;
-        }
-
-        .character-flip-card:hover .character-flip-card-front::before {
-            opacity: 1;
-        }
-
-        /* Walking Murun Animation */
-        .walking-murun {
-            position: absolute;
-            bottom: 0px;
-            height: 180px;
-            z-index: 10;
-            animation: walkAcross 20s linear infinite;
-        }
-
-        .walking-murun img {
-            height: 100%;
-            width: auto;
-            transform: scaleX(-1);
-        }
-
-        @keyframes walkAcross {
-            0% { left: -200px; }
-            100% { left: 100%; }
-        }
-
-        /* Walking Go Sticker Animation */
-        .walking-go {
-            position: absolute;
-            bottom: -30px;
-            height: 240px;
-            z-index: 10;
-            animation: walkStopGoAcross 20s linear infinite;
-        }
-
-        .walking-go img {
-            height: 100%;
-            width: auto;
-            transform: scaleX(-1);
-        }
-
-        @keyframes walkStopGoAcross {
-            0% { right: -250px; }
-            100% { right: 100%; }
-        }
-
-
-        /* Footer */
-        footer {
-            background: #fff;
-            padding: 40px 0;
-            text-align: center;
-            border-top: 2px solid #ccc;
-            position: relative;
-        }
-
-        footer p {
-            color: #999;
-            font-size: 14px;
-        }
-
-        .footer-logo {
-            margin-bottom: 20px;
-        }
-
-        .footer-logo img {
-            max-width: 150px;
-            height: auto;
-            opacity: 0.7;
-            transition: opacity 0.3s ease;
-            background: #000;
-            padding: 10px;
-            border-radius: 8px;
-        }
-
-        .footer-logo img:hover {
-            opacity: 1;
-        }
-
-        /* Skull sticker in footer bottom left */
-        .footer-skull {
-            position: absolute;
-            bottom: 10px;
-            left: 150px;
-            opacity: 0.6;
-            transition: opacity 0.3s ease;
-        }
-
-        .footer-skull img {
-            max-width: 180px;
-            height: auto;
-        }
-
-        .footer-skull:hover {
-            opacity: 1;
-        }
-
-        /* Lightbox styles */
-        .lightbox {
-            display: none;
-            position: fixed;
-            z-index: 9999;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
-            transition: opacity 0.3s ease;
-        }
-
-        .lightbox.active {
-            display: flex;
+            text-decoration: none;
+            display: inline-flex;
             align-items: center;
-            justify-content: center;
+            gap: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .lightbox-content {
-            position: relative;
-            max-width: 90%;
-            max-height: 90%;
+        .twitter-btn:hover,
+        .community-btn:hover {
+            background: #1a8cd8;
+            border-color: #1a8cd8;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(29,155,240,0.4);
         }
 
-        .lightbox-image {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            border-radius: 8px;
+        .community-btn {
+            background: #8b5cf6;
+            border-color: #8b5cf6;
         }
 
-        .lightbox-close {
-            position: absolute;
-            top: 20px;
-            right: 35px;
-            color: #f1f1f1;
-            font-size: 40px;
-            font-weight: bold;
-            background: none;
-            border: none;
-            cursor: pointer;
-            z-index: 10000;
+        .community-btn:hover {
+            background: #7c3aed;
+            border-color: #7c3aed;
+            box-shadow: 0 5px 15px rgba(139,92,246,0.4);
         }
 
-        .lightbox-close:hover {
-            color: #ccc;
-        }
-
-        /* Language Toggle Animation */
-        .lang-content {
-            display: none;
-        }
-
-        .lang-content.active {
-            display: block;
-            animation: fadeIn 0.5s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Animations */
-        @keyframes sway {
-            0%, 100% {
-                transform: translateX(0px) rotate(0deg) scale(1);
-            }
-            25% {
-                transform: translateX(-5px) rotate(-1deg) scale(1.02);
-            }
-            50% {
-                transform: translateX(0px) rotate(0deg) scale(1.05);
-            }
-            75% {
-                transform: translateX(5px) rotate(1deg) scale(1.02);
-            }
-        }
-
-        @keyframes floatHeading {
-            0%, 100% {
-                transform: translateY(0px) scale(1);
-            }
-            50% {
-                transform: translateY(-8px) scale(1.02);
-            }
-        }
-
-        @keyframes wobbleHeading {
-            0%, 100% {
-                transform: translateX(0px) rotate(0deg) scale(1);
-            }
-            25% {
-                transform: translateX(-3px) rotate(-1deg) scale(1.01);
-            }
-            50% {
-                transform: translateX(0px) rotate(0deg) scale(1.02);
-            }
-            75% {
-                transform: translateX(3px) rotate(1deg) scale(1.01);
-            }
-        }
-
-        /* Responsive */
+        /* Responsive Design */
         @media (max-width: 768px) {
-            .nav-links {
-                gap: 15px;
-                flex-wrap: wrap;
-            }
-            
-            header nav {
-                padding-left: 5px;
-                padding-right: 5px;
-            }
-            
-            .logo-img {
-                height: 40px;
-            }
-            
-            .nav-links a, .lang-toggle {
-                font-size: 13px;
-            }
-            
-            .nav-links {
-                gap: 10px;
+            .main-title {
+                font-size: 2.5rem;
             }
 
-            .hero h1 {
-                font-size: 32px;
-                margin-bottom: 15px !important;
-            }
-            
-            .hero p {
-                font-size: 16px;
-                margin-top: 20px !important;
-                margin-bottom: 30px !important;
+            .subtitle {
+                font-size: 1.2rem;
             }
 
-            /* Responsive Scrapbook */
-            .meme-grid {
-                grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-                gap: 20px;
-                padding: 15px;
-            }
-            .meme-item {
-                padding: 8px;
-            }
-            .meme-item:hover {
-                transform: scale(1.05) translateY(-3px);
-            }
-            .meme-item:nth-child(1),
-            .meme-item:nth-child(2),
-            .meme-item:nth-child(3),
-            .meme-item:nth-child(4),
-            .meme-item:nth-child(5),
-            .meme-item:nth-child(6),
-            .meme-item:nth-child(7),
-            .meme-item:nth-child(8),
-            .meme-item:nth-child(9),
-            .meme-item:nth-child(10),
-            .meme-item:nth-child(11),
-            .meme-item:nth-child(12),
-            .meme-item:nth-child(13),
-            .meme-item:nth-child(14),
-            .meme-item:nth-child(15) {
-                transform: rotate(0deg);
-                margin: 5px auto;
-                z-index: auto;
+            .action-buttons {
+                flex-direction: column;
+                align-items: center;
             }
 
-
-            .lang-content {
-                padding: 20px;
+            .primary-btn,
+            .secondary-btn {
+                width: 100%;
+                max-width: 300px;
             }
 
-            .about-content {
+            .navigation {
+                top: 1rem;
+                right: 1rem;
+                flex-direction: column;
+            }
+
+            .content-card {
+                margin: 0 1rem;
+                padding: 2rem 1rem;
+            }
+
+            .features {
                 grid-template-columns: 1fr;
-                gap: 40px;
-            }
-            
-            .about-image img {
-                max-width: 80%;
-                margin-left: auto;
-                margin-right: auto;
-                display: block;
-                left: 0;
-            }
-
-            .character-cards {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-
-            .character-flip-card {
-                height: 350px;
-            }
-
-            .character-flip-card-front, .character-flip-card-back {
-                padding: 25px;
-            }
-
-            .character-title-flip {
-                font-size: 24px;
-            }
-
-            .walking-murun {
-                height: 120px;
-            }
-            
-            .walking-murun img {
-                max-height: 100%;
-            }
-
-            .walking-go {
-                height: 160px;
-                bottom: -20px;
-            }
-            
-            .walking-go img {
-                max-height: 100%;
             }
 
             .ca-bar {
                 flex-direction: column;
-                gap: 10px;
-                padding: 20px;
-                margin: -100px auto 20px auto !important;
-                max-width: 90%;
+                gap: 1rem;
+                padding: 1rem;
             }
 
-            .social-buttons {
-                gap: 10px;
-                margin: 10px auto 30px auto;
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .social-btn {
-                padding: 12px 20px;
-                font-size: 14px;
-                width: 80%;
-                max-width: 250px;
+            .ca-text {
+                font-size: 1rem;
+                text-align: center;
             }
 
-            .speech-bubble {
-                left: 50%;
-                transform: translateX(-50%);
-                top: -15px;
-            }
-
-            .speech-bubble img {
-                width: 200px;
-            }
-            
-            .footer-skull {
-                left: 10px;
-            }
-            
-            .footer-skull img {
-                max-width: 120px;
-            }
-
-            .happy-dance-surfer {
-                height: 90px;
-                top: 40px; /* Maintain relative position for smaller surfer */
-            }
-            
-            .memes + div {
-                height: 150px !important;
-                padding: 15px 0 !important;
-            }
-        }
-        
-        @media (max-width: 480px) {
-             .nav-links {
-                align-items: center;
-                gap: 8px;
-                flex-wrap: wrap;
+            .ca-actions {
+                width: 100%;
                 justify-content: center;
             }
 
-            .hero h1 {
-                font-size: 28px;
-            }
-            .hero p {
-                font-size: 14px;
-            }
-            .ca-bar {
-                margin-top: -80px;
-            }
-            .about-title-kr img, .about-title-en img {
-                width: 80%;
-            }
-
-            .memes h2 {
-                font-size: 38px;
-                margin-bottom: 40px;
-            }
-            .meme-grid {
-                grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
-                gap: 15px;
-            }
-            .meme-item {
-                padding: 6px;
-                transform: rotate(calc(var(--initial-rotate, 0deg) / 3));
-            }
-             .meme-item:nth-child(1)  { --initial-rotate: -3.5deg; }
-             .meme-item:nth-child(2)  { --initial-rotate: 2.8deg; }
-             .meme-item:nth-child(3)  { --initial-rotate: -4.2deg; }
-             .meme-item:nth-child(4)  { --initial-rotate: 3.3deg; }
-             .meme-item:nth-child(5)  { --initial-rotate: -2.5deg; }
-             .meme-item:nth-child(6)  { --initial-rotate: 4.0deg; }
-             .meme-item:nth-child(7)  { --initial-rotate: -3.8deg; }
-             .meme-item:nth-child(8)  { --initial-rotate: 2.2deg; }
-             .meme-item:nth-child(9)  { --initial-rotate: -4.5deg; }
-             .meme-item:nth-child(10) { --initial-rotate: 3.0deg; }
-             .meme-item:nth-child(11) { --initial-rotate: -2.9deg; }
-             .meme-item:nth-child(12) { --initial-rotate: 3.7deg; }
-             .meme-item:nth-child(13) { --initial-rotate: -3.2deg; }
-             .meme-item:nth-child(14) { --initial-rotate: 2.5deg; }
-             .meme-item:nth-child(15) { --initial-rotate: -4.0deg; }
-            
-            .character-title-flip {
-                font-size: 22px;
-            }
-            .character-flip-card {
-                height: 320px;
-            }
-            .character-flip-card-front, .character-flip-card-back {
-                padding: 20px;
-            }
-            .elfsight-app-1027be02-3535-4a55-8a9e-53cd4fe74b32,
-            .elfsight-app-cc75ac9e-8d99-4e8c-a1c7-73f0477ab12e {
-                margin-bottom: 30px;
+            .copy-btn,
+            .twitter-btn,
+            .community-btn {
+                flex: 1;
+                justify-content: center;
+                max-width: 120px;
             }
         }
     </style>
 </head>
-<body class="lang-kr">
-    <!-- Background Audio -->
-    <audio id="backgroundAudio" loop>
-        <source src="audio/copy_CEB4583B-874D-4E57-A589-DA85C43329EF.mp4" type="audio/mp4">
-        Your browser does not support the audio element.
-    </audio>
-
-    <header>
-        <nav class="container">
-            <a href="#" class="logo">
-                <img src="images/-Sticker-by-52works-korean.gif" alt="무런 앤 소소" class="logo-img logo-kr">
-                <img src="images/-Sticker-by-52works-english.gif" alt="Murun and Soso" class="logo-img logo-en" style="display: none;">
-            </a>
-            <ul class="nav-links">
-                <li><a href="#about" class="nav-en" style="display: none;">About</a><a href="#about" class="nav-kr">소개</a></li>
-                <li><a href="#memes" class="nav-en" style="display: none;">Memes</a><a href="#memes" class="nav-kr">밈</a></li>
-                <li><a href="#characters" class="nav-en" style="display: none;">Characters</a><a href="#characters" class="nav-kr">캐릭터</a></li>
-                <li><a href="https://insideobject.com/product/list.html?cate_no=263" target="_blank" class="nav-en" style="display: none;">52 works store</a>
-                    <a href="https://insideobject.com/product/list.html?cate_no=263" target="_blank" class="nav-kr">무런</a></li>
-                <li><a href="https://insideobject.com/product/list.html?cate_no=451" target="_blank" class="nav-en" style="display: none;">SOSO Family store</a>
-                    <a href="https://insideobject.com/product/list.html?cate_no=451" target="_blank" class="nav-kr">소소</a></li>
-                <li><button class="lang-toggle" onclick="toggleLanguage()">🇰🇷 / 🇺🇸</button></li>
-            </ul>
-        </nav>
-    </header>
-
-    <main>
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="container">
-                <h1 class="hero-kr">조용한 혼돈의 세계에 오신 것을 환영합니다</h1>
-                <h1 class="hero-en" style="display: none;">Welcome to the Quiet Chaos</h1>
-                <p class="hero-kr">현대적 부조리를 헤쳐나가는 무표정한 존재들의 미니멀한 세계 탐험</p>
-                <p class="hero-en" style="display: none;">Exploring the minimalist world of expressionless beings navigating modern absurdity</p>
-
-                <div class="hero-image" style="margin: 15px auto !important; position: relative;">
-                    <img src="images/Working-Sticker-banner.gif"
-                         alt="Genius Working - 52works Sticky Monster Lab Animation"
-                         style="max-width: 100%; height: auto;">
-
-                    <div class="speech-bubble">
-                        <img src="images/speaah-korean.gif" alt="Speech Bubble Korean" class="speech-kr">
-                        <img src="images/speaah-english.gif" alt="Speech Bubble English" class="speech-en" style="display: none;">
-                    </div>
-                </div>
-
-                <div class="ca-bar">
-                    <span class="ca-text">CA: COMING SOON</span>
-                    <button class="copy-btn" onclick="copyCA()">COPY</button>
-                </div>
-
-                <div class="social-buttons">
-                    <a href="#" class="social-btn twitter">X (Twitter)</a>
-                    <a href="#" class="social-btn dexscreener">DexScreener</a>
-                    <a href="#" class="social-btn dextools">DexTools</a>
-                    <a href="#" class="social-btn pump">Pump.Fun</a>
-                </div>
-            </div>
-        </section>
-
-        <div class="logo-scroll-banner">
-            <div class="logo-scroll-track">
-                <!-- First set of planes -->
-                <img src="images/plane.gif" alt="Flying Plane Icon" class="scroll-logo">
-                <img src="images/plane.gif" alt="Flying Plane Icon" class="scroll-logo">
-                <img src="images/plane.gif" alt="Flying Plane Icon" class="scroll-logo">
-                <img src="images/plane.gif" alt="Flying Plane Icon" class="scroll-logo">
-                <img src="images/plane.gif" alt="Flying Plane Icon" class="scroll-logo">
-                <img src="images/plane.gif" alt="Flying Plane Icon" class="scroll-logo">
-                <img src="images/plane.gif" alt="Flying Plane Icon" class="scroll-logo">
-                <img src="images/plane.gif" alt="Flying Plane Icon" class="scroll-logo">
-                <img src="images/plane.gif" alt="Flying Plane Icon" class="scroll-logo">
-                <img src="images/plane.gif" alt="Flying Plane Icon" class="scroll-logo">
-                <img src="images/plane.gif" alt="Flying Plane Icon" class="scroll-logo">
-                <img src="images/plane.gif" alt="Flying Plane Icon" class="scroll-logo">
-                <img src="images/plane.gif" alt="Flying Plane Icon" class="scroll-logo">
-                <img src="images/plane.gif" alt="Flying Plane Icon" class="scroll-logo">
-                <img src="images/plane.gif" alt="Flying Plane Icon" class="scroll-logo">
-                <img src="images/plane.gif" alt="Flying Plane Icon" class="scroll-logo">
-                <!-- Duplicate set for seamless loop -->
-                <img src="images/plane.gif" alt="Flying Plane Icon" class="scroll-logo">
-                <img src="images/plane.gif" alt="Flying Plane Icon" class="scroll-logo">
-                <img src="images/plane.gif" alt="Flying Plane Icon" class="scroll-logo">
-                <img src="images/plane.gif" alt="Flying Plane Icon" class="scroll-logo">
-                <img src="images/plane.gif" alt="Flying Plane Icon" class="scroll-logo">
-                <img src="images/plane.gif" alt="Flying Plane Icon" class="scroll-logo">
-                <img src="images/plane.gif" alt="Flying Plane Icon" class="scroll-logo">
-                <img src="images/plane.gif" alt="Flying Plane Icon" class="scroll-logo">
-                <img src="images/plane.gif" alt="Flying Plane Icon" class="scroll-logo">
-                <img src="images/plane.gif" alt="Flying Plane Icon" class="scroll-logo">
-                <img src="images/plane.gif" alt="Flying Plane Icon" class="scroll-logo">
-                <img src="images/plane.gif" alt="Flying Plane Icon" class="scroll-logo">
-                <img src="images/plane.gif" alt="Flying Plane Icon" class="scroll-logo">
-                <img src="images/plane.gif" alt="Flying Plane Icon" class="scroll-logo">
-                <img src="images/plane.gif" alt="Flying Plane Icon" class="scroll-logo">
-                <img src="images/plane.gif" alt="Flying Plane Icon" class="scroll-logo">
-            </div>
-        </div>
-
-        <section id="about" class="about">
-            <div class="container">
-                <div class="about-content">
-                    <div class="about-text">
-                        <div class="about-title-kr">
-                            <img src="images/whois-korean.gif" alt="무런 앤 소소란?" style="width: 60%; height: auto; position: relative; top: 20px; left: 10px; z-index: 8888;" />
-                        </div>
-                        <div class="about-title-en" style="display: none;">
-                            <img src="images/whois-english.gif" alt="What is Murun and Soso?" style="width: 60%; height: auto; position: relative; top: 20px; left: 10px; z-index: 8888;" />
-                        </div>
-
-                        <div class="lang-content active" id="about-kr">
-                            <p>무른과 소소를 소개합니다. 두 룸메이트이자 존재감 희미한 피로의 화신. 번아웃의 비공식 성자들이죠.</p>
-                            <br>
-                            <p>무른은 말이 없습니다. 그냥 멍하니 바라봅니다. 벽을, 핸드폰을, 혹은 아무것도 아닌 공허함을. 그의 에너지는 늘 '로딩 중'입니다.</p>
-                            <br>
-                            <p>소소는 한숨을 쉽니다. 자주요. 마시지도 않을 커피를 내리고, 매일 같은 후드를 입습니다. 빨래는 전쟁처럼 느껴져서 시작조차 못 해요. 언젠가 "나중에"라는 알람을 설정한 적도 있죠.</p>
-                            <br>
-                            <p>둘은 열정도, 목표도 없습니다. 생산성 따위엔 관심 없고, 자아계발서 한 권 읽어본 적도 없습니다.</p>
-                            <br>
-                            <p>대신 그들은 그냥 흘러갑니다. 끝없이 스크롤을 내리고, 존재만으로 하루를 버팁니다. 밈으로 숨을 쉬고, 전자레인지 음식과 말 없는 피로의 유대감으로 살아갑니다.</p>
-                            <br>
-                            <p>이 프로젝트는 무른과 소소를 위한 헌사입니다. 감정적으로 오프라인된 사람들, 아무 이유 없이 지친 이들, 정적 속에서 위로를 찾는 모두를 위한 이야기입니다.</p>
-                            <br>
-                            <p>세상을 바꾸려는 게 아닙니다. 그저 오늘 하루를 버티는 것. 그거면 충분합니다.</p>
-                        </div>
-
-                        <div class="lang-content" id="about-en">
-                            <p>Meet <strong>Murun</strong> and <strong>Soso</strong>. Two roommates. Two existential blobs. The unofficial saints of burnout.</p>
-                            <br>
-                            <p>Murun doesn't talk much. He just stares into the void. Sometimes at a wall. Sometimes at his phone. Sometimes at nothing. His energy is permanently set to buffering.</p>
-                            <br>
-                            <p>Soso sighs. A lot. She makes coffee she never finishes and wears the same hoodie every day because laundry feels like a battle she's not ready to fight. She once set an alarm for "maybe later."</p>
-                            <br>
-                            <p>They don't hustle. They don't grind. They've never read a productivity thread in their lives.</p>
-                            <br>
-                            <p>Instead, they drift. They scroll. They exist in quiet resistance to a world that never shuts up. They survive off memes, microwave noodles, and the unspoken bond of shared fatigue.</p>
-                            <br>
-                            <p>This project is for them. For the emotionally unplugged. For anyone who's ever felt like a loading screen in human form. For those who don't need to be fixed. Just left alone in peace with their monsters.</p>
-                            <br>
-                            <p>Murun and Soso aren't here to change the world. They're just trying to make it through the day. And honestly, that's enough.</p>
-                        </div>
-                    </div>
-
-                    <div class="about-image" style="align-self: flex-start;">
-                        <img src="images/whois2.gif" alt="52Works Sticky Monster Lab Animation" style="width: 80%; height: auto; position: relative; top: -20px; left: -50px;" />
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="memes" class="memes">
-            <div class="container">
-                <h2 class="memes-title-kr">나는 고양이가 없다</h2>
-                <h2 class="memes-title-en" style="display: none;">I Don't Have a Cat</h2>
-                <div class="meme-grid">
-                    <div class="meme-item" onclick="openLightbox(this)">
-                        <img src="gelleria/bag.png" alt="Bag">
-                    </div>
-                    <div class="meme-item" onclick="openLightbox(this)">
-                        <img src="gelleria/beer.png" alt="Beer">
-                    </div>
-                    <div class="meme-item" onclick="openLightbox(this)">
-                        <img src="gelleria/bus.png" alt="Bus">
-                    </div>
-                    <div class="meme-item" onclick="openLightbox(this)">
-                        <img src="gelleria/fire.png" alt="Fire">
-                    </div>
-                    <div class="meme-item" onclick="openLightbox(this)">
-                        <img src="gelleria/galleria.png" alt="Galleria">
-                    </div>
-                    <div class="meme-item" onclick="openLightbox(this)">
-                        <img src="gelleria/huh.png" alt="Huh">
-                    </div>
-                    <div class="meme-item" onclick="openLightbox(this)">
-                        <img src="gelleria/job.png" alt="Job">
-                    </div>
-                    <div class="meme-item" onclick="openLightbox(this)">
-                        <img src="gelleria/mind1.png" alt="Mind 1">
-                    </div>
-                    <div class="meme-item" onclick="openLightbox(this)">
-                        <img src="gelleria/mind12.png" alt="Mind 12">
-                    </div>
-                    <div class="meme-item" onclick="openLightbox(this)">
-                        <img src="gelleria/mind123.png" alt="Mind 123">
-                    </div>
-                    <div class="meme-item" onclick="openLightbox(this)">
-                        <img src="gelleria/murun.png" alt="Murun">
-                    </div>
-                    <div class="meme-item" onclick="openLightbox(this)">
-                        <img src="gelleria/omelet.png" alt="Omelet">
-                    </div>
-                    <div class="meme-item" onclick="openLightbox(this)">
-                        <img src="gelleria/piano.png" alt="Piano">
-                    </div>
-                    <div class="meme-item" onclick="openLightbox(this)">
-                        <img src="gelleria/rain.png" alt="Rain">
-                    </div>
-                    <div class="meme-item" onclick="openLightbox(this)">
-                        <img src="gelleria/snack.png" alt="Snack">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <div style="position: relative; height: 180px; overflow: hidden; width: 100%; background: transparent; padding: 20px 0;">
-            <img src="images/Happy%20Dance%20Sticker%20by%2052works(%EC%98%A4%EC%9D%B4%EC%9B%8D%EC%8A%A4).gif"
-                 alt="Happy Dance Surfer - 52works Sticky Monster Lab Animation"
-                 class="happy-dance-surfer">
-        </div>
-
-        <section id="characters" class="characters">
-            <div class="container">
-                <h2 class="characters-title-kr">무룬은 왜 있는 거야?</h2>
-                <h2 class="characters-title-en" style="display: none;">What's up with Murun?</h2>
-
-                <script src="https://static.elfsight.com/platform/platform.js" async></script>
-                <div class="elfsight-app-1027be02-3535-4a55-8a9e-53cd4fe74b32" data-elfsight-app-lazy style="margin-bottom: 60px;"></div>
-
-                <h2 class="characters-title-kr">소소는 왜 이러는 거야?</h2>
-                <h2 class="characters-title-en" style="display: none;">What's up with Soso?</h2>
-
-                <div class="elfsight-app-cc75ac9e-8d99-4e8c-a1c7-73f0477ab12e" data-elfsight-app-lazy style="margin-bottom: 60px;"></div>
-
-                <div class="character-cards">
-                    <!-- Murun Character Card -->
-                    <div class="character-flip-card murun-card">
-                        <div class="character-flip-card-inner">
-                            <div class="character-flip-card-front">
-                                <h3 class="character-title-flip">
-                                    <span class="name-kr">무런 (Murun)</span>
-                                    <span class="name-en" style="display: none;">Murun</span>
-                                </h3>
-                                <p class="character-subtitle">
-                                    <span class="title-kr">멍하니 바라보는 존재</span>
-                                    <span class="title-en" style="display: none;">The Staring Void</span>
-                                </p>
-                                <ul class="character-traits">
-                                    <li class="traits-kr">🧍‍♂️ 빈 시선</li>
-                                    <li class="traits-kr">☕ 항상 든 커피</li>
-                                    <li class="traits-kr">📱 손에서 떨어지지 않는 폰</li>
-                                    <li class="traits-en" style="display: none;">🧍‍♂️ Blank stare</li>
-                                    <li class="traits-en" style="display: none;">☕ Holding coffee</li>
-                                    <li class="traits-en" style="display: none;">📱 Phone always in hand</li>
-                                </ul>
-                                <div class="character-quote-flip">
-                                    <span class="quote-kr">"괜찮아요. 그냥 피곤해서..."</span>
-                                    <span class="quote-en" style="display: none;">"I'm fine. Just tired."</span>
-                                </div>
-                                <div class="flip-prompt">
-                                    <span class="prompt-kr">진짜 생각을 보려면 호버하세요...</span>
-                                    <span class="prompt-en" style="display: none;">Flip to see what he's really thinking...</span>
-                                </div>
-                            </div>
-                            <div class="character-flip-card-back">
-                                <h3 class="character-title-flip">
-                                    <span class="name-kr">무런의 속마음</span>
-                                    <span class="name-en" style="display: none;">Murun's Inner Thoughts</span>
-                                </h3>
-                                <div class="character-thoughts">
-                                    <p class="thoughts-kr">💭 "메시지에 답할 이유가 뭐지? 난 이미 읽씹당한 메시지 같은데..."</p>
-                                    <p class="thoughts-kr">📡 "존재가 로딩 중입니다. 잠시만 기다려주세요."</p>
-                                    <p class="thoughts-kr">🫥 "충분히 오래 아무것도 안 하면, 진짜 아무것도 안 될 수 있을까?"</p>
-                                    <p class="thoughts-en" style="display: none;">💭 "What's the point of answering messages when I'm the message left on read?"</p>
-                                    <p class="thoughts-en" style="display: none;">📡 "Existence is buffering. Please wait."</p>
-                                    <p class="thoughts-en" style="display: none;">🫥 "If I do nothing long enough, maybe I'll become nothing."</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Soso Character Card -->
-                    <div class="character-flip-card soso-card">
-                        <div class="character-flip-card-inner">
-                            <div class="character-flip-card-front">
-                                <h3 class="character-title-flip">
-                                    <span class="name-kr">소소 (Soso)</span>
-                                    <span class="name-en" style="display: none;">Soso</span>
-                                </h3>
-                                <p class="character-subtitle">
-                                    <span class="title-kr">조용한 한숨</span>
-                                    <span class="title-en" style="display: none;">The Quiet Sigh</span>
-                                </p>
-                                <ul class="character-traits">
-                                    <li class="traits-kr">🧥 후드티와 흐트러진 머리</li>
-                                    <li class="traits-kr">🥄 반만 먹은 시리얼</li>
-                                    <li class="traits-kr">🎧 항상 끼고 있는 헤드폰</li>
-                                    <li class="traits-en" style="display: none;">🧥 Hoodie, messy bun</li>
-                                    <li class="traits-en" style="display: none;">🥄 Half-eaten cereal</li>
-                                    <li class="traits-en" style="display: none;">🎧 Headphones always on</li>
-                                </ul>
-                                <div class="character-quote-flip">
-                                    <span class="quote-kr">"잠깐만... 시간 좀 주세요..."</span>
-                                    <span class="quote-en" style="display: none;">"Just need a second..."</span>
-                                </div>
-                                <div class="flip-prompt">
-                                    <span class="prompt-kr">진짜 생각을 보려면 호버하세요...</span>
-                                    <span class="prompt-en" style="display: none;">Flip to see what she's really thinking...</span>
-                                </div>
-                            </div>
-                            <div class="character-flip-card-back">
-                                <h3 class="character-title-flip">
-                                    <span class="name-kr">소소의 속마음</span>
-                                    <span class="name-en" style="display: none;">Soso's Inner Thoughts</span>
-                                </h3>
-                                <div class="character-thoughts">
-                                    <p class="thoughts-kr">💭 "세상이 닫지 못한 브라우저 탭 같아."</p>
-                                    <p class="thoughts-kr">🪫 "모든 게 에너지를 소모해. 기쁨마저도."</p>
-                                    <p class="thoughts-kr">🕯️ "가끔 나를 천천히 타들어가는 촛불이라고 생각하면, 따뜻해져."</p>
-                                    <p class="thoughts-en" style="display: none;">💭 "The world feels like an open tab I forgot to close."</p>
-                                    <p class="thoughts-en" style="display: none;">🪫 "Everything costs energy. Even joy."</p>
-                                    <p class="thoughts-en" style="display: none;">🕯️ "Sometimes I pretend I'm a candle slowly burning out, and it makes me feel warm."</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="walking-murun">
-                    <img src="images/Walking-Walk-Sticker-by-52worksnew.gif" alt="Walking Murun">
-                </div>
-
-                <div class="walking-go">
-                    <img src="images/Go-Sticker-by-52works-fast.gif" alt="Go Sticker Walking">
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
-        <button class="lightbox-close" onclick="closeLightbox(event)">×</button>
-        <div class="lightbox-content" onclick="event.stopPropagation()">
-            <img class="lightbox-image" id="lightbox-image" alt="">
+<body>
+    <!-- Background Effects -->
+    <div class="background-effects">
+        <div class="ambient-lighting"></div>
+        <div class="floating-orbs">
+            <div class="orb"></div>
+            <div class="orb"></div>
+            <div class="orb"></div>
         </div>
     </div>
 
-    <footer>
-        <div class="container">
-            <div class="footer-logo">
-                <img src="images/solanaFoundationLogo.png" alt="Solana Foundation Logo">
-            </div>
-            <p class="footer-kr">© 2025 무런 앤 소소 팬 페이지 | 현대 생활의 조용한 혼돈에서 영감을 받음</p>
-            <p class="footer-kr">무런 앤 소소의 독특한 미학에 대한 사랑으로 만든 비공식 팬 페이지입니다</p>
-            <p class="footer-en" style="display: none;">© 2025 Murun and Soso | Inspired by the quiet chaos of modern life</p>
-            <p class="footer-en" style="display: none;">This is an unofficial fan page created with love for Murun and Soso's unique aesthetic</p>
+    <!-- Gallery Architecture -->
+    <div class="gallery-architecture">
+        <div class="gallery-ceiling"></div>
+        <div class="gallery-columns">
+            <div class="column"></div>
+            <div class="column"></div>
+            <div class="column"></div>
+            <div class="column"></div>
+            <div class="column"></div>
         </div>
+        <div class="gallery-floor"></div>
+    </div>
 
-        <div class="footer-skull">
-            <img src="images/Sticker%20Skull%20Sticker%20by%2052works(%EC%98%A4%EC%9D%B4%EC%9B%8D%EC%8A%A4).gif"
-                 alt="Skull Sticker - 52works Animation">
+    <!-- Navigation -->
+    <nav class="navigation">
+        <a href="#" class="nav-link active">Lobby</a>
+        <a href="gallery.html" class="nav-link">Gallery</a>
+        <a href="eastwing.html" class="nav-link">East Wing</a>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="content-card">
+            <div class="welcome-plaque">
+                <div class="plaque-title">Welcome to Puns Intended</div>
+                <div class="plaque-text">Where celebrity faces go to get… weird.</div>
+            </div>
+            
+            <h1 class="main-title">Puns Intended</h1>
+            <p class="subtitle">Where fame gets melted, remixed, and memeified</p>
+            
+            <p class="description">
+                You've just stepped into the strangest museum on the internet. Here, A-listers are reimagined as animals, fruits, and fever dreams. Nothing is sacred. Fame gets melted, remixed, and memeified into digital chaos.
+                <br><br>
+                Some call it art. Some call it cursed. We call it <strong style="color: var(--primary-gold);">$PUNS</strong>.
+                <br><br>
+                👇 Pick your poison:
+            </p>
+            
+            <div class="action-buttons">
+                <a href="gallery.html" class="primary-btn">🎭 Enter the Gallery</a>
+                <a href="eastwing.html" class="secondary-btn">💰 Explore $PUNS</a>
+            </div>
+            
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-text"><strong>28 Featured Artworks</strong><br>of distorted greatness</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-text"><strong>Learn the philosophy</strong><br>behind the chaos</div>
+                </div>
+            </div>
         </div>
-    </footer>
+    </main>
+
+    <!-- CA Coming Soon Bar -->
+    <div class="ca-bar">
+        <div class="ca-text">CA Coming Soon</div>
+        <div class="ca-actions">
+            <button class="copy-btn" onclick="copyCA()" id="copyBtn">Copy CA</button>
+            <a href="https://x.com/PUNSintendedsol" target="_blank" class="twitter-btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                </svg>
+                Twitter
+            </a>
+            <a href="https://x.com/i/communities/1930464430099444216/" target="_blank" class="community-btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                </svg>
+                Community
+            </a>
+        </div>
+    </div>
 
     <script>
-        let currentLang = 'kr';
-        const langElements = {};
-
-        function queryLangElements() {
-            langElements.navKr = document.querySelectorAll('.nav-kr');
-            langElements.navEn = document.querySelectorAll('.nav-en');
-            langElements.logoKr = document.querySelector('.logo-img.logo-kr');
-            langElements.logoEn = document.querySelector('.logo-img.logo-en');
-            langElements.heroKr = document.querySelectorAll('.hero-kr');
-            langElements.heroEn = document.querySelectorAll('.hero-en');
-            langElements.aboutTitleKr = document.querySelectorAll('.about-title-kr');
-            langElements.aboutTitleEn = document.querySelectorAll('.about-title-en');
-            langElements.aboutKr = document.getElementById('about-kr');
-            langElements.aboutEn = document.getElementById('about-en');
-            langElements.memesTitleKr = document.querySelectorAll('.memes-title-kr');
-            langElements.memesTitleEn = document.querySelectorAll('.memes-title-en');
-            langElements.charTitleKr = document.querySelectorAll('.characters-title-kr');
-            langElements.charTitleEn = document.querySelectorAll('.characters-title-en');
-            langElements.nameKr = document.querySelectorAll('.name-kr');
-            langElements.nameEn = document.querySelectorAll('.name-en');
-            langElements.titleKr = document.querySelectorAll('.title-kr');
-            langElements.titleEn = document.querySelectorAll('.title-en');
-            langElements.statsKr = document.querySelectorAll('.stats-kr');
-            langElements.statsEn = document.querySelectorAll('.stats-en');
-            langElements.quoteKr = document.querySelectorAll('.quote-kr');
-            langElements.quoteEn = document.querySelectorAll('.quote-en');
-            langElements.bioKr = document.querySelectorAll('.bio-kr');
-            langElements.bioEn = document.querySelectorAll('.bio-en');
-            langElements.speechKr = document.querySelectorAll('.speech-kr');
-            langElements.speechEn = document.querySelectorAll('.speech-en');
-            langElements.footerKr = document.querySelectorAll('.footer-kr');
-            langElements.footerEn = document.querySelectorAll('.footer-en');
-            // New character card elements
-            langElements.traitsKr = document.querySelectorAll('.traits-kr');
-            langElements.traitsEn = document.querySelectorAll('.traits-en');
-            langElements.thoughtsKr = document.querySelectorAll('.thoughts-kr');
-            langElements.thoughtsEn = document.querySelectorAll('.thoughts-en');
-            langElements.promptKr = document.querySelectorAll('.prompt-kr');
-            langElements.promptEn = document.querySelectorAll('.prompt-en');
-        }
-
-        function toggleLanguage() {
-            if (Object.keys(langElements).length === 0) {
-                queryLangElements();
+        // Ambient lighting animation
+        setInterval(() => {
+            const lighting = document.querySelector('.ambient-lighting');
+            if (lighting) {
+                lighting.style.opacity = 0.8 + Math.random() * 0.2;
             }
+        }, 3000);
 
-            const switchToEn = currentLang === 'kr';
-
-            langElements.logoKr.style.display = switchToEn ? 'none' : 'inline-block';
-            langElements.logoEn.style.display = switchToEn ? 'inline-block' : 'none';
-
-            ['nav', 'hero', 'aboutTitle', 'memesTitle', 'charTitle', 'name', 'title', 'stats', 'quote', 'bio', 'speech', 'footer', 'traits', 'thoughts', 'prompt'].forEach(key => {
-                const krKey = key + 'Kr';
-                const enKey = key + 'En';
-                if (langElements[krKey] && langElements[enKey]) {
-                    const krNodes = langElements[krKey].nodeType === 1 ? [langElements[krKey]] : langElements[krKey];
-                    const enNodes = langElements[enKey].nodeType === 1 ? [langElements[enKey]] : langElements[enKey];
-
-                    krNodes.forEach(el => el.style.display = switchToEn ? 'none' : 'block');
-                    enNodes.forEach(el => el.style.display = switchToEn ? 'block' : 'none');
-                }
-            });
-
-            if (langElements.aboutKr && langElements.aboutEn) {
-                langElements.aboutKr.classList.toggle('active', !switchToEn);
-                langElements.aboutEn.classList.toggle('active', switchToEn);
-            }
-
-            currentLang = switchToEn ? 'en' : 'kr';
-        }
-
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    const headerOffset = document.querySelector('header').offsetHeight || 70;
-                    const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
-                    const offsetPosition = elementPosition - headerOffset;
-
-                    window.scrollTo({
-                        top: offsetPosition,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-
-        const backgroundAudio = document.getElementById('backgroundAudio');
-        if (backgroundAudio) {
-            backgroundAudio.volume = 0.02;
-            let hasInteracted = false;
-            const playAudio = () => {
-                if (!hasInteracted && backgroundAudio.paused) {
-                    backgroundAudio.play().then(() => {
-                        hasInteracted = true;
-                        ['click', 'touchstart', 'keydown'].forEach(event => {
-                            document.removeEventListener(event, playAudio);
-                        });
-                    }).catch(e => {
-                        // Audio autoplay prevented
-                    });
-                }
-            };
-            ['click', 'touchstart', 'keydown'].forEach(event => {
-                document.addEventListener(event, playAudio, { once: true });
-            });
-        }
-
+        // Copy CA function
         function copyCA() {
-            const caText = "COMING SOON";
-            const btn = document.querySelector('.copy-btn');
-            const originalText = btn.textContent;
-
-            navigator.clipboard.writeText(caText).then(() => {
-                btn.textContent = 'COPIED!';
-                btn.style.background = '#4CAF50';
+            const caAddress = "CA_ADDRESS_PLACEHOLDER"; // Replace with actual CA
+            const copyBtn = document.getElementById('copyBtn');
+            
+            navigator.clipboard.writeText(caAddress).then(() => {
+                copyBtn.textContent = 'Copied!';
+                copyBtn.classList.add('copied');
+                
                 setTimeout(() => {
-                    btn.textContent = originalText;
-                    btn.style.background = '#ccc';
+                    copyBtn.textContent = 'Copy CA';
+                    copyBtn.classList.remove('copied');
                 }, 2000);
-            }).catch(err => {
-                console.warn('Async clipboard copy failed, trying fallback:', err);
-                try {
-                    const textArea = document.createElement('textarea');
-                    textArea.value = caText;
-                    textArea.style.position = 'fixed';
-                    textArea.style.top = '0';
-                    textArea.style.left = '0';
-                    document.body.appendChild(textArea);
-                    textArea.focus();
-                    textArea.select();
-                    document.execCommand('copy');
-                    document.body.removeChild(textArea);
-
-                    btn.textContent = 'COPIED!';
-                    btn.style.background = '#4CAF50';
-                    setTimeout(() => {
-                        btn.textContent = originalText;
-                        btn.style.background = '#ccc';
-                    }, 2000);
-                } catch (fallbackErr) {
-                    console.error('Fallback copy method failed:', fallbackErr);
-                    btn.textContent = 'ERROR';
-                    btn.style.background = '#F44336';
-                    setTimeout(() => {
-                        btn.textContent = originalText;
-                        btn.style.background = '#ccc';
-                    }, 2000);
-                }
+            }).catch(() => {
+                // Fallback for older browsers
+                const textArea = document.createElement('textarea');
+                textArea.value = caAddress;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                
+                copyBtn.textContent = 'Copied!';
+                copyBtn.classList.add('copied');
+                
+                setTimeout(() => {
+                    copyBtn.textContent = 'Copy CA';
+                    copyBtn.classList.remove('copied');
+                }, 2000);
             });
         }
-
-        const lightbox = document.getElementById('lightbox');
-        const lightboxImage = document.getElementById('lightbox-image');
-
-        function openLightbox(item) {
-            const img = item.querySelector('img');
-            if (img && lightbox && lightboxImage) {
-                lightboxImage.src = img.src;
-                lightboxImage.alt = img.alt;
-                lightbox.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            }
-        }
-
-        function closeLightbox(event) {
-            if (event && (event.target === lightbox || event.target.classList.contains('lightbox-close'))) {
-                if (lightbox) {
-                    lightbox.classList.remove('active');
-                    document.body.style.overflow = 'auto';
-                }
-            } else if (!event && lightbox) {
-                lightbox.classList.remove('active');
-                document.body.style.overflow = 'auto';
-            }
-        }
-
-        const closeButton = document.querySelector('.lightbox-close');
-        if(closeButton) {
-            closeButton.onclick = function(event) { closeLightbox(event); };
-        }
-
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && lightbox && lightbox.classList.contains('active')) {
-                closeLightbox();
-            }
-        });
-
-        document.addEventListener('DOMContentLoaded', () => {
-            queryLangElements();
-        });
     </script>
 </body>
 </html>
